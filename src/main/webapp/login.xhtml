@@ -1,11 +1,23 @@
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3c.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui" 
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head></h:head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+ <h:head>
+     <title>Plataformas Historial de Equipos</title>
+     <link rel="stylesheet" type="text/css" href="css/general.css"/>
+</h:head>
     <h:body>
-        <h1> Hello World :D</h1>
+        <h3>Plataforma Historial de Equipos</h3>
+        <img class="centrado" src="imagenes/pc-with-monitor.png" alt="logo"/>
+        <div id="contenedorlogin" class="centrado">              
+             <h:form id="loginForm">
+                     <h:outputLabel class="labeltop" value="Usuario:"/>
+                     <h:inputText value="#{userLogin.username}" />
+                     <h:outputLabel value="Contraseña:" />
+                     <h:inputSecret value="#{userLogin.password}"></h:inputSecret>
+                     <h:commandButton class="botoncrema" value="login"></h:commandButton>
+             </h:form>
+       </div>
     </h:body>
 </html>
