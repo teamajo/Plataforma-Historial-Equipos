@@ -9,6 +9,7 @@
 		<id property='id' column='id' />
 		<result property='nombre' column='nombre' />
 		<result property='idEquipo' column='idEquipo' />
+		<result property='tipo' column='tipo' />
 	</resultMap>
 
 	<select id="buscarElementoPorEquipo" resultMap="ElementoResult"
@@ -16,7 +17,8 @@
 		SELECT
 			e.id,
 			e.nombre,
-			e.idEquipo
+			e.idEquipo,
+			e.tipo
 		FROM
 			ELEMENTO as e
 		<if test="idEquipo != null">
@@ -28,13 +30,14 @@
 		SELECT
 			e.id,
 			e.nombre,
-			e.idEquipo
+			e.idEquipo,
+			e.tipo
 		FROM
 			ELEMENTO as e
 	</select>
 
     <insert id="registrarElemento" parameterType="edu.eci.cvds.entities.Elemento">
-        insert into ELEMENTO(id, nombre, idEquipo) values (#{id}, #{nombre}, #{idEquipo})
+        insert into ELEMENTO(id, nombre, idEquipo,tipo) values (#{id}, #{nombre}, #{idEquipo},#{tipo})
     </insert>
 
     

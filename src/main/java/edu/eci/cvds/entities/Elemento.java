@@ -10,6 +10,7 @@ package edu.eci.cvds.entities;
     private int id;
     private String name;
     private int idEquipo;
+    private Tipo tipo;
 
     public Elemento(int id, String name, int idEquipo) {
         this.id = id;
@@ -17,6 +18,8 @@ package edu.eci.cvds.entities;
         this.setIdEquipo(idEquipo);
 
     }
+
+    
 
     public Elemento() {
         super();
@@ -66,6 +69,19 @@ package edu.eci.cvds.entities;
      */
     public void setId(int id) {
         this.id = id;
+    }
+    /**
+     * @return the tipo
+     */
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
     }
 
  }
