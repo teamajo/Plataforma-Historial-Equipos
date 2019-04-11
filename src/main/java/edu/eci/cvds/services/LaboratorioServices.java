@@ -10,6 +10,8 @@ public interface LaboratorioServices {
 
     public List<Elemento> buscarElementos() throws ServicesException;
 
+    public void registrarElemento(Elemento elemento) throws ServicesException;
+
 
 
     

@@ -10,6 +10,9 @@ public interface ElementoMapper {
 
     public List<Elemento> buscarElementoPorEquipo(@Param("equipoId") int idEquipo) throws PersistenceException;
     public List<Elemento> buscarElementos() throws PersistenceException;
+    
+    public void registrarElemento(Elemento elemento) throws PersistenceException;
+
 
 
 }

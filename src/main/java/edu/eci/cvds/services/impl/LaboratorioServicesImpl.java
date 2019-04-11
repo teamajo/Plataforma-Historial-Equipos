@@ -36,5 +36,15 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 
     }
 
+    @Override
+    public void registrarElemento(Elemento elemento) throws ServicesException{
+        try {
+			elementoDAO.registrarElemento(elemento);
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+		}
+
+    }
+
 
 }

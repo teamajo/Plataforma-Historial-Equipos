@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.ElementoMapper">
+
+	<resultMap type='Elemento' id='ElementoResult'>
+		<id property='id' column='id' />
+		<result property='nombre' column='nombre' />
+		<result property='idEquipo' column='idEquipo' />
+	</resultMap>
+
+	<select id="buscarElementoPorEquipo" resultMap="ElementoResult"
+		parameterType="int">
+		SELECT
+			e.id,
+			e.nombre,
+			e.idEquipo
+		FROM
+			ELEMENTO as e
+		<if test="idEquipo != null">
+			WHERE e.idEquipo = #{idEquipo}
+		</if>
+	</select>
+	
+	<select id="buscarElementos" resultMap="ElementoResult">
+		SELECT
+			e.id,
+			e.nombre,
+			e.idEquipo
+		FROM
+			ELEMENTO as e
+	</select>
+
+    <insert id="registrarElemento" parameterType="edu.eci.cvds.entities.Elemento">
+        insert into ELEMENTO(id, nombre, idEquipo) values (#{id}, #{nombre}, #{idEquipo})
+    </insert>
+
+    
+</mapper>

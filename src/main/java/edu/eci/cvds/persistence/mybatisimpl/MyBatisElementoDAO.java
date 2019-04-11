@@ -31,6 +31,15 @@ public class MyBatisElementoDAO implements ElementoDAO {
 		} catch (Exception e) {
 			throw new PersistenceException("Load all persistence error", e);
 		}
+    }
+    
+    @Override
+	public void registrarElemento(Elemento elemento) throws PersistenceException {
+		try {
+			elementoMapper.registrarElemento(elemento);
+		} catch (Exception e) {
+			throw new PersistenceException("Load all persistence error", e);
+		}
 	}
 	
 	

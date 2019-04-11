@@ -7,6 +7,11 @@ import javax.servlet.ServletContextListener;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
+import edu.eci.cvds.persistence.ElementoDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisElementoDAO;
+import edu.eci.cvds.services.LaboratorioServices;
+import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -30,6 +35,13 @@ public class GuiceContextListener implements ServletContextListener {
 				setClassPathResource("mybatis-config.xml");
 
 				//TODO Colocar bind para elemento 
+
+				//Laboratorio 
+				bind(LaboratorioServices.class).to(LaboratorioServicesImpl.class);
+
+				//elemento
+				bind(ElementoDAO.class).to(MyBatisElementoDAO.class);
+				
 			}
 		}
 
