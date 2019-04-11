@@ -17,6 +17,6 @@
      <welcome-file>login.xhtml</welcome-file>
   </welcome-file-list>
   <listener>
-    
+     <!-- <listener-class>edu.eci.cvds.guice.GuiceContextListener</listener-class> falta esto (algo asi)-->
   </listener>
 </web-app>
