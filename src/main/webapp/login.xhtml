@@ -6,9 +6,10 @@
  <h:head>
      <title>Plataformas Historial de Equipos</title>
      <link rel="stylesheet" type="text/css" href="css/general.css"/>
+     <link rel="stylesheet" type="text/css" href="css/login.css"/>
 </h:head>
     <h:body>
-        <h3>Plataforma Historial de Equipos</h3>
+        <h1>Plataforma Historial de Equipos</h1>
         <img class="centrado" src="imagenes/pc-with-monitor.png" alt="logo"/>
         <div id="contenedorlogin" class="centrado">              
              <h:form id="loginForm">
@@ -17,6 +18,8 @@
                      <h:outputLabel value="Contraseña:" />
                      <h:inputSecret value="#{loginBean.password}"></h:inputSecret>
                      <h:commandButton class="botoncrema" value="login" action="#{loginBean.login()}"></h:commandButton>
+                     <p:messages showDetail="true"/>
+                     
              </h:form>
        </div>
     </h:body>

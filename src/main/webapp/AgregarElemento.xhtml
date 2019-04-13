@@ -1,0 +1,48 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+ <title>Plataformas Historial de Equipos</title>
+ <link rel="stylesheet" type="text/css" href="css/general.css"/>
+ <link rel="stylesheet" type="text/css" href="css/agregarElemento.css"/>
+</h:head>
+<h:body>
+    <h1>Agregar Elemento</h1>
+    <div id="iconos">
+        <img src="imagenes/keyboard.png" alt="elemento"/>
+        <img src="imagenes/mouse.png" alt="elemento"/>
+        <img src="imagenes/tower.png" alt="elemento"/>
+        <img src="imagenes/monitor.png" alt="elemento"/>
+    </div>
+    <h:form id="formulario">
+        <p:panel id="panel" header="Datos del Elemento">
+            <p:messages id="messages" />
+            <h:panelGrid columns="3" cellpadding="5">
+                
+                <p:outputLabel for="console" value="Tipo:"  />
+                <p:selectOneMenu id="console" value="" style="width:125px" required="true">
+                    <f:selectItem itemLabel="Select One" itemValue="" />
+                    <f:selectItem itemLabel="Torre" itemValue="torre" />
+                    <f:selectItem itemLabel="Pantalla" itemValue="pantalla" />
+                    <f:selectItem itemLabel="Teclado" itemValue="teclado" />
+                </p:selectOneMenu>
+                <p:message for="console" />
+                 
+                <p:outputLabel for="text3" value="Descripcion:" />
+                <p:inputText id="text3" value="" required="true"/>
+                <p:message for="text3" />
+                
+
+                <p:outputLabel for="text2" value="Nombre:" />
+                <p:inputText id="text2" value="" required="true"/>
+                <p:message for="text2" />
+
+               
+            </h:panelGrid>
+        </p:panel>
+         <h:commandButton class="boton" value="Registrar Elemento" ></h:commandButton>
+    </h:form>   
+</h:body>
+</html>

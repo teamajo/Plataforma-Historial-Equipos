@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -33,18 +34,32 @@ public class LoginBean extends BasePageBean implements Serializable {
         SecurityUtils.setSecurityManager(securityManager);
         Subject currentUser = SecurityUtils.getSubject();              
         UsernamePasswordToken token = new UsernamePasswordToken(user, password);             
-        token.setRememberMe(true);  
         try{            
             currentUser.login(token);    
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().redirect("bienvenida.xhtml");
         }catch(AuthenticationException au){
-            System.out.println("Error de ingreso");
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Credenciales erroneas", ""));
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
+    }
+    
+    public void logout(){
+        Subject currentUser = SecurityUtils.getSubject(); 
+        FacesContext context = FacesContext.getCurrentInstance();     
+        if(currentUser!=null){
+            currentUser.logout();
+        }     
+        try {
+            context.getExternalContext().redirect("login.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    
     }
 
     public String getUser() {

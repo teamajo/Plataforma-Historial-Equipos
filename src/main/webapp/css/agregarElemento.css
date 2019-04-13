@@ -1,0 +1,42 @@
+body{
+    color:black;
+    background-color: white;    
+    font-weight: bold;
+    padding-top: 1%;    
+}
+
+#iconos{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+img{
+    max-height: 100px;       
+}
+
+body *,label{
+    font-size: 20px;    
+}
+
+h1{
+    font-size: 40px;    
+}
+
+#formulario,img, h1{  
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;     
+}
+
+
+#formulario{        
+    min-width: 600px;
+    max-width: 40%;
+}
+
+.boton{
+    margin-top: 20px;
+}
+
