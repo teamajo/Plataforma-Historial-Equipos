@@ -4,7 +4,8 @@ import org.apache.shiro.util.Factory;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.subject.Subject;
-import org.postgresql.ds.PGSimpleDataSource;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,7 +26,7 @@ public class Prueba {
         //log.info("My First Apache Shiro Application");
 
         //1.
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("src/main/resources/shiro.ini");
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("src/main/webapp/WEB-INF/shiro.ini");
        
         //2.
         SecurityManager securityManager = factory.getInstance();

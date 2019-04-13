@@ -3,20 +3,35 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+    <display-name>Archetype Created Web Application</display-name>
     <servlet>
-     <servlet-name>Faces Servlet</servlet-name>
-     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-     <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-     <servlet-name>Faces Servlet</servlet-name>
-     <url-pattern>*.xhtml</url-pattern>
-  </servlet-mapping>
-  <welcome-file-list>
-     <welcome-file>login.xhtml</welcome-file>
-  </welcome-file-list>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>login.xhtml</welcome-file>
+    </welcome-file-list>
+    
   <listener>
-     <!-- <listener-class>edu.eci.cvds.guice.GuiceContextListener</listener-class> falta esto (algo asi)-->
+        <listener-class>edu.eci.cvds.guice.GuiceContextListener</listener-class>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>        
   </listener>
+    <filter>
+       <filter-name>ShiroFilter</filter-name>
+       <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+   </filter>
+
+   <filter-mapping>
+       <filter-name>ShiroFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+       <dispatcher>REQUEST</dispatcher>
+       <dispatcher>FORWARD</dispatcher>
+       <dispatcher>INCLUDE</dispatcher>
+       <dispatcher>ERROR</dispatcher>
+   </filter-mapping>
 </web-app>

@@ -13,10 +13,10 @@
         <div id="contenedorlogin" class="centrado">              
              <h:form id="loginForm">
                      <h:outputLabel class="labeltop" value="Usuario:"/>
-                     <h:inputText value="#{userLogin.username}" />
+                     <h:inputText value="#{loginBean.user}" />
                      <h:outputLabel value="Contraseña:" />
-                     <h:inputSecret value="#{userLogin.password}"></h:inputSecret>
-                     <h:commandButton class="botoncrema" value="login"></h:commandButton>
+                     <h:inputSecret value="#{loginBean.password}"></h:inputSecret>
+                     <h:commandButton class="botoncrema" value="login" action="#{loginBean.login()}"></h:commandButton>
              </h:form>
        </div>
     </h:body>

@@ -30,7 +30,7 @@ public class GuiceContextListener implements ServletContextListener {
 			@Override
 			protected void initialize() {
 
-				install(JdbcHelper.MySQL);
+				install(JdbcHelper.PostgreSQL);
 
 				setEnvironmentId("development");
 
@@ -39,13 +39,12 @@ public class GuiceContextListener implements ServletContextListener {
 				//TODO Colocar bind para elemento 
 
 				//Laboratorio 
-				bind(LaboratorioServices.class).to(LaboratorioServicesImpl.class);
+				//bind(LaboratorioServices.class).to(LaboratorioServicesImpl.class);
 
 				//elemento
-				bind(ElementoDAO.class).to(MyBatisElementoDAO.class);
+				//bind(ElementoDAO.class).to(MyBatisElementoDAO.class);
 				
-				//Usuario
-				bind(UsuarioDAO.class).to(MyBatisUsuarioDAO.class);
+				
 				
 			}
 		}
