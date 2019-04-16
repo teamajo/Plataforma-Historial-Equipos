@@ -44,7 +44,7 @@ public class AgregarElementoBean extends BasePageBean {
     public void registrarElemento() throws Exception {
         String mensaje;
         try {
-            nuevoElemento.setId(laboratorioServices.maxId()+1);
+            //nuevoElemento.setId(laboratorioServices.maxId()+1);
             laboratorioServices.registrarElemento(nuevoElemento);
             mensaje = "success !!";
         } catch (ServicesException ex) {

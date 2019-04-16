@@ -38,9 +38,6 @@
 			FROM
 				ELEMENTO as e
 		</select>
-		<select id="maxId" resultType="int" >
-			SELECT MAX(id) from ELEMENTO
-		</select>
 
 		<select id = "elementosDisponibles" resultMap="ElementoResult">
 		SELECT
@@ -54,8 +51,8 @@
 				Where idEquipo = 0
 		</select>
 
-    <insert id="registrarElemento" parameterType="edu.eci.cvds.entities.Elemento">
-        insert into ELEMENTO(id, name, idEquipo,tipo,descripcion) values (#{id}, #{name}, #{idEquipo},#{tipo},#{descripcion})
+    <insert id="registrarElemento" parameterType="edu.eci.cvds.entities.Elemento" >
+        insert into ELEMENTO(name, idEquipo,tipo,descripcion) values (#{name}, #{idEquipo},#{tipo},#{descripcion})
     </insert>
 
     
