@@ -63,12 +63,11 @@
         </dependency>        
      
 
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.4.5</version>
-        </dependency>
-
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>3.5.1</version>
+      </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -192,7 +191,7 @@
                 <version>2.12.4</version>
                 <configuration>
                   <includes>
-                        <include>*Test.java</include>
+                        <include>**/*Test.java</include>
                   </includes>
                 </configuration>
           </plugin>
@@ -235,7 +234,7 @@
                 <configuration>
                     <driver>org.h2.Driver</driver>                    
                     <url>jdbc:h2:file:./target/db/testdb;MODE=PostgreSQL</url>
-                    <username>anonymous</username>
+                    <username>sa</username>
                     <password></password>
                     <autocommit>false</autocommit>
                     <skip>${maven.test.skip}</skip>

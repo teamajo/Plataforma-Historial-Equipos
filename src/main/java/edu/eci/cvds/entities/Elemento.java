@@ -13,10 +13,12 @@ package edu.eci.cvds.entities;
     private Tipo tipo;
     private String descripcion;
 
-    public Elemento(int id, String name, int idEquipo, String descripcion) {
+    public Elemento(int id, Tipo tipo, String name, int idEquipo, String descripcion) {
         this.id = id;
         this.name = name;
-        this.setIdEquipo(idEquipo);
+        this.idEquipo=idEquipo;
+        this.descripcion=descripcion;
+        this.tipo=tipo;
 
     }
 
@@ -96,5 +98,9 @@ package edu.eci.cvds.entities;
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+    
+    @Override
+    public String toString() {
+        return "Item{" + "tipo=" + tipo + ", id=" + id + ", nombre=" + name +", idEquipo"+idEquipo+", descripcion="+descripcion+'}';
+    }
  }

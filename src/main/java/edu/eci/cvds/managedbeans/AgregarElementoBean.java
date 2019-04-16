@@ -41,15 +41,15 @@ public class AgregarElementoBean extends BasePageBean {
         this.nuevoElemento = nuevoElemento;
     }
 
-	public void registrarElemento() throws Exception {
+    public void registrarElemento() throws Exception {
         String mensaje;
-		try {
+        try {
             nuevoElemento.setId(laboratorioServices.maxId()+1);
             laboratorioServices.registrarElemento(nuevoElemento);
             mensaje = "success !!";
-		} catch (ServicesException ex) {
+        } catch (ServicesException ex) {
             mensaje = "Fail";
-			throw ex;
+            throw ex;
         }
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
     }
