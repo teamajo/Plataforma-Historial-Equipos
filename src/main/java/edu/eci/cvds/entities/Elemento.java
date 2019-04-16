@@ -101,6 +101,6 @@ package edu.eci.cvds.entities;
     
     @Override
     public String toString() {
-        return "Item{" + "tipo=" + tipo + ", id=" + id + ", nombre=" + name +", idEquipo"+idEquipo+", descripcion="+descripcion+'}';
+        return "Item{" + "tipo=" + tipo + ", id=" + id + ", nombre=" + name +", idEquipo="+idEquipo+", descripcion="+descripcion+'}';
     }
  }

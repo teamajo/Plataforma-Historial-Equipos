@@ -29,7 +29,7 @@ public class LaboratorioServiciosTest {
     @Inject
     private SqlSession sqlSession;
     
-    private static List<Integer> usedIdElements=new ArrayList<>();
+    private static int idmax=0;
     private LaboratorioServices serviciosLab;
     
     
@@ -49,19 +49,17 @@ public class LaboratorioServiciosTest {
             try {
                       
                 serviciosLab.registrarElemento(elem);
-                if (!usedIdElements.contains(id)){
-                    usedIdElements.add(id);                   
-                } 
+                idmax++;
                 return true;
-            } catch (ServicesException ex) {             
-                return usedIdElements.contains(id);              
+            } catch (ServicesException ex) {                 
+                return false;
             }
            }
                 
-        );   
-        
+        );      
+               
         try {
-            assert(serviciosLab.buscarElementos().size()==usedIdElements.size());
+            assert(serviciosLab.buscarElementos().size()==idmax);
         } catch (ServicesException ex) {
             Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
         }
