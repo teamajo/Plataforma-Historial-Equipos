@@ -4,12 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="config.properties">
-	</properties>
-   
-    <!--  
+	</properties>   
+    
     <typeAliases>
         <typeAlias type='edu.eci.cvds.entities.Elemento' alias='Elemento'/>
-    </typeAliases>       --> 
+    </typeAliases>       
 
         
     <environments default="development">
@@ -23,10 +22,10 @@
             </dataSource>
         </environment>
     </environments>
-    <!--    
+    
     <mappers>
        <mapper resource="mappers/ElementoMapper.xml"></mapper>           
-    </mappers> -->
+    </mappers> 
         
         
 </configuration>

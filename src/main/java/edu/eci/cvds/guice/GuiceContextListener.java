@@ -39,10 +39,10 @@ public class GuiceContextListener implements ServletContextListener {
 				//TODO Colocar bind para elemento 
 
 				//Laboratorio 
-				//bind(LaboratorioServices.class).to(LaboratorioServicesImpl.class);
+				bind(LaboratorioServices.class).to(LaboratorioServicesImpl.class);
 
 				//elemento
-				//bind(ElementoDAO.class).to(MyBatisElementoDAO.class);
+				bind(ElementoDAO.class).to(MyBatisElementoDAO.class);
 				
 				
 				

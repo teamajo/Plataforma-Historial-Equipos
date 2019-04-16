@@ -11,15 +11,15 @@ package edu.eci.cvds.entities;
     private String name;
     private int idEquipo;
     private Tipo tipo;
+    private String descripcion;
 
-    public Elemento(int id, String name, int idEquipo) {
+    public Elemento(int id, String name, int idEquipo, String descripcion) {
         this.id = id;
         this.name = name;
         this.setIdEquipo(idEquipo);
 
     }
 
-    
 
     public Elemento() {
         super();
@@ -82,6 +82,19 @@ package edu.eci.cvds.entities;
      */
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
+    }
+     /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
  }

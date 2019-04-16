@@ -22,7 +22,7 @@ xmlns:p="http://primefaces.org/ui">
             <h:panelGrid columns="3" cellpadding="5">
                 
                 <p:outputLabel for="console" value="Tipo:"  />
-                <p:selectOneMenu id="console" value="" style="width:125px" required="true">
+                <p:selectOneMenu id="console" value="#{agregarElemento.nuevoElemento.tipo}" style="width:125px" required="true">
                     <f:selectItem itemLabel="Select One" itemValue="" />
                     <f:selectItem itemLabel="Torre" itemValue="torre" />
                     <f:selectItem itemLabel="Pantalla" itemValue="pantalla" />
@@ -31,18 +31,18 @@ xmlns:p="http://primefaces.org/ui">
                 <p:message for="console" />
                  
                 <p:outputLabel for="text3" value="Descripcion:" />
-                <p:inputText id="text3" value="" required="true"/>
+                <p:inputText id="text3" value="#{agregarElemento.nuevoElemento.descripcion}" required="true"/>
                 <p:message for="text3" />
                 
 
                 <p:outputLabel for="text2" value="Nombre:" />
-                <p:inputText id="text2" value="" required="true"/>
+                <p:inputText id="text2" value="#{agregarElemento.nuevoElemento.name}" required="true"/>
                 <p:message for="text2" />
 
                
             </h:panelGrid>
         </p:panel>
-         <h:commandButton class="boton" value="Registrar Elemento" ></h:commandButton>
+         <h:commandButton class="boton" value="Registrar Elemento" actionListener="#{agregarElemento.registrarElemento}" ></h:commandButton>
     </h:form>   
 </h:body>
 </html>
