@@ -1,6 +1,7 @@
 package edu.eci.cvds.managedbeans;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -51,7 +52,23 @@ public class AgregarElementoBean extends BasePageBean {
 			throw ex;
         }
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
-	}
+    }
+    
+    public List<Elemento> elementosDisponibles() throws Exception{
+        String mensaje;
+        List<Elemento> disponibles= null;
+        try {
+            disponibles= laboratorioServices.elementosDisponibles();
+            mensaje = "success !!";
+		} catch (ServicesException ex) {
+            mensaje = "Fail";
+			throw ex;
+        }
+
+        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
+        return disponibles;
+
+    } 
 	
 	
 

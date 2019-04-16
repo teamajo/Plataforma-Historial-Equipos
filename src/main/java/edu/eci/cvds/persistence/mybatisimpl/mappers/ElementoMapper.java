@@ -13,6 +13,7 @@ public interface ElementoMapper {
     
     public void registrarElemento(Elemento elemento) throws PersistenceException;
 	public int maxId() throws PersistenceException;
+	public List<Elemento> elementosDisponibles() throws PersistenceException;
 	
 
 

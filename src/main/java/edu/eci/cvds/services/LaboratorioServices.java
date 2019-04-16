@@ -12,9 +12,8 @@ public interface LaboratorioServices {
 
     public void registrarElemento(Elemento elemento) throws ServicesException;
 
-	public int maxId() throws ServicesException;
+    public int maxId() throws ServicesException;
 
-
-
+    public List<Elemento> elementosDisponibles() throws ServicesException;
     
 }
