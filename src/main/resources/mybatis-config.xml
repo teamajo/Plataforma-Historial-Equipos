@@ -3,6 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+    
     <properties resource="config.properties">
 	</properties>   
     
@@ -15,10 +17,10 @@
         <environment id="development">
             <transactionManager type="JDBC" />
             <dataSource type="POOLED">
-                <property name="driver" value="${driver}" />
-                <property name="url" value="${url}" />
-				<property name="username" value="${username}" />
-				<property name="password" value="${password}" />
+                <property name="driver" value="org.postgresql.Driver" />
+                <property name="url" value="jdbc:postgresql://ec2-23-23-92-204.compute-1.amazonaws.com:5432/d2m7i84b97afkr?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory" />
+				<property name="username" value="qnasjbmjuhhfzo" />
+				<property name="password" value="606ae65de76a4c41f9737772f342e6410f13560d23dc1eb91dab594de69d90c2" />
             </dataSource>
         </environment>
     </environments>

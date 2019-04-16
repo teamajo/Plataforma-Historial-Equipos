@@ -1,15 +1,18 @@
 package edu.eci.cvds.managedbeans;
 
+import java.security.Principal;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.services.LaboratorioServices;
-import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
+import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
 
 /**
  * Bean para la interfaz de usuario de las decanaturas
@@ -19,8 +22,8 @@ import edu.eci.cvds.services.ServicesException;
 @RequestScoped
 public class AgregarElementoBean extends BasePageBean {
 
-	@Inject
-	private LaboratorioServices laboratorioServices;
+    @Inject
+    private LaboratorioServicesImpl laboratorioServices;
 	
     private Elemento nuevoElemento;
 
@@ -38,12 +41,16 @@ public class AgregarElementoBean extends BasePageBean {
     }
 
 	public void registrarElemento() throws Exception {
+        String mensaje;
 		try {
-		     laboratorioServices.registrarElemento(nuevoElemento);
+            nuevoElemento.setId(laboratorioServices.maxId()+1);
+            laboratorioServices.registrarElemento(nuevoElemento);
+            mensaje = "success !!";
 		} catch (ServicesException ex) {
-
+            mensaje = "Fail";
 			throw ex;
-		}
+        }
+        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
 	}
 	
 	
