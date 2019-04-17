@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.EquipoMapper">
+
+	<resultMap type='Equipo' id='EquipoResult'>
+		<id property='id' column='id' />
+		<result property='lab' column='lab' />
+	</resultMap>
+
+		<select id="buscarEquipoPorLab" resultMap="EquipoResult"
+			parameterType="int">
+				select 
+					e.id,
+					e.lab
+				from EQUIPO as e
+			<if test="lab != null">
+				WHERE e.lab = #{lab}
+			</if>
+		</select>
+	
+		<select id="buscarEquipo" resultMap="EquipoResult">
+			select 
+				e.id,
+				e.lab
+			from EQUIPO as e
+		</select>
+
+    <insert id="registrarEquipo" parameterType="edu.eci.cvds.entities.Equipo" >
+        insert into EQUIPO(id, lab) values (#{id}, #{lab})
+    </insert>
+
+    
+</mapper>
