@@ -51,6 +51,13 @@
 				Where idEquipo = 0
 		</select>
 
+		<update id="adiccionarEquipo" >
+		UPDATE ELEMENTO SET
+			idEquipo = #{idEquipo}
+		WHERE id = #{id}
+		</update>
+
+
     <insert id="registrarElemento" parameterType="edu.eci.cvds.entities.Elemento" >
         insert into ELEMENTO(name, idEquipo,tipo,descripcion) values (#{name}, #{idEquipo},#{tipo},#{descripcion})
     </insert>

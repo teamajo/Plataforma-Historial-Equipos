@@ -14,6 +14,8 @@ public interface LaboratorioServices {
     public void registrarElemento(Elemento elemento) throws ServicesException;
 
     public List<Elemento> elementosDisponibles() throws ServicesException;
+
+    public void asociarEquipo(int idEquipo,int id) throws ServicesException;
     
     public List<Equipo> buscarEquipoPorLab(String lab) throws ServicesException;
 

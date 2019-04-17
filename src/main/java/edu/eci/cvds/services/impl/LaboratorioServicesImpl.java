@@ -58,6 +58,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
       throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
     }
   }
+<<<<<<< HEAD
   
   
   
@@ -93,5 +94,16 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	
 	  }
 	  
+=======
+  @Override
+  public void asociarEquipo(int idEquipo,int id) throws ServicesException {
+    try {
+       elementoDAO.asociarEquipo(idEquipo,id);
+    } catch (PersistenceException ex) {
+      throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+    }
+  }
+
+>>>>>>> 69b7a0184d2a6fb410a5badd47d3433aac62a917
 
 }

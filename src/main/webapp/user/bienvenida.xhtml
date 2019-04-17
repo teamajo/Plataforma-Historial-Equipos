@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+    <title>Bienvenido</title>
+    <link rel="stylesheet" type="text/css" href="../css/general.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/bienvenido.css"/>
+    
+</head>
+<body>
+    <header>
+         <ui:insert name="header" >
+            <ui:include src="../header.xhtml" />
+         </ui:insert>
+    </header>
+  
+    
+    <h1> Bienvenido , ya ha ingresado</h1>
+     <h:form>
+        <h:button value="Registrar Elemento" outcome="AgregarElemento.xhtml" />
+        <h:button value="Registrar Equipo" outcome="AgregarEquipo.xhtml" />
+        <h:commandButton value="logout" action="#{loginBean.logout}" />
+      </h:form>
+</body>
+   
+</html>
