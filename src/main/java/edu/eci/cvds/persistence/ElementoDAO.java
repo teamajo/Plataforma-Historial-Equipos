@@ -9,7 +9,6 @@ public interface ElementoDAO{
     public List<Elemento> buscarElementoPorEquipo(int idEquipo) throws PersistenceException;
     public List<Elemento> buscarElementos() throws PersistenceException;
     public void registrarElemento(Elemento elemento) throws PersistenceException;
-	public int maxId() throws PersistenceException;
 	public List<Elemento> elementosDisponibles() throws PersistenceException;
 
 
