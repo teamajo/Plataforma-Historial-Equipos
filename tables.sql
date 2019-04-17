@@ -8,7 +8,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE equipo (
-	id int4 NOT NULL,
+	id int4 serial NOT NULL,
 	lab varchar(10) NOT NULL,
 	CONSTRAINT equipo_pkey PRIMARY KEY (id)
 );

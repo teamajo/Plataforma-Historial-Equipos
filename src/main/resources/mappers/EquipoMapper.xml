@@ -29,7 +29,7 @@
 		</select>
 
     <insert id="registrarEquipo" parameterType="edu.eci.cvds.entities.Equipo" >
-        insert into EQUIPO(id, lab) values (#{id}, #{lab})
+        insert into EQUIPO(lab) values (#{lab})
     </insert>
 
     
