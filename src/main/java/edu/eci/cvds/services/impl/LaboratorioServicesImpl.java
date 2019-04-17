@@ -45,19 +45,18 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 		}
 
     }
-
-  @Override
-  public int maxId() throws ServicesException {
-    try {
-			return elementoDAO.maxId();
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-		}
-  }
   @Override
   public List<Elemento> elementosDisponibles() throws ServicesException{
     try {
       return elementoDAO.elementosDisponibles();
+    } catch (PersistenceException ex) {
+      throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+    }
+  }
+  @Override
+  public void adiccionarEquipo(int idEquipo,int id) throws ServicesException {
+    try {
+       elementoDAO.adiccionarEquipo(idEquipo,id);
     } catch (PersistenceException ex) {
       throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
     }

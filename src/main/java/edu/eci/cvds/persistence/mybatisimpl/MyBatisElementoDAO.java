@@ -42,14 +42,6 @@ public class MyBatisElementoDAO implements ElementoDAO {
 		}
 	}
 
-	@Override
-	public int maxId() throws PersistenceException{
-		try {
-			return elementoMapper.maxId();
-		} catch (Exception e) {
-			throw new PersistenceException("Load all persistence error", e);
-		}
-	}
 
 	@Override
 	public List<Elemento> elementosDisponibles() throws PersistenceException {
@@ -59,6 +51,16 @@ public class MyBatisElementoDAO implements ElementoDAO {
 			throw new PersistenceException("Load all persistence error", e);
 		}
 	}
+	@Override
+	public void adiccionarEquipo(int idEquipo,int id)throws PersistenceException {
+		try {
+		 elementoMapper.adiccionarEquipo(idEquipo,id);
+		} catch (Exception e) {
+			throw new PersistenceException("Load all persistence error", e);
+		}
+	}
+
+	
 	
 	
 
