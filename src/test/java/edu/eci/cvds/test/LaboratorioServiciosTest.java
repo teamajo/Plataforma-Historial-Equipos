@@ -29,7 +29,7 @@ public class LaboratorioServiciosTest {
     @Inject
     private SqlSession sqlSession;
     
-    private static int idmax=0;
+    private static int idElemmax=0;
     private LaboratorioServices serviciosLab;
     
     
@@ -44,12 +44,10 @@ public class LaboratorioServiciosTest {
     @Test
     public void agregarItemTest(){
         qt().forAll(GeneradoresLaboratorio.elemAleatorio()).check(
-           (elem)->{
-            int id=elem.getId();        
-            try {
-                      
+           (elem)->{              
+            try {                      
                 serviciosLab.registrarElemento(elem);
-                idmax++;
+                idElemmax++;
                 return true;
             } catch (ServicesException ex) {                 
                 return false;
@@ -59,7 +57,7 @@ public class LaboratorioServiciosTest {
         );      
                
         try {
-            assert(serviciosLab.buscarElementos().size()==idmax);
+            assert(serviciosLab.buscarElementos().size()==idElemmax);
         } catch (ServicesException ex) {
             Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
         }

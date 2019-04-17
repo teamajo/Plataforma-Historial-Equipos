@@ -2,19 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:h="http://java.sun.com/jsf/html"
 xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui">
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
  <title>Plataformas Historial de Equipos</title>
- <link rel="stylesheet" type="text/css" href="css/general.css"/>
- <link rel="stylesheet" type="text/css" href="css/agregarElemento.css"/>
+ <link rel="stylesheet" type="text/css" href="../css/general.css"/>
+ <link rel="stylesheet" type="text/css" href="../css/agregarElemento.css"/>  
 </h:head>
 <h:body>
+    <header>
+         <ui:insert name="header" >
+            <ui:include src="../header.xhtml" />
+         </ui:insert>
+    </header>
+  
     <h1>Agregar Elemento</h1>
     <div id="iconos">
-        <img src="imagenes/keyboard.png" alt="elemento"/>
-        <img src="imagenes/mouse.png" alt="elemento"/>
-        <img src="imagenes/tower.png" alt="elemento"/>
-        <img src="imagenes/monitor.png" alt="elemento"/>
+        <img src="../imagenes/keyboard.png" alt="elemento"/>
+        <img src="../imagenes/mouse.png" alt="elemento"/>
+        <img src="../imagenes/tower.png" alt="elemento"/>
+        <img src="../imagenes/monitor.png" alt="elemento"/>
     </div>
     <h:form id="formulario">
         <p:panel id="panel" header="Datos del Elemento">
