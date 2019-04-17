@@ -3,6 +3,7 @@ package edu.eci.cvds.services;
 import java.util.List;
 
 import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.entities.Equipo;
 
 public interface LaboratorioServices {
 
@@ -13,5 +14,11 @@ public interface LaboratorioServices {
     public void registrarElemento(Elemento elemento) throws ServicesException;
 
     public List<Elemento> elementosDisponibles() throws ServicesException;
+    
+    public List<Equipo> buscarEquipoPorLab(String lab) throws ServicesException;
+
+    public List<Equipo> buscarEquipos() throws ServicesException;
+
+    public void registrarEquipo(Equipo equipo) throws ServicesException;
     
 }
