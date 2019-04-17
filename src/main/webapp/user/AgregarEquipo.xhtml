@@ -2,20 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:h="http://java.sun.com/jsf/html"
 xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui">
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
  <title>Plataformas Historial de Equipos</title>
- <link rel="stylesheet" type="text/css" href="css/general.css"/>
- <link rel="stylesheet" type="text/css" href="css/agregarEquipo.css"/>
+ <link rel="stylesheet" type="text/css" href="../css/general.css"/>
+ <link rel="stylesheet" type="text/css" href="../css/agregarEquipo.css"/>  
 </h:head>
 <h:body>
+    <header>
+         <ui:insert name="header" >
+            <ui:include src="../header.xhtml" />
+         </ui:insert>
+    </header>
+  
     <h1>Agregar Equipo</h1>
-
+    
     <h:form id="formularioequipo">
         <div class="row">
             <div class="column">
                 <p:panel class="formulario" id="torreformulario" header="Torre">                  
-                    <img src="imagenes/tower.png" alt="elemento"/>       
+                    <img src="../imagenes/tower.png" alt="elemento"/>       
                     <h:panelGrid columns="3" cellpadding="5">
 
                         <p:outputLabel for="text1" value="Descripcion:" />
@@ -29,7 +36,7 @@ xmlns:p="http://primefaces.org/ui">
                     </h:panelGrid>
                 </p:panel>
                 <p:panel class="formulario" id="pantallaformulario" header="Pantalla">                      
-                    <img src="imagenes/monitor.png" alt="elemento"/>
+                    <img src="../imagenes/monitor.png" alt="elemento"/>
                     <h:panelGrid columns="3" cellpadding="5">                   
 
                         <p:outputLabel for="text3" value="Descripcion:" />
@@ -45,7 +52,7 @@ xmlns:p="http://primefaces.org/ui">
              </div>    
              <div class="column">
                 <p:panel class="formulario"  id="tecladoformulario" header="Teclado">
-                    <img src="imagenes/keyboard.png" alt="elemento"/>       
+                    <img src="../imagenes/keyboard.png" alt="elemento"/>       
                     <h:panelGrid columns="3" cellpadding="5">
 
                         <p:outputLabel for="text5" value="Descripcion:" />
@@ -60,7 +67,7 @@ xmlns:p="http://primefaces.org/ui">
                 </p:panel>
                 <p:panel class="formulario" id="mouseformulario" header="Mouse"> 
                      
-                    <img src="imagenes/mouse.png" alt="elemento"/>
+                    <img src="../imagenes/mouse.png" alt="elemento"/>
         
                     <h:panelGrid columns="3" cellpadding="5">                   
 

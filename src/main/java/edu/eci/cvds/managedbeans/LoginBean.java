@@ -37,7 +37,7 @@ public class LoginBean extends BasePageBean implements Serializable {
         try{            
             currentUser.login(token);    
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.getExternalContext().redirect("bienvenida.xhtml");
+            fc.getExternalContext().redirect("user/bienvenida.xhtml");
         }catch(AuthenticationException au){
            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Credenciales erroneas", ""));
         } catch (IOException ex) {
