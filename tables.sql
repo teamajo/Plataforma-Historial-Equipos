@@ -12,7 +12,7 @@ CREATE TABLE users (
 CREATE TABLE elemento (
 	id serial NOT NULL,
 	name varchar NOT NULL,
-	idequipo int4 NULL,
+	idequipo int4,
 	tipo varchar NOT NULL,
 	descripcion varchar NOT NULL,
 	CONSTRAINT elemento_pkey PRIMARY KEY (id)

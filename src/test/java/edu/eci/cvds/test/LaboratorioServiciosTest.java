@@ -47,7 +47,8 @@ public class LaboratorioServiciosTest {
                 serviciosLab.registrarElemento(elem);
                 idElemmax++;
                 return true;
-            } catch (ServicesException ex) {                 
+            } catch (ServicesException ex) {   
+                System.out.println(ex.getMessage());
                 return false;
             }
            }
