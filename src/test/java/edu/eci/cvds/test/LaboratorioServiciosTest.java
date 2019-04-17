@@ -30,6 +30,8 @@ public class LaboratorioServiciosTest {
     private SqlSession sqlSession;
     
     private static int idElemmax=0;
+    private static int idEquimax=0;
+    private static List<Integer> usedEqui=new ArrayList<>();
     private LaboratorioServices serviciosLab;
     
     
@@ -49,8 +51,7 @@ public class LaboratorioServiciosTest {
                 serviciosLab.registrarElemento(elem);
                 idElemmax++;
                 return true;
-            } catch (ServicesException ex) {   
-                System.out.println(ex.getMessage());
+            } catch (ServicesException ex) {                  
                 return false;
             }
            }
@@ -66,6 +67,32 @@ public class LaboratorioServiciosTest {
             
     }
     
+   @Test
+    public void agregarEquipoTest(){
+        qt().forAll(GeneradoresLaboratorio.equipos()).check(
+           (equipo)->{              
+            try {     
+                if (!usedEqui.contains(equipo.getId())){
+                    serviciosLab.registrarEquipo(equipo);
+                    idEquimax++;
+                    usedEqui.add(equipo.getId());               
+                }
+              
+                return true;
+            } catch (ServicesException ex) {                   
+                return usedEqui.contains(equipo.getId());
+            }
+           }
+                
+        );              
+        try {
+            serviciosLab.buscarEquipos();
+        } catch (ServicesException ex) {
+            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+        
+    }
    
     
     

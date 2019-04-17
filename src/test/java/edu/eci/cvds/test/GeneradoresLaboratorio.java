@@ -6,6 +6,7 @@
 package edu.eci.cvds.test;
 
 import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.Tipo;
 import org.quicktheories.core.Gen;
 import org.quicktheories.generators.Generate;
@@ -21,7 +22,7 @@ public class GeneradoresLaboratorio {
     
     public static Gen<Elemento> teclados(){
      
-       return cadenas(4,6).zip(cadenas(6,10), integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.teclado, name, 0, des));
+       return cadenas(4,6).zip(cadenas(6,10), integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.teclado, name, null, des));
     }
     
     public static Gen<String> cadenas(int min,int max){
@@ -30,21 +31,25 @@ public class GeneradoresLaboratorio {
     
      public static Gen<Elemento> pantallas(){
       
-       return cadenas(4,6).zip(cadenas(6,10), integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.pantalla, name, 0, des));
+       return cadenas(4,6).zip(cadenas(6,10), integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.pantalla, name, null, des));
     }
      
     public static Gen<Elemento> mouses(){
        
-       return cadenas(4,6).zip(cadenas(6,10),integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.mouse, name, 0, des));
+       return cadenas(4,6).zip(cadenas(6,10),integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.mouse, name, null, des));
     }
     
      public static Gen<Elemento> torres(){
        
-       return cadenas(4,6).zip(cadenas(6,10),integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.torre, name, 0, des));
+       return cadenas(4,6).zip(cadenas(6,10),integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.torre, name, null, des));
     }
      
      public static Gen<Elemento> elemAleatorio(){
        
-       return cadenas(4,6).zip(cadenas(6,10),Generate.enumValues(Tipo.class),integers().between(1,100000),(name,des,tipo,iditem)-> new Elemento(iditem, tipo, name, 0, des));
+       return cadenas(4,6).zip(cadenas(6,10),Generate.enumValues(Tipo.class),integers().between(1,100000),(name,des,tipo,iditem)-> new Elemento(iditem, tipo, name, null, des));
+     }
+     
+     public static Gen<Equipo> equipos(){
+        return cadenas(6,10).zip(integers().between(1,100000),(lab,id)-> new Equipo(id, lab));                 
      }
 }

@@ -13,7 +13,7 @@ package edu.eci.cvds.entities;
     private Tipo tipo;
     private String descripcion;
 
-    public Elemento(int id, Tipo tipo, String name, int idEquipo, String descripcion) {
+    public Elemento(int id, Tipo tipo, String name, Integer idEquipo, String descripcion) {
         this.id = id;
         this.name = name;
         this.idEquipo=idEquipo;

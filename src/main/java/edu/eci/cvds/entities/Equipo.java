@@ -56,6 +56,6 @@ package edu.eci.cvds.entities;
     
     @Override
     public String toString() {
-        return "Item{" + ", id=" + id + "Laboratiorio="+lab+'}';
+        return "Equipo{id=" + id + ", Laboratiorio="+lab+'}';
     }
  }

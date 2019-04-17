@@ -29,7 +29,7 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 		try {
 			return equipoMapper.buscarEquipos();
 		} catch (Exception e) {
-			throw new PersistenceException("Load all persistence error", e);
+			throw new PersistenceException(e.getMessage(), e);
 		}
     }
     
@@ -38,7 +38,7 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 		try {
 			equipoMapper.registrarEquipo(equipo);
 		} catch (Exception e) {
-			throw new PersistenceException("Load all persistence error", e);
+			throw new PersistenceException(e.getMessage(), e);
 		}
 	}
 
