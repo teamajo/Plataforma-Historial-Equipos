@@ -52,9 +52,9 @@ public class MyBatisElementoDAO implements ElementoDAO {
 		}
 	}
 	@Override
-	public void adiccionarEquipo(int idEquipo,int id)throws PersistenceException {
+	public void asociarEquipo(int idEquipo,int id)throws PersistenceException {
 		try {
-		 elementoMapper.adiccionarEquipo(idEquipo,id);
+		 elementoMapper.asociarEquipo(idEquipo,id);
 		} catch (Exception e) {
 			throw new PersistenceException("Load all persistence error", e);
 		}

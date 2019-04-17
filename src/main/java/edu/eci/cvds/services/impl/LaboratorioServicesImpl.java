@@ -54,9 +54,9 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     }
   }
   @Override
-  public void adiccionarEquipo(int idEquipo,int id) throws ServicesException {
+  public void asociarEquipo(int idEquipo,int id) throws ServicesException {
     try {
-       elementoDAO.adiccionarEquipo(idEquipo,id);
+       elementoDAO.asociarEquipo(idEquipo,id);
     } catch (PersistenceException ex) {
       throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
     }

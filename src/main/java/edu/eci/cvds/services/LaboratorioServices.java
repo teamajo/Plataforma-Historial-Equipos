@@ -14,6 +14,6 @@ public interface LaboratorioServices {
 
     public List<Elemento> elementosDisponibles() throws ServicesException;
 
-    public void adiccionarEquipo(int idEquipo,int id) throws ServicesException;
+    public void asociarEquipo(int idEquipo,int id) throws ServicesException;
     
 }

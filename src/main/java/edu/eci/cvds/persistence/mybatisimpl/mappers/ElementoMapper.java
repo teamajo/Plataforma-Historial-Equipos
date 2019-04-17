@@ -15,7 +15,7 @@ public interface ElementoMapper {
 
     public List<Elemento> elementosDisponibles() throws PersistenceException;
     
-	public void adiccionarEquipo(@Param("idEquipo") int idEquipo,@Param("id") int id) throws PersistenceException;
+	public void asociarEquipo(@Param("idEquipo") int idEquipo,@Param("id") int id) throws PersistenceException;
 	
 
 }

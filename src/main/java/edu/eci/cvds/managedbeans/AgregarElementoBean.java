@@ -69,10 +69,10 @@ public class AgregarElementoBean extends BasePageBean {
         return disponibles;
 
     } 
-    public void adiccionarEquipo(int idEquipo,int id) throws Exception{
+    public void asociarEquipo(int idEquipo,int id) throws Exception{
         String mensaje;
         try {
-            laboratorioServices.adiccionarEquipo(idEquipo,id);
+            laboratorioServices.asociarEquipo(idEquipo,id);
             mensaje = "success !!";
         } catch (ServicesException ex) {
             mensaje = "Fail";
