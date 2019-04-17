@@ -9,7 +9,7 @@ package edu.eci.cvds.entities;
  public class Elemento {
     private int id;
     private String name;
-    private int idEquipo;
+    private Integer idEquipo;
     private Tipo tipo;
     private String descripcion;
 
@@ -32,14 +32,14 @@ package edu.eci.cvds.entities;
     /**
      * @return the idEquipo
      */
-    public int getIdEquipo() {
+    public Integer getIdEquipo() {
         return idEquipo;
     }
 
     /**
      * @param idEquipo the idEquipo to set
      */
-    public void setIdEquipo(int idEquipo) {
+    public void setIdEquipo(Integer idEquipo) {
         this.idEquipo = idEquipo;
     }
 

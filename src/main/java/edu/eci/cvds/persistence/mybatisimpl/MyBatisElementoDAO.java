@@ -38,7 +38,7 @@ public class MyBatisElementoDAO implements ElementoDAO {
 		try {
 			elementoMapper.registrarElemento(elemento);
 		} catch (Exception e) {
-			throw new PersistenceException("Load all persistence error", e);
+			throw new PersistenceException(e.getMessage(), e);
 		}
 	}
 

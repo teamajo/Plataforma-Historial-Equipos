@@ -59,7 +59,10 @@
 
 
     <insert id="registrarElemento" parameterType="edu.eci.cvds.entities.Elemento" >
-        insert into ELEMENTO(name, idEquipo,tipo,descripcion) values (#{name}, #{idEquipo},#{tipo},#{descripcion})
+       
+        insert into ELEMENTO(name, idEquipo,tipo,descripcion) values (#{name}, #{idEquipo},#{tipo},#{descripcion}) 
+           
+       
     </insert>
 
     
