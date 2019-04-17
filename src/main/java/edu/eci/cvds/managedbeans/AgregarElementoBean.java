@@ -69,7 +69,17 @@ public class AgregarElementoBean extends BasePageBean {
         return disponibles;
 
     } 
-	
+    public void adiccionarEquipo(int idEquipo,int id) throws Exception{
+        String mensaje;
+        try {
+            laboratorioServices.adiccionarEquipo(idEquipo,id);
+            mensaje = "success !!";
+        } catch (ServicesException ex) {
+            mensaje = "Fail";
+            throw ex;
+        }
+        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
+    }
 	
 
 }

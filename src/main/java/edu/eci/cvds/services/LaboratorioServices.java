@@ -13,5 +13,7 @@ public interface LaboratorioServices {
     public void registrarElemento(Elemento elemento) throws ServicesException;
 
     public List<Elemento> elementosDisponibles() throws ServicesException;
+
+    public void adiccionarEquipo(int idEquipo,int id) throws ServicesException;
     
 }

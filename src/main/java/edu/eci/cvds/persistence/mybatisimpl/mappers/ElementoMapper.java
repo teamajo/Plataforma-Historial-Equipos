@@ -8,14 +8,14 @@ import edu.eci.cvds.persistence.PersistenceException;
 
 public interface ElementoMapper {
 
-    public List<Elemento> buscarElementoPorEquipo(@Param("equipoId") int idEquipo) throws PersistenceException;
+    public List<Elemento> buscarElementoPorEquipo(@Param("idEquipo") int idEquipo) throws PersistenceException;
     public List<Elemento> buscarElementos() throws PersistenceException;
     
     public void registrarElemento(Elemento elemento) throws PersistenceException;
 
-	public List<Elemento> elementosDisponibles() throws PersistenceException;
+    public List<Elemento> elementosDisponibles() throws PersistenceException;
+    
+	public void adiccionarEquipo(@Param("idEquipo") int idEquipo,@Param("id") int id) throws PersistenceException;
 	
-
-
 
 }

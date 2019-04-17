@@ -7,10 +7,10 @@
 
 	<resultMap type='Novedad' id='NovedadResult'>
 		<id property='id' column='id' />
-		<result property='name' column='name' />
-		<result property='idEquipo' column='idEquipo' />
-		<result property='tipo' column='tipo' />
-		<result property='descripcion' column='descripcion' />
+		<result property='fecha' column='fecha' />
+		<result property='titulo' column='titulo' />
+		<result property='responsable' column='responsable' />
+		<result property='detalle' column='detalle' />
 	</resultMap>
 
 	
