@@ -58,11 +58,6 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
       throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
     }
   }
-<<<<<<< HEAD
-  
-  
-  
-	  
 	  @Override
 	  public List<Equipo> buscarEquipoPorLab(String lab) throws ServicesException{
 	      try {
@@ -94,7 +89,6 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	
 	  }
 	  
-=======
   @Override
   public void asociarEquipo(int idEquipo,int id) throws ServicesException {
     try {
@@ -104,6 +98,6 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     }
   }
 
->>>>>>> 69b7a0184d2a6fb410a5badd47d3433aac62a917
+//>>>>>>> 69b7a0184d2a6fb410a5badd47d3433aac62a917
 
 }
