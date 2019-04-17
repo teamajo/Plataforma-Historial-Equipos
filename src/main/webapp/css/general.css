@@ -10,13 +10,17 @@ h1,h2,h3,form{
     text-align: center;
 }
 
+h1{
+     font-size: 40px; 
+}
+
 header{
     color: white;
     background: black;
     margin:0 0;
     border-radius: 5px;
-    float: right;
-    
+    position: absolute;
+    right: 0;
     min-width: 160px;
 }
 
