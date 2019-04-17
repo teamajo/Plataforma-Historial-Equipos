@@ -3,7 +3,7 @@ package edu.eci.cvds.entities;
 
 
 /**
- * Clase que representa un elemento 
+ * Clase que representa un equipo 
  */
 
  public class Equipo {
@@ -23,14 +23,14 @@ package edu.eci.cvds.entities;
 
 
     /**
-     * @return the idEquipo
+     * @return the id
      */
     public int getId() {
         return id;
     }
 
     /**
-     * @param idEquipo the idEquipo to set
+     * @param id the id to set
      */
     public void setId(int id) {
         this.id = id;
