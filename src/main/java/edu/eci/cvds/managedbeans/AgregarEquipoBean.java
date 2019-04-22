@@ -1,5 +1,6 @@
 package edu.eci.cvds.managedbeans;
 
+import edu.eci.cvds.entities.Elemento;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +27,12 @@ public class AgregarEquipoBean extends BasePageBean {
     @Inject
     private LaboratorioServicesImpl laboratorioServices;
 	
-    private Equipo nuevoEquipo;
-
-
+    private Equipo nuevoEquipo;  
+  
+    private int idk;
+    
+    private boolean buscarK;
+ 
     public AgregarEquipoBean(){
         nuevoEquipo= new Equipo();
     }
@@ -44,7 +48,10 @@ public class AgregarEquipoBean extends BasePageBean {
     public void registrarEquipo() throws Exception {
         String mensaje;
         try {
-            laboratorioServices.registrarEquipo(nuevoEquipo);
+            //if (Equipo.getTeclado()!=null && Equipo.getTorre!=null...){
+                laboratorioServices.registrarEquipo(nuevoEquipo);
+            //   }
+           
             mensaje = "success !!";
         } catch (ServicesException ex) {
             mensaje = "Fail";
@@ -52,7 +59,32 @@ public class AgregarEquipoBean extends BasePageBean {
         }
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
     }
-     
-	
 
+    public void setBuscarK(boolean buscarK) {
+        this.buscarK = buscarK;
+    }
+    
+    public boolean isBuscarK() {
+        return buscarK;
+    }
+    
+    public int getIdk() {
+        return idk;
+    }
+    
+    public void setIdk(int idk) {
+        if (buscarK){
+          this.idk = idk;
+          //teclado=laboratorioServices.buscarElemento(idk);
+          //nuevoEquipo.setTeclado(teclado);
+        }            
+    }
+
+    
+    
+  
+
+    
+   
+  
 }
