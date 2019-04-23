@@ -46,10 +46,20 @@ public class GeneradoresLaboratorio {
      
      public static Gen<Elemento> elemAleatorio(){
        
-       return cadenas(4,6).zip(cadenas(6,10),Generate.enumValues(Tipo.class),integers().between(1,100000),(name,des,tipo,iditem)-> new Elemento(iditem, tipo, name, null, des));
+       return cadenas(4,6).zip(cadenas(6,10),Generate.enumValues(Tipo.class),integers().between(1,1000000),(name,des,tipo,iditem)-> new Elemento(iditem, tipo, name, null, des));
      }
      
      public static Gen<Equipo> equipos(){
         return cadenas(6,10).zip(integers().between(1,100000),(lab,id)-> new Equipo(id, lab));                 
+     }
+     
+     public static Gen<Equipo> completoEquipos(){
+       return equipos().zip(pantallas(), mouses(), torres(), teclados(), (eq,p,m,to,te)->{
+           eq.setMouse(m);
+           eq.setPantalla(p);
+           eq.setTeclado(te);
+           eq.setTorre(to);
+           return eq;
+       });
      }
 }

@@ -8,12 +8,15 @@ import com.google.inject.Inject;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.LaboratorioServiciosFactory;
 import edu.eci.cvds.services.ServicesException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.ibatis.session.SqlSession;
+
+import static org.junit.Assert.fail;
 
 
 import org.junit.Test;
@@ -27,11 +30,11 @@ import static org.quicktheories.QuickTheory.qt;
  */
 public class LaboratorioServiciosTest {
     @Inject
-    private SqlSession sqlSession;
+    private SqlSession sqlSession;    
     
-    private static int idElemmax=0;
     private static int idEquimax=0;  
     private LaboratorioServices serviciosLab;
+   
     
     
     
@@ -47,56 +50,88 @@ public class LaboratorioServiciosTest {
         qt().forAll(GeneradoresLaboratorio.elemAleatorio()).check(
            (elem)->{              
             try {                      
-                serviciosLab.registrarElemento(elem);
-                idElemmax++;
+                serviciosLab.registrarElemento(elem);                
                 return true;
             } catch (ServicesException ex) {                  
                 return false;
             }
            }
                 
-        );      
-               
-        try {
-            assert(serviciosLab.elementosDisponibles().size()==idElemmax);
-        } catch (ServicesException ex) {
-            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-     
+        );        
             
     }
+    /**
+     * No se deberian poder hacer sets incorrectos
+     */
     
-   @Test
-    public void agregarEquipoTest(){
-        qt().forAll(GeneradoresLaboratorio.equipos()).check(
-           (equipo)->{              
-            try {     
-                serviciosLab.registrarEquipo(equipo);
-                idEquimax++;             
-                return true;
-            } catch (ServicesException ex) {                   
+    @Test
+    public void setElemTest(){
+        qt().forAll(GeneradoresLaboratorio.equipos(), GeneradoresLaboratorio.elemAleatorio()).check(
+            (eq,el)->{
+              try{
+                switch(el.getTipo()){
+                    case torre:
+                        eq.setTeclado(el);
+                    break;
+                     case teclado:
+                        eq.setTorre(el);
+                    break;
+                     case mouse:
+                        eq.setPantalla(el);
+                    break;
+                    case pantalla:
+                        eq.setMouse(el);
+                    break;
+                }
                 return false;
-            }
-           }
+              }catch(Exception e){
+                return true;
+              }              
                 
-        );           
-        /*
-        try {
-            serviciosLab.buscarEquipos();
-        } catch (ServicesException ex) {
-            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-     
+            }
+        );  
+       
         
     }
    
     
     
-    
+   @Test
+    public void agregarEquipoTest(){        
+        qt().forAll(GeneradoresLaboratorio.completoEquipos()).check(
+            (eq)->{                
+                try {
+                    serviciosLab.registrarEquipo(eq);
+                    idEquimax++;
+                    return true;
+                } catch (ServicesException ex) {
+                    Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+                    return false;
+                }
+            }
+        );     
+        try {
+            for(int i=1; i<=idEquimax;i++){
+               
+                assert(serviciosLab.buscarElementoPorEquipo(i).size()==4);  
+            }
+           
+        } catch (ServicesException ex) {            
+            
+            fail(getStackTrace(ex));
+        }
+        
+    }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
     // public void hello() {}
+    public static String getStackTrace(final Throwable throwable) {
+        final StringWriter sw = new StringWriter();
+        final PrintWriter pw = new PrintWriter(sw, true);
+        throwable.printStackTrace(pw);
+        return sw.getBuffer().toString();
+    }
 }

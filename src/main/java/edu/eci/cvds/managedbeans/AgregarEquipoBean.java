@@ -27,7 +27,7 @@ import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
 public class AgregarEquipoBean extends BasePageBean {
 
     @Inject
-    private LaboratorioServicesImpl laboratorioServices;
+    private LaboratorioServices laboratorioServices;
 	
     private Equipo nuevoEquipo;
     private Elemento torre;
