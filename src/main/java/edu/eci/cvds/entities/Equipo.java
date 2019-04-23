@@ -24,6 +24,12 @@ import java.util.ArrayList;
         this.setTeclado(teclado);
     }
 
+
+    public Equipo(int id, String lab) {
+        this.id = id;
+        this.lab = lab;
+    }
+
     public Equipo() {
         super();
     }

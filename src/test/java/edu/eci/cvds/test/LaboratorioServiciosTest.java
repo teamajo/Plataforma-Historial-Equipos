@@ -58,7 +58,7 @@ public class LaboratorioServiciosTest {
         );      
                
         try {
-            assert(serviciosLab.buscarElementos().size()==idElemmax);
+            assert(serviciosLab.elementosDisponibles().size()==idElemmax);
         } catch (ServicesException ex) {
             Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
         }

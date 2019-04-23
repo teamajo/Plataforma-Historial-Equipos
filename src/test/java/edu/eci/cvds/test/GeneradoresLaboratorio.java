@@ -50,6 +50,6 @@ public class GeneradoresLaboratorio {
      }
      
      public static Gen<Equipo> equipos(){
-        return null ; //cadenas(6,10).zip(integers().between(1,100000),(lab,id)-> new Equipo(id, lab));                 
+        return cadenas(6,10).zip(integers().between(1,100000),(lab,id)-> new Equipo(id, lab));                 
      }
 }
