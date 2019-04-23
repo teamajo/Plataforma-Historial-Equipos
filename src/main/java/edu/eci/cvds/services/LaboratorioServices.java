@@ -22,5 +22,9 @@ public interface LaboratorioServices {
     public List<Equipo> buscarEquipos() throws ServicesException;
 
     public void registrarEquipo(Equipo equipo) throws ServicesException;
+
+    public int maxIdEquipo() throws ServicesException;
+
+    public int maxIdElemento() throws ServicesException;
     
 }

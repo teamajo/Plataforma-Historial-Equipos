@@ -11,6 +11,7 @@ public interface ElementoDAO{
     public void registrarElemento(Elemento elemento) throws PersistenceException;
 	public List<Elemento> elementosDisponibles() throws PersistenceException;
 	public void asociarEquipo(int idEquipo,int id)throws PersistenceException ;
+	public int maxIdElemento() throws PersistenceException;
 
 
 } 

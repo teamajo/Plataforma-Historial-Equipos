@@ -50,10 +50,10 @@
 				e.descripcion
 			FROM
 				ELEMENTO as e
-				Where idEquipo = 0
+				Where idEquipo is null
 		</select>
 
-		<update id="asociarEquipo" >
+		<update id="asociarEquipo" parameterType="map" >
 		UPDATE ELEMENTO SET
 			idEquipo = #{idEquipo}
 		WHERE id = #{id}
@@ -66,6 +66,10 @@
            
        
     </insert>
+
+		<select id="maxIdElemento" resultType="int">
+       SELECT MAX(id) FROM ELEMENTO
+   </select>
 
     
 </mapper>

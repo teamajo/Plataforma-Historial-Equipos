@@ -16,6 +16,7 @@ public interface ElementoMapper {
     public List<Elemento> elementosDisponibles() throws PersistenceException;
     
 	public void asociarEquipo(@Param("idEquipo") int idEquipo,@Param("id") int id) throws PersistenceException;
+	public int maxIdElemento() throws PersistenceException;
 	
 
 }

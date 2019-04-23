@@ -1,5 +1,6 @@
 package edu.eci.cvds.managedbeans;
 
+import edu.eci.cvds.entities.Elemento;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.inject.Inject;
 
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.entities.Tipo;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
@@ -32,9 +34,21 @@ public class AgregarEquipoBean extends BasePageBean {
     private Elemento pantalla;
     private Elemento mouse;
     private Elemento teclado;
-
-    public AgregarEquipoBean() {
-        nuevoEquipo = new Equipo();
+  
+    private int idk;
+    
+    private boolean buscarK;
+ 
+    public AgregarEquipoBean(){
+        nuevoEquipo= new Equipo();
+        torre = new Elemento();
+        torre.setTipo(Tipo.torre);
+        pantalla = new Elemento();
+        pantalla.setTipo(Tipo.pantalla);
+        mouse = new Elemento();
+        mouse.setTipo(Tipo.mouse);
+        teclado = new Elemento();
+        teclado.setTipo(Tipo.teclado);
     }
 
  
@@ -49,24 +63,21 @@ public class AgregarEquipoBean extends BasePageBean {
 
     public void registrarEquipo() throws Exception {
         String mensaje;
-        List<Elemento> disponibles = null;
-        disponibles = laboratorioServices.elementosDisponibles();
-        List<Elemento> elementos = null;
-        elementos = crearList();
-        for (int i = 0; i< elementos.size();i++){
-            int prueba = estaDisponible(elementos.get(i), disponibles);
-            if(prueba == 2){
-                laboratorioServices.asociarEquipo(elementos.get(i).getId(), nuevoEquipo.getId());
-            }else if (prueba == 1 ){
-                laboratorioServices.registrarElemento(elementos.get(i));
-                laboratorioServices.asociarEquipo(elementos.get(i).getId(), nuevoEquipo.getId());
-            }else{
-                mensaje="No se pudo registar el elemento " + elementos.get(i)+"ya que se encuentra en otro elemento";
-                FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
-            }
-        }
         try {
             laboratorioServices.registrarEquipo(nuevoEquipo);
+            int idEquipo = laboratorioServices.maxIdEquipo();            
+            List<Elemento> elementos = null;
+            elementos = crearList();
+            for (int i = 0; i< elementos.size();i++){
+                laboratorioServices.registrarElemento(elementos.get(i));
+                int idElemento= laboratorioServices.maxIdElemento();
+                System.out.println( idEquipo+"  "+idElemento);
+                laboratorioServices.asociarEquipo( idEquipo,idElemento);
+            }
+            //if (Equipo.getTeclado()!=null && Equipo.getTorre!=null...){
+                
+            //   }
+           
             mensaje = "success !!";
         } catch (ServicesException ex) {
             mensaje = "Fail";
@@ -83,23 +94,6 @@ public class AgregarEquipoBean extends BasePageBean {
         return elementos;
     }
 
-    public int estaDisponible(Elemento elemento, List<Elemento> disponibles) throws Exception {
-        int flag = 0;
-        try {
-            if (disponibles.contains(elemento) ){
-                flag = 2;
-            }else{
-                if (!laboratorioServices.buscarElementos().contains(elemento)){
-                       flag=1; 
-                }else{
-                    flag=0;
-                }
-            }
-        } catch (ServicesException ex) {
-            throw ex;
-        }
-        return flag;
-    }
 
      
 
@@ -160,4 +154,31 @@ public class AgregarEquipoBean extends BasePageBean {
     }
 	
 
+    public void setBuscarK(boolean buscarK) {
+        this.buscarK = buscarK;
+    }
+    
+    public boolean isBuscarK() {
+        return buscarK;
+    }
+    
+    public int getIdk() {
+        return idk;
+    }
+    
+    public void setIdk(int idk) {
+        if (buscarK){
+          this.idk = idk;
+          //teclado=laboratorioServices.buscarElemento(idk);
+          //nuevoEquipo.setTeclado(teclado);
+        }            
+    }
+
+    
+    
+  
+
+    
+   
+  
 }

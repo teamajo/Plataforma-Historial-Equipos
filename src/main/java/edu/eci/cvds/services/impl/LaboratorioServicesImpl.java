@@ -98,6 +98,24 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     }
   }
 
-//>>>>>>> 69b7a0184d2a6fb410a5badd47d3433aac62a917
+	@Override
+	public int maxIdEquipo() throws ServicesException {
+		try {
+			return equipoDAO.maxIdEquipo();
+	 } catch (PersistenceException ex) {
+		 throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+	 }
+	}
+
+	@Override
+	public int maxIdElemento() throws ServicesException {
+		try {
+			return elementoDAO.maxIdElemento();
+	 } catch (PersistenceException ex) {
+		 throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+	 }
+	}
+
+
 
 }

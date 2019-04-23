@@ -78,13 +78,13 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 
                         <p:outputLabel for="text8" value="Nombre:" />
-                        <p:inputText id="text8" value="#{agregarEquipo.mouse.descripcion}" required="true"/>
+                        <p:inputText id="text8" value="#{agregarEquipo.mouse.name}" required="true"/>
                         <p:message for="text8" />               
                     </h:panelGrid>
                 </p:panel>
              </div>  
         </div>
-        <h:commandButton class="boton" value="Registrar Equipo" ></h:commandButton>
+        <h:commandButton class="boton" value="Registrar Equipo" actionListener="#{agregarEquipo.registrarEquipo}" ></h:commandButton>
     </h:form>   
 </h:body>
 </html>

@@ -32,5 +32,10 @@
         insert into EQUIPO(lab) values (#{lab})
     </insert>
 
+		<select id="maxIdEquipo" resultType="int">
+       SELECT MAX(id) FROM EQUIPO
+   </select>
+
+
     
 </mapper>

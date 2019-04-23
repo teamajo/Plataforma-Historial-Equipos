@@ -7,9 +7,7 @@ and open the template in the editor.
     Created on : 13/04/2019, 04:36:49 PM
     Author     : julia
 */
-body{
-    padding-top: 2%;
-}
+
 
 .row {
   display: flex; 

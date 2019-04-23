@@ -31,14 +31,14 @@ import java.util.ArrayList;
 
 
     /**
-     * @return the idEquipo
+     * @return the id
      */
     public int getId() {
         return id;
     }
 
     /**
-     * @param idEquipo the idEquipo to set
+     * @param id the id to set
      */
     public void setId(int id) {
         this.id = id;
@@ -121,6 +121,6 @@ import java.util.ArrayList;
     
     @Override
     public String toString() {
-        return "Item{" + ", id=" + id + "Laboratiorio="+lab+'}';
+        return "Equipo{id=" + id + ", Laboratiorio="+lab+'}';
     }
  }

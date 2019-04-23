@@ -12,6 +12,7 @@ public interface EquipoMapper {
     public List<Equipo> buscarEquipos() throws PersistenceException;
     
     public void registrarEquipo(Equipo equipo) throws PersistenceException;
+	public int maxIdEquipo() throws PersistenceException;
 
 
 
