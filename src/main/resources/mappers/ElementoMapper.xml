@@ -37,6 +37,8 @@
 				e.descripcion
 			FROM
 				ELEMENTO as e
+				WHERE e.idEquipo is not null
+
 		</select>
 
 		<select id = "elementosDisponibles" resultMap="ElementoResult">
@@ -51,7 +53,7 @@
 				Where idEquipo = 0
 		</select>
 
-		<update id="adiccionarEquipo" >
+		<update id="asociarEquipo" >
 		UPDATE ELEMENTO SET
 			idEquipo = #{idEquipo}
 		WHERE id = #{id}

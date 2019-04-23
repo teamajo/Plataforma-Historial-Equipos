@@ -26,13 +26,14 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     <h:panelGrid columns="3" cellpadding="5">
 
                         <p:outputLabel for="text1" value="Descripcion:" />
-                        <p:inputText id="text1" value="" required="true"/>
+                        <p:inputText id="text1" value="#{agregarEquipo.torre.descripcion}" required="true"/>
                         <p:message for="text1" />
 
                         <p:outputLabel for="text2" value="Nombre:" />
-                        <p:inputText id="text2" value="" required="true"/>
+                        <p:inputText id="text2" value="#{agregarEquipo.torre.name}" required="true"/>
                         <p:message for="text2" />   
 
+                        
                     </h:panelGrid>
                 </p:panel>
                 <p:panel class="formulario" id="pantallaformulario" header="Pantalla">                      
@@ -40,12 +41,12 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     <h:panelGrid columns="3" cellpadding="5">                   
 
                         <p:outputLabel for="text3" value="Descripcion:" />
-                        <p:inputText id="text3" value="" required="true"/>
+                        <p:inputText id="text3" value="#{agregarEquipo.pantalla.descripcion}" required="true"/>
                         <p:message for="text3" />
 
 
                         <p:outputLabel for="text4" value="Nombre:" />
-                        <p:inputText id="text4" value="" required="true"/>
+                        <p:inputText id="text4" value="#{agregarEquipo.pantalla.name}" required="true"/>
                         <p:message for="text4" />               
                     </h:panelGrid>
                 </p:panel>
@@ -56,11 +57,11 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     <h:panelGrid columns="3" cellpadding="5">
 
                         <p:outputLabel for="text5" value="Descripcion:" />
-                        <p:inputText id="text5" value="" required="true"/>
+                        <p:inputText id="text5" value="#{agregarEquipo.teclado.descripcion}" required="true"/>
                         <p:message for="text5" />
 
                         <p:outputLabel for="text6" value="Nombre:" />
-                        <p:inputText id="text6" value="" required="true"/>
+                        <p:inputText id="text6" value="#{agregarEquipo.teclado.name}" required="true"/>
                         <p:message for="text6" />   
 
                     </h:panelGrid>
@@ -72,12 +73,12 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     <h:panelGrid columns="3" cellpadding="5">                   
 
                         <p:outputLabel for="text7" value="Descripcion:" />
-                        <p:inputText id="text7" value="" required="true"/>
+                        <p:inputText id="text7" value="#{agregarEquipo.mouse.descripcion}" required="true"/>
                         <p:message for="text7" />
 
 
                         <p:outputLabel for="text8" value="Nombre:" />
-                        <p:inputText id="text8" value="" required="true"/>
+                        <p:inputText id="text8" value="#{agregarEquipo.mouse.descripcion}" required="true"/>
                         <p:message for="text8" />               
                     </h:panelGrid>
                 </p:panel>
