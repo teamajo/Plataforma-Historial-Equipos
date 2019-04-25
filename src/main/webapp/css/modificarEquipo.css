@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24/04/2019, 04:12:50 PM
+    Author     : J. Eduardo Arias
+*/
+
+img{
+    max-height: 100px;
+    margin-right: 10px;
+}
+
+.formulario{
+   max-width: 60%;
+   min-width: 900px;
+}
+
+
+
+.compartido>div{
+     display: inline-block;
+     width: 47%;
+     vertical-align: middle;
+}  
+
+.campos table{
+   
+    margin: 0 auto;
+    text-align: center;
+    
+}
+
+h4{
+    margin: 4px;
+}
+
+.boton{
+    font-size: 24px;
+}
+
+.final {
+    padding-bottom: 50px;   
+}
