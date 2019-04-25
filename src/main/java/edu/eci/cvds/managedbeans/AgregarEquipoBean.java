@@ -17,13 +17,14 @@ import edu.eci.cvds.entities.Tipo;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
+import javax.faces.bean.SessionScoped;
 
 /**
  * Bean para la interfaz de usuario de las decanaturas
  */
 @SuppressWarnings("agregarEquipo")
 @ManagedBean(name = "agregarEquipo")
-@RequestScoped
+@SessionScoped 
 public class AgregarEquipoBean extends BasePageBean {
 
     @Inject
@@ -35,9 +36,9 @@ public class AgregarEquipoBean extends BasePageBean {
     private Elemento mouse;
     private Elemento teclado;
   
-    private int idk;
+    private int idk,idp,idm,idt;
     
-    private boolean buscarK;
+    private boolean buscarK,buscarP,buscarM,buscarT;
  
     public AgregarEquipoBean(){
         nuevoEquipo= new Equipo();
@@ -50,6 +51,94 @@ public class AgregarEquipoBean extends BasePageBean {
         teclado = new Elemento();
         teclado.setTipo(Tipo.teclado);
     }
+
+    public void setIdp(int idp) {
+        if (buscarP){
+          this.idp = idp;
+          //pantalla=laboratorioServices.buscarElemento(idp);
+          //nuevoEquipo.setMouse(pantalla);
+        }  
+    }
+
+    public void setIdm(int idm) {
+        if (buscarM){
+          this.idm = idm;
+          //mouse=laboratorioServices.buscarElemento(idm);
+          //nuevoEquipo.setMouse(mouse);
+        }  
+    }
+    
+    public void setIdt(int idt) {
+        if (buscarT){
+          this.idt = idt;
+          //torre=laboratorioServices.buscarElemento(idt);
+          //nuevoEquipo.setTorre(torre);
+        }  
+    }
+    
+       
+    public void setIdk(int idk) {
+        if (buscarK){
+          this.idk = idk;
+          //teclado=laboratorioServices.buscarElemento(idk);
+          //nuevoEquipo.setTeclado(teclado);
+        }            
+    }
+    
+    public void setBuscarP(boolean buscarP) {
+        this.buscarP = buscarP;
+        setIdp(idp);
+    }
+
+    public void setBuscarM(boolean buscarM) {
+        this.buscarM = buscarM;
+        setIdm(idm);
+    }
+
+    public void setBuscarT(boolean buscarT) {
+        this.buscarT = buscarT;
+        setIdt(idt);
+    }
+    
+     public void setBuscarK(boolean buscarK) {
+        this.buscarK = buscarK;
+        setIdk(idk);
+    }
+    
+
+    public boolean isBuscarP() {
+        return buscarP;
+    }
+
+    public boolean isBuscarM() {
+        return buscarM;
+    }
+
+    public boolean isBuscarT() {
+        return buscarT;
+    }
+
+    public int getIdk() {
+        return idk;
+    }
+
+    public int getIdp() {
+        return idp;
+    }
+
+    public int getIdm() {
+        return idm;
+    }
+
+    public int getIdt() {
+        return idt;
+    }
+
+    public boolean isBuscarK() {
+        return buscarK;
+    }
+
+  
 
  
 
@@ -152,31 +241,10 @@ public class AgregarEquipoBean extends BasePageBean {
     public void setTorre(Elemento torre) {
         this.torre = torre;
     }
-	
-
-    public void setBuscarK(boolean buscarK) {
-        this.buscarK = buscarK;
-    }
-    
-    public boolean isBuscarK() {
-        return buscarK;
-    }
-    
-    public int getIdk() {
-        return idk;
-    }
-    
-    public void setIdk(int idk) {
-        if (buscarK){
-          this.idk = idk;
-          //teclado=laboratorioServices.buscarElemento(idk);
-          //nuevoEquipo.setTeclado(teclado);
-        }            
-    }
-
-    
+	    
     
   
+    
 
     
    

@@ -14,13 +14,14 @@ import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
+import javax.faces.bean.SessionScoped;
 
 /**
  * Bean para la interfaz de usuario de las decanaturas
  */
 @SuppressWarnings("agregarElemento")
 @ManagedBean(name = "agregarElemento")
-@RequestScoped
+@SessionScoped 
 public class AgregarElementoBean extends BasePageBean {
 
     @Inject

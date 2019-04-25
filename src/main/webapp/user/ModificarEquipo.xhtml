@@ -7,7 +7,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
  <title>Plataformas Historial de Equipos</title>
  <link rel="stylesheet" type="text/css" href="../css/general.css"/>
- <link rel="stylesheet" type="text/css" href="../css/agregarEquipo.css"/>  
+ <link rel="stylesheet" type="text/css" href="../css/modificarEquipo.css"/>  
 </h:head>
 <h:body>
     <header>
@@ -18,56 +18,191 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
   
     <h1>Agregar Equipo</h1>
    
-    <h:form id="formularioequipo">
-        <div class="row">
-            <div class="column">
-                <p:panel class="formulario" id="torreformulario" header="Torre"> 
-                    
+    <h:form class="formulario">
+       
+        <p:panel  id="torreformulario" header="Torre"> 
+            <div class="compartido">
+                <div class="switch">
                     <img src="../imagenes/tower.png" alt="elemento"/>  
-                    <div class="switch">
-                        <p:outputLabel value="Crear/Buscar" />                    
-                        <p:inputSwitch  value="#{agregarEquipo.buscarK}" onLabel="Buscar" offLabel="Crear">
-                           <f:ajax event="change" execute="@this" render="optT" />
-                        </p:inputSwitch>
-                    </div>
-                    <h:panelGroup id="optT" >
-                       
-                         <h:panelGrid id="crearT"  rendered="#{!agregarEquipo.buscarK}" columns="3" cellpadding="5">
-                            <p:outputLabel for="text1" value="Descripcion:" />
-                            <p:inputText id="text1" value="" required="true"/>
-                            <p:message for="text1" />
+                    <p:outputLabel value="Crear/Asociar" />                    
+                    <p:inputSwitch  value="#{agregarEquipo.buscarT}" onLabel="Asociar" offLabel="Crear">
+                       <f:ajax event="change" execute="@this" render="optT" />
+                    </p:inputSwitch>
+                </div>
+                <div>               
+                    <h4>Torres Disponibles</h4>
+                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponibles()}" scrollable="true" scrollHeight="100">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{elem.id}" />
+                        </p:column>           
 
-                            <p:outputLabel for="text2" value="Nombre:" />
-                            <p:inputText id="text2" value="" required="true"/>
-                            <p:message for="text2" />            
-                         </h:panelGrid>
-                        
-                         <h:panelGrid columns="3" rendered="#{agregarEquipo.buscarK}" cellpadding="5">
-                            <p:outputLabel for="text9" value="ID:" />      
-                            <p:inputText id="text9" value="#{agregarEquipo.idk}" />                         
-                            <p:message for="text9" />
-                       </h:panelGrid>
-                    </h:panelGroup>                
-                </p:panel>
-                <p:panel class="formulario" id="pantallaformulario" header="Pantalla">                      
-                    <img src="../imagenes/monitor.png" alt="elemento"/>
-                    <h:panelGrid columns="3" cellpadding="5">                   
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{elem.name}" />
+                        </p:column>                   
+                    </p:dataTable>                   
+                </div>
+            </div>
+          
+            <h:panelGroup id="optT" class="campos">               
 
-                        <p:outputLabel for="text3" value="Descripcion:" />
-                        <p:inputText id="text3" value="" required="true"/>
-                        <p:message for="text3" />
+                 <h:panelGrid rendered="#{!agregarEquipo.buscarT}" columns="3" cellpadding="5">
+                    <p:outputLabel for="text1" value="Descripcion:" />
+                    <p:inputText id="text1" value="" required="#{!agregarEquipo.buscarT}"/>
+                    <p:message for="text1" />
 
+                    <p:outputLabel for="text2" value="Nombre:" />
+                    <p:inputText id="text2" value="" required="#{!agregarEquipo.buscarT}"/>
+                    <p:message for="text2" />            
+                 </h:panelGrid>
 
-                        <p:outputLabel for="text4" value="Nombre:" />
-                        <p:inputText id="text4" value="" required="true"/>
-                        <p:message for="text4" />               
-                    </h:panelGrid>
-                </p:panel>
-             </div>    
-             
-        </div>
+                 <h:panelGrid columns="3" rendered="#{agregarEquipo.buscarT}" cellpadding="5">
+                    <p:outputLabel for="text3" value="ID:" />      
+                    <p:inputText id="text3" value="#{agregarEquipo.idt}" required="#{agregarEquipo.buscarT}" />                         
+                    <p:message for="text3" />
+               </h:panelGrid>
+            </h:panelGroup>    
+            
+        </p:panel>       
+    </h:form>   
+    
+    <h:form class="formulario" >
+        <p:panel id="pantallaformulario" header="Pantalla">                      
+           <div class="compartido">
+                <div class="switch">
+                    <img src="../imagenes/monitor.png" alt="elemento"/>  
+                    <p:outputLabel value="Crear/Asociar" />                    
+                    <p:inputSwitch  value="#{agregarEquipo.buscarP}" onLabel="Asociar" offLabel="Crear">
+                       <f:ajax event="change" execute="@this" render="optP" />
+                    </p:inputSwitch>
+                </div>
+                <div>               
+                    <h4>Pantallas Disponibles</h4>
+                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponibles()}" scrollable="true" scrollHeight="100">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{elem.id}" />
+                        </p:column>           
+
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{elem.name}" />
+                        </p:column>                   
+                    </p:dataTable>                   
+                </div>
+            </div>
+          
+            <h:panelGroup id="optP" class="campos">               
+
+                 <h:panelGrid rendered="#{!agregarEquipo.buscarP}" columns="3" cellpadding="5">
+                    <p:outputLabel for="text4" value="Descripcion:" />
+                    <p:inputText id="text4" value="" required="#{!agregarEquipo.buscarP}"/>
+                    <p:message for="text4" />
+
+                    <p:outputLabel for="text5" value="Nombre:" />
+                    <p:inputText id="text5" value="" required="#{!agregarEquipo.buscarP}"/>
+                    <p:message for="text5" />            
+                 </h:panelGrid>
+
+                 <h:panelGrid columns="3" rendered="#{agregarEquipo.buscarP}" cellpadding="5">
+                    <p:outputLabel for="text6" value="ID:" />      
+                    <p:inputText id="text6" value="#{agregarEquipo.idp}" required="#{agregarEquipo.buscarP}"/>                         
+                    <p:message for="text6" />
+               </h:panelGrid>
+            </h:panelGroup>    
+        </p:panel>
+    </h:form>
+    
+    <h:form class="formulario" >
+        <p:panel id="pantallaformulario" header="Teclado">                      
+           <div class="compartido">
+                <div class="switch">
+                    <img src="../imagenes/keyboard.png" alt="elemento"/>  
+                    <p:outputLabel value="Crear/Asociar" />                    
+                    <p:inputSwitch  value="#{agregarEquipo.buscarK}" onLabel="Asociar" offLabel="Crear">
+                       <f:ajax event="change" execute="@this" render="optK" />
+                    </p:inputSwitch>
+                </div>
+                <div>               
+                    <h4>Pantallas Disponibles</h4>
+                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponibles()}" scrollable="true" scrollHeight="100">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{elem.id}" />
+                        </p:column>           
+
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{elem.name}" />
+                        </p:column>                   
+                    </p:dataTable>                   
+                </div>
+            </div>
+          
+            <h:panelGroup id="optK" class="campos">               
+
+                 <h:panelGrid rendered="#{!agregarEquipo.buscarK}" columns="3" cellpadding="5">
+                    <p:outputLabel for="text7" value="Descripcion:" />
+                    <p:inputText id="text7" value="" required="#{!agregarEquipo.buscarK}"/>
+                    <p:message for="text7" />
+
+                    <p:outputLabel for="text8" value="Nombre:" />
+                    <p:inputText id="text8" value="" required="#{!agregarEquipo.buscarK}"/>
+                    <p:message for="text8" />            
+                 </h:panelGrid>
+
+                 <h:panelGrid columns="3" rendered="#{agregarEquipo.buscarK}" cellpadding="5">
+                    <p:outputLabel for="text9" value="ID:" />      
+                    <p:inputText id="text9" value="#{agregarEquipo.idk}" required="#{agregarEquipo.buscarK}"/>                         
+                    <p:message for="text9" />
+               </h:panelGrid>
+            </h:panelGroup>    
+        </p:panel>
+    </h:form>
+    
+    <h:form class="formulario" >
+        <p:panel id="mouseformulario" header="Teclado">                      
+           <div class="compartido">
+                <div class="switch">
+                    <img src="../imagenes/mouse.png" alt="elemento"/>  
+                    <p:outputLabel value="Crear/Asociar" />                    
+                    <p:inputSwitch  value="#{agregarEquipo.buscarM}" onLabel="Asociar" offLabel="Crear">
+                       <f:ajax event="change" execute="@this" render="optM" />
+                    </p:inputSwitch>
+                </div>
+                <div>               
+                    <h4>Pantallas Disponibles</h4>
+                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponibles()}" scrollable="true" scrollHeight="100">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{elem.id}" />
+                        </p:column>           
+
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{elem.name}" />
+                        </p:column>                   
+                    </p:dataTable>                   
+                </div>
+            </div>
+          
+            <h:panelGroup id="optM" class="campos">               
+
+                 <h:panelGrid  rendered="#{!agregarEquipo.buscarM}" columns="3" cellpadding="5">
+                    <p:outputLabel for="text10" value="Descripcion:" />
+                    <p:inputText id="text10" value="" required="#{!agregarEquipo.buscarM}"/>
+                    <p:message for="text10" />
+
+                    <p:outputLabel for="text11" value="Nombre:" />
+                    <p:inputText id="text11" value="" required="#{!agregarEquipo.buscarM}"/>
+                    <p:message for="text11" />            
+                 </h:panelGrid>
+
+                 <h:panelGrid columns="3" rendered="#{agregarEquipo.buscarM}" cellpadding="5">
+                    <p:outputLabel for="text12" value="ID:" />      
+                    <p:inputText id="text12" value="#{agregarEquipo.idm}" required="#{agregarEquipo.buscarM}"/>                         
+                    <p:message for="text12" />
+               </h:panelGrid>
+            </h:panelGroup>    
+        </p:panel>
+    </h:form>
+    
+    <h:form class="final">
         <h:commandButton class="boton" value="Registrar Equipo" ></h:commandButton>
-        </h:form>   
+    </h:form>
     
 </h:body>
 </html>
