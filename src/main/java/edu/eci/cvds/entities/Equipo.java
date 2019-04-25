@@ -2,6 +2,8 @@ package edu.eci.cvds.entities;
 
 import java.util.ArrayList;
 
+import edu.eci.cvds.persistence.PersistenceException;
+
 
 /**
  * Clase que representa un elemento
@@ -15,7 +17,7 @@ import java.util.ArrayList;
     private Elemento mouse;
     private Elemento teclado;
 
-    public Equipo(int id, String lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado) {
+    public Equipo(int id, String lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado) throws PersistenceException {
         this.id = id;
         this.lab = lab;
         this.setTorre(torre);
@@ -77,8 +79,13 @@ import java.util.ArrayList;
     /**
      * @param teclado the teclado to set
      */
-    public void setTeclado(Elemento teclado) {
-        this.teclado = teclado;
+    public void setTeclado(Elemento teclado) throws PersistenceException{
+       
+        if (teclado.getTipo().equals(Tipo.teclado)){
+            this.teclado = teclado;
+        }else{
+            throw new PersistenceException("no se puede asignar el elemento");
+        }
     }
 
     /**
@@ -91,8 +98,14 @@ import java.util.ArrayList;
     /**
      * @param mouse the mouse to set
      */
-    public void setMouse(Elemento mouse) {
-        this.mouse = mouse;
+    public void setMouse(Elemento mouse) throws PersistenceException {
+        
+        if (mouse.getTipo().equals(Tipo.mouse)){
+            this.mouse = mouse;
+        }else{
+            throw new PersistenceException("no se puede asignar el elemento");
+        }
+        
     }
 
     /**
@@ -105,8 +118,13 @@ import java.util.ArrayList;
     /**
      * @param pantalla the pantalla to set
      */
-    public void setPantalla(Elemento pantalla) {
-        this.pantalla = pantalla;
+    public void setPantalla(Elemento pantalla) throws PersistenceException {
+        
+        if (pantalla.getTipo().equals(Tipo.pantalla)){
+            this.pantalla = pantalla;
+        }else{
+            throw new PersistenceException("no se puede asignar el elemento");
+        }
     }
 
     /**
@@ -119,8 +137,14 @@ import java.util.ArrayList;
     /**
      * @param torre the torre to set
      */
-    public void setTorre(Elemento torre) {
-        this.torre = torre;
+    public void setTorre(Elemento torre) throws PersistenceException{
+        
+        if (torre.getTipo().equals(Tipo.torre)){
+            this.torre = torre;
+        }else{
+            throw new PersistenceException("no se puede asignar el elemento");
+        }
+        
     }
 
     

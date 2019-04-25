@@ -1,5 +1,6 @@
 package edu.eci.cvds.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.inject.Inject;
@@ -82,7 +83,19 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	  @Override
 	  public void registrarEquipo(Equipo equipo) throws ServicesException{
 	      try {
-				equipoDAO.registrarEquipo(equipo);
+					equipoDAO.registrarEquipo(equipo);
+					int idEquipo = maxIdEquipo();
+					List<Elemento> elementos = new ArrayList<Elemento>();
+					elementos.add(equipo.getTorre());
+					elementos.add(equipo.getMouse());
+					elementos.add(equipo.getPantalla());
+					elementos.add(equipo.getTeclado());
+					for (int i = 0; i< elementos.size();i++){
+						registrarElemento(elementos.get(i));
+						int idElemento= maxIdElemento();
+						asociarEquipo( idEquipo,idElemento);
+				}
+				
 			} catch (PersistenceException ex) {
 				throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
 			}
@@ -115,6 +128,8 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 		 throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
 	 }
 	}
+
+	
 
 
 

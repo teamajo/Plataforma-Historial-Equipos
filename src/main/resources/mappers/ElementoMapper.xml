@@ -19,13 +19,11 @@
 				e.id,
 				e.name,
 				e.idEquipo,
-				e.tipo
+				e.tipo,
 				e.descripcion
 			FROM
 				ELEMENTO as e
-			<if test="idEquipo != null">
 				WHERE e.idEquipo = #{idEquipo}
-			</if>
 		</select>
 	
 		<select id="buscarElementos" resultMap="ElementoResult">
@@ -41,7 +39,7 @@
 
 		</select>
 
-		<select id = "elementosDisponibles" resultMap="ElementoResult">
+		<select id ="elementosDisponibles" resultMap="ElementoResult">
 		SELECT
 				e.id,
 				e.name,
@@ -61,15 +59,12 @@
 
 
     <insert id="registrarElemento" parameterType="edu.eci.cvds.entities.Elemento" >
-       
-        insert into ELEMENTO(name, idEquipo,tipo,descripcion) values (#{name}, #{idEquipo},#{tipo},#{descripcion}) 
-           
-       
+        insert into ELEMENTO(name, idEquipo,tipo,descripcion) values (#{name}, #{idEquipo},#{tipo},#{descripcion})  
     </insert>
 
 		<select id="maxIdElemento" resultType="int">
        SELECT MAX(id) FROM ELEMENTO
-   </select>
+    </select>
 
     
 </mapper>

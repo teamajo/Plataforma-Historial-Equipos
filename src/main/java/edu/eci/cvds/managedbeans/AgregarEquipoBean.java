@@ -64,8 +64,12 @@ public class AgregarEquipoBean extends BasePageBean {
     public void registrarEquipo() throws Exception {
         String mensaje;
         try {
+            nuevoEquipo.setMouse(mouse);
+            nuevoEquipo.setPantalla(pantalla);
+            nuevoEquipo.setTeclado(teclado);
+            nuevoEquipo.setTorre(torre);
             laboratorioServices.registrarEquipo(nuevoEquipo);
-            int idEquipo = laboratorioServices.maxIdEquipo();            
+            /*int idEquipo = laboratorioServices.maxIdEquipo();            
             List<Elemento> elementos = null;
             elementos = crearList();
             for (int i = 0; i< elementos.size();i++){
@@ -76,7 +80,7 @@ public class AgregarEquipoBean extends BasePageBean {
             }
             //if (Equipo.getTeclado()!=null && Equipo.getTorre!=null...){
                 
-            //   }
+            //   }*/
            
             mensaje = "success !!";
         } catch (ServicesException ex) {
@@ -85,14 +89,14 @@ public class AgregarEquipoBean extends BasePageBean {
         }
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
     }
-    public List<Elemento> crearList(){
+    /*public List<Elemento> crearList(){
         ArrayList<Elemento> elementos = new ArrayList<Elemento>();
         elementos.add(torre);
         elementos.add(pantalla);
         elementos.add(mouse);
         elementos.add(teclado);
         return elementos;
-    }
+    }*/
 
 
      

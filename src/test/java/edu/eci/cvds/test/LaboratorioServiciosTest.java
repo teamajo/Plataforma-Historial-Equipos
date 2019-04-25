@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package edu.eci.cvds.test;
+
 import com.google.inject.Inject;
+
+import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.LaboratorioServiciosFactory;
 import edu.eci.cvds.services.ServicesException;
@@ -97,7 +100,7 @@ public class LaboratorioServiciosTest {
     
     
    @Test
-    public void agregarEquipoTest(){        
+    public void agregarEquipoTest() throws PersistenceException{        
         qt().forAll(GeneradoresLaboratorio.completoEquipos()).check(
             (eq)->{                
                 try {
@@ -112,7 +115,6 @@ public class LaboratorioServiciosTest {
         );     
         try {
             for(int i=1; i<=idEquimax;i++){
-               
                 assert(serviciosLab.buscarElementoPorEquipo(i).size()==4);  
             }
            

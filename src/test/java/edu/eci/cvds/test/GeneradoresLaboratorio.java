@@ -8,6 +8,11 @@ package edu.eci.cvds.test;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.Tipo;
+import edu.eci.cvds.persistence.PersistenceException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 import org.quicktheories.core.Gen;
 import org.quicktheories.generators.Generate;
 import static org.quicktheories.generators.SourceDSL.integers;
@@ -53,13 +58,19 @@ public class GeneradoresLaboratorio {
         return cadenas(6,10).zip(integers().between(1,100000),(lab,id)-> new Equipo(id, lab));                 
      }
      
-     public static Gen<Equipo> completoEquipos(){
+     public static Gen<Equipo> completoEquipos() throws PersistenceException{
        return equipos().zip(pantallas(), mouses(), torres(), teclados(), (eq,p,m,to,te)->{
-           eq.setMouse(m);
-           eq.setPantalla(p);
-           eq.setTeclado(te);
-           eq.setTorre(to);
-           return eq;
+           try {
+            eq.setMouse(m);
+            eq.setPantalla(p);
+            eq.setTeclado(te);
+            eq.setTorre(to);
+         } catch (PersistenceException e) {
+            // TODO Auto-generated catch block
+            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, e);
+         }
+         return eq;
+           
        });
      }
 }

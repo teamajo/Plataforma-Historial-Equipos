@@ -23,6 +23,7 @@ package edu.eci.cvds.entities;
     }
 
 
+
     public Elemento() {
         super();
     }
