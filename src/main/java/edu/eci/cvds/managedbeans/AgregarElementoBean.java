@@ -25,7 +25,7 @@ import javax.faces.bean.SessionScoped;
 public class AgregarElementoBean extends BasePageBean {
 
     @Inject
-    private LaboratorioServices laboratorioServices;
+    private LaboratorioServicesImpl laboratorioServices;
 	
     private Elemento nuevoElemento;
 
