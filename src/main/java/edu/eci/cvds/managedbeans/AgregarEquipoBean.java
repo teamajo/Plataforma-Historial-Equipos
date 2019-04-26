@@ -24,7 +24,7 @@ import javax.faces.bean.SessionScoped;
  */
 @SuppressWarnings("agregarEquipo")
 @ManagedBean(name = "agregarEquipo")
-@SessionScoped 
+@RequestScoped 
 public class AgregarEquipoBean extends BasePageBean {
 
     @Inject

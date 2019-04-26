@@ -21,7 +21,7 @@ import javax.faces.bean.SessionScoped;
  */
 @SuppressWarnings("agregarElemento")
 @ManagedBean(name = "agregarElemento")
-@SessionScoped 
+@RequestScoped
 public class AgregarElementoBean extends BasePageBean {
 
     @Inject
