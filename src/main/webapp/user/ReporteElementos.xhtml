@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+ <title>Plataformas Historial de Equipos</title>
+ <link rel="stylesheet" type="text/css" href="../css/general.css"/>
+ <link rel="stylesheet" type="text/css" href="../css/listado.css"/>  
+</h:head>
+<h:body>
+    <header>
+         <ui:insert name="header" >
+            <ui:include src="../header.xhtml" />
+         </ui:insert>
+    </header>
+  
+    <h1>Reporte de Elementos</h1>
+    
+        <h:form>
+            <p:dataTable var="elem" value="#{agregarElemento.elementosDisponibles()}" paginator="true"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rows="20" class="lista">
+                <p:column headerText="Id" sortBy="#{elem.id}" class="delgado">
+                    <h:outputText value="#{elem.id}" />
+                </p:column>           
+
+                <p:column headerText="Nombre" sortBy="#{elem.name}" class="ancho">
+                    <h:outputText value="#{elem.name}" />
+                </p:column>  
+
+                <f:facet name="paginatorTopLeft">
+                    <p:commandButton type="button" icon="pi pi-refresh" />
+                </f:facet>
+
+                <f:facet name="paginatorBottomRight">
+                    <p:commandButton type="button" icon="pi pi-cloud-upload" />
+                </f:facet>
+
+            </p:dataTable>
+        </h:form>
+</h:body>
+</html>

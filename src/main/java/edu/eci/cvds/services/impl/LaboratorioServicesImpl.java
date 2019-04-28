@@ -24,6 +24,8 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     @Override
     public List<Elemento> buscarElementoPorEquipo(int idEquipo) throws ServicesException{
         try {
+            // esto debewria usar buscar equipo y obtener sus componentes 
+            // No por un mapper apartarte E.G equipoDAO.Equipo(id).getComponentes u coger cada compenente y agregarlo a un lista.
 			return elementoDAO.buscarElementoPorEquipo(idEquipo);
 		} catch (PersistenceException ex) {
 			throw new ServicesException("Error listando elementos de equipo:" + ex.getLocalizedMessage(), ex);
