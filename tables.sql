@@ -26,26 +26,26 @@ CREATE TABLE elemento (
 	CONSTRAINT fk_elementoequipo FOREIGN KEY (idequipo) REFERENCES equipo(id)
 );
 
-CREATE TABLE novedadequipo (
-	id serial NOT NULL,
-	titulo varchar NOT NULL,
-	idequipo int4 NULL,
-	fecha Date NOT NULL,
-	descripcion varchar NOT NULL,
-	responsable varchar NOT NULL,
-	CONSTRAINT novedadequipo_pkey PRIMARY KEY (id),
-	CONSTRAINT fk_novedadequipoequipo FOREIGN KEY (idequipo) REFERENCES equipo(id)
-);
+--CREATE TABLE novedadequipo (
+--	id serial NOT NULL,
+--	titulo varchar NOT NULL,
+--	idequipo int4 NULL,
+--	fecha Date NOT NULL,
+--	descripcion varchar NOT NULL,
+--	responsable varchar NOT NULL,
+--	CONSTRAINT novedadequipo_pkey PRIMARY KEY (id),
+--	CONSTRAINT fk_novedadequipoequipo FOREIGN KEY (idequipo) REFERENCES equipo(id)
+--);
 
-CREATE TABLE novedadelemento (
-	id serial NOT NULL,
-	titulo varchar NOT NULL,
-	idequipo int4 NULL,
-	idelemento int4 NULL,
-	fecha Date NOT NULL,
-	descripcion varchar NOT NULL,
-	responsable varchar NOT NULL,
-	CONSTRAINT novedadelemento_pkey PRIMARY KEY (id),
-	CONSTRAINT fk_novedadelementoequipo FOREIGN KEY (idequipo) REFERENCES equipo(id),
-	CONSTRAINT fk_novedadelementoelemento FOREIGN KEY (idelemento) REFERENCES elemento(id)
-);
+--CREATE TABLE novedadelemento (
+--	id serial NOT NULL,
+--	titulo varchar NOT NULL,
+--	idequipo int4 NULL,
+--	idelemento int4 NULL,
+--	fecha Date NOT NULL,
+--	descripcion varchar NOT NULL,
+--	responsable varchar NOT NULL,
+--	CONSTRAINT novedadelemento_pkey PRIMARY KEY (id),
+--	CONSTRAINT fk_novedadelementoequipo FOREIGN KEY (idequipo) REFERENCES equipo(id),
+--	CONSTRAINT fk_novedadelementoelemento FOREIGN KEY (idelemento) REFERENCES elemento(id)
+--);
