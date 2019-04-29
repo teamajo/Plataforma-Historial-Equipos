@@ -2,9 +2,9 @@ package edu.eci.cvds.managedbeans;
 
 import edu.eci.cvds.entities.Elemento;
 
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -20,7 +20,7 @@ import javax.faces.bean.SessionScoped;
  */
 @SuppressWarnings("agregarEquipo")
 @ManagedBean(name = "agregarEquipo")
-@SessionScoped
+@RequestScoped 
 public class AgregarEquipoBean extends BasePageBean {
 
     @Inject

@@ -1,10 +1,10 @@
 package edu.eci.cvds.managedbeans;
 
-
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -18,13 +18,15 @@ import javax.faces.bean.SessionScoped;
  */
 @SuppressWarnings("agregarElemento")
 @ManagedBean(name = "agregarElemento")
-@SessionScoped 
+@RequestScoped
 public class AgregarElementoBean extends BasePageBean {
 
     @Inject
     private LaboratorioServicesImpl laboratorioServices;
 	
     private Elemento nuevoElemento;
+    
+    private List<Elemento> disponibles;
 
 
     public AgregarElementoBean(){
@@ -50,6 +52,19 @@ public class AgregarElementoBean extends BasePageBean {
         }
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
     }
+    
+    public List<Elemento> elementosDisponibles() throws Exception{
+        String mensaje;
+        if(disponibles==null){
+            try {
+            disponibles= laboratorioServices.elementosDisponibles();
+            mensaje = "success !!";
+            } catch (ServicesException ex) {
+                mensaje = "Fail";throw ex;
+            }
+            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));        
+        }        
+        return disponibles;
 
   
 	

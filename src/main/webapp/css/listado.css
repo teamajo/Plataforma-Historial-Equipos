@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28/04/2019, 03:25:26 PM
+    Author     : J. Eduardo Arias
+*/
+
+
+.delgado{
+    width: 40px;
+}
+
+.ancho{
+    width: 300px;
+}
+
+.lista{
+    width: 50%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}

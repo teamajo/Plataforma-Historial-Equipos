@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.NovedadElementoMapper">
+
+	<resultMap type='NovedadEquipo' id='NovedadEquipoResult'>
+		<id property='id' column='id' />
+		<result property='titulo' column='titulo' />
+		<result property='idEquipo' column='idEquipo' />
+		<result property='idElemento' column='idElemento' />
+		<result property='fecha' column='fecha' />
+		<result property='descripcion' column='descripcion' />
+		<result property='responsable' column='responsable' />
+	</resultMap>
+	
+		<select id="buscarNovedadesDeElementos" resultMap="ElementoResult">
+				SELECT
+					n.id,
+					n.titulo,
+					n.idEquipo,
+					n.idElemento,
+					n.fecha,
+					n.descripcion,
+					n.responsable
+				FROM
+					NOVEDADELEMENTO as n
+					WHERE n.idElemento is not null
+
+		</select>
+		
+		<select id="buscarNovedadesDeElementosPorEquipos" resultMap="ElementoResult"
+			parameterType="int">
+				SELECT
+					n.id,
+					n.titulo,
+					n.idEquipo,
+					n.idElemento,
+					n.fecha,
+					n.descripcion,
+					n.responsable
+				FROM
+					NOVEDADELEMENTO as n
+					WHERE n.idElemento = #{idEquipo}
+		</select>
+		<select id="buscarNovedadesDeElementosPorElementos" resultMap="ElementoResult"
+			parameterType="int">
+				SELECT
+					n.id,
+					n.titulo,
+					n.idEquipo,
+					n.idElemento,
+					n.fecha,
+					n.descripcion,
+					n.responsable
+				FROM
+					NOVEDADELEMENTO as n
+					WHERE n.idElemento = #{idElemento}
+		</select>
+	    <insert id="registrarNovedadElemento" parameterType="edu.eci.cvds.entities.NovedadElemento" >
+	        insert into NOVEDADELEMENTO(id,titulo,idEquipo,idElemento,fecha,descripcion,responsable) values (#{id}, #{titulo}, #{idEquipo}, #{idElemento},#{fecha},#{descripcion}, #{responsable})  
+	    </insert>	
+
+    
+</mapper>

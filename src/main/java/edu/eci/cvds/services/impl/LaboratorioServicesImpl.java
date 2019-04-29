@@ -10,8 +10,12 @@ import org.mybatis.guice.transactional.Transactional;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.Tipo;
+import edu.eci.cvds.entities.NovedadElemento;
+import edu.eci.cvds.entities.NovedadEquipo;
 import edu.eci.cvds.persistence.ElementoDAO;
 import edu.eci.cvds.persistence.EquipoDAO;
+import edu.eci.cvds.persistence.NovedadElementoDAO;
+import edu.eci.cvds.persistence.NovedadEquipoDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
@@ -22,7 +26,13 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     private ElementoDAO elementoDAO;
     
     @Inject
-    private EquipoDAO equipoDAO;
+    private EquipoDAO equipoDAO; 
+    
+    @Inject
+    private NovedadEquipoDAO novedadEquipoDAO;
+    
+    @Inject
+    private NovedadElementoDAO novedadElementoDAO;
     
     @Override
     public List<Elemento> buscarElementoPorEquipo(int idEquipo) throws ServicesException{
@@ -174,8 +184,71 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	 }
 	}
 
+	@Override
+	public List<NovedadEquipo> buscarNovedadesDeEquiposPorEquipos(int idEquipo) throws ServicesException {
+        try {
+			return novedadEquipoDAO.buscarNovedadesDeEquiposPorEquipos(idEquipo);
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error listando novedades de equipo:" + ex.getLocalizedMessage(), ex);
+		}
+	}
 
+	@Override
+	public List<NovedadEquipo> buscarNovedadesDeEquipos() throws ServicesException {
+        try {
+			return novedadEquipoDAO.buscarNovedadesDeEquipos();
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error listando novedades:" + ex.getLocalizedMessage(), ex);
+		}
+	}
 
+	@Override
+	public void registrarNovedadEquipo(NovedadEquipo novedad) throws ServicesException {
+        try {
+        	novedadEquipoDAO.registrarNovedadEquipo(novedad);
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+		}
+		
+	}
+
+	@Override
+	public List<NovedadElemento> buscarNovedadesDeElementosPorEquipos(int idEquipo) throws ServicesException {
+	    try {
+			return novedadElementoDAO.buscarNovedadesDeElementosPorEquipos(idEquipo);
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error listando novedades de equipos:" + ex.getLocalizedMessage(), ex);
+		}
+	}
+
+	@Override
+	public List<NovedadElemento> buscarNovedadesDeElementosPorElementos(int idElemento) throws ServicesException {
+	    try {
+			return novedadElementoDAO.buscarNovedadesDeElementosPorElementos(idElemento);
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error listando novedades de equipos:" + ex.getLocalizedMessage(), ex);
+		}
+	}
+	
+	@Override
+	public List<NovedadElemento> buscarNovedadesDeElementos() throws ServicesException {
+	    try {
+			return novedadElementoDAO.buscarNovedadesDeElementos();
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error listando novedades:" + ex.getLocalizedMessage(), ex);
+		}
+	}
+	
+	@Override
+	public void registrarNovedadElemento(NovedadElemento novedad) throws ServicesException {
+	    try {
+	    	novedadElementoDAO.registrarNovedadElemento(novedad);
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+		}
+		
+	}
+	
 	
 
 
