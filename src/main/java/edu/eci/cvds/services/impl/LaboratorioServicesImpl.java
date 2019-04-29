@@ -5,8 +5,11 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
+import org.mybatis.guice.transactional.Transactional;
+
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.entities.Tipo;
 import edu.eci.cvds.persistence.ElementoDAO;
 import edu.eci.cvds.persistence.EquipoDAO;
 import edu.eci.cvds.persistence.PersistenceException;
@@ -24,11 +27,10 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     @Override
     public List<Elemento> buscarElementoPorEquipo(int idEquipo) throws ServicesException{
         try {
-			return elementoDAO.buscarElementoPorEquipo(idEquipo);
+			return equipoDAO.buscarEquipoPorId(idEquipo).getComponets();
 		} catch (PersistenceException ex) {
 			throw new ServicesException("Error listando elementos de equipo:" + ex.getLocalizedMessage(), ex);
 		}
-
 
     }
 
@@ -36,6 +38,15 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     public List<Elemento> buscarElementos() throws ServicesException{
         try {
 			return elementoDAO.buscarElementos();
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+		}
+
+		}
+		@Override
+    public Elemento buscarElemento(Integer id) throws ServicesException{
+        try {
+			return elementoDAO.buscarElemento(id);
 		} catch (PersistenceException ex) {
 			throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
 		}
@@ -78,22 +89,37 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 				throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
 			}
 	
+		}
+		@Override
+	  public Equipo buscarEquipoPorId(Integer idEquipo) throws ServicesException{
+	      try {
+				return equipoDAO.buscarEquipoPorId(idEquipo);
+			} catch (PersistenceException ex) {
+				throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
+			}
+	
 	  }
 	
-	  @Override
+		@Override
+		@Transactional
 	  public void registrarEquipo(Equipo equipo) throws ServicesException{
 	      try {
 					equipoDAO.registrarEquipo(equipo);
 					int idEquipo = maxIdEquipo();
 					List<Elemento> elementos = new ArrayList<Elemento>();
+					int idElemento= 0;
 					elementos.add(equipo.getTorre());
 					elementos.add(equipo.getMouse());
 					elementos.add(equipo.getPantalla());
 					elementos.add(equipo.getTeclado());
-					for (int i = 0; i< elementos.size();i++){
-						registrarElemento(elementos.get(i));
-						int idElemento= maxIdElemento();
-						asociarEquipo( idEquipo,idElemento);
+					for (Elemento e:elementos){
+						if(e.getId()==null){
+							registrarElemento(e);
+							idElemento= maxIdElemento();
+						}else{
+							idElemento=e.getId();
+						}
+						asociarEquipo( idEquipo,idElemento,e.getTipo());
 				}
 				
 			} catch (PersistenceException ex) {
@@ -103,9 +129,28 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	  }
 	  
   @Override
-  public void asociarEquipo(int idEquipo,int id) throws ServicesException {
+  public void asociarEquipo(int idEquipo,int id,Tipo tipo) throws ServicesException {
     try {
-       elementoDAO.asociarEquipo(idEquipo,id);
+			Boolean flag = false;
+			List<Elemento> elementos = buscarEquipoPorId(idEquipo).getComponets();
+			for (Elemento e:elementos){
+				if (e.getTipo() == tipo){
+					desAsociarElemento(e.getId());
+					elementoDAO.asociarEquipo(idEquipo, id);
+					flag=true	;
+				}
+			}
+			if (!flag){
+				elementoDAO.asociarEquipo(idEquipo,id);
+			}
+    } catch (PersistenceException ex) {
+      throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+    }
+	}
+	@Override
+  public void desAsociarElemento(int id) throws ServicesException {
+    try {
+       elementoDAO.desAsociarElemento(id);
     } catch (PersistenceException ex) {
       throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
     }
@@ -128,6 +173,8 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 		 throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
 	 }
 	}
+
+
 
 	
 

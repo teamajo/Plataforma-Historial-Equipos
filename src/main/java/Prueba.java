@@ -1,10 +1,4 @@
-import edu.eci.cvds.entities.Elemento;
-import edu.eci.cvds.entities.Tipo;
-import edu.eci.cvds.services.LaboratorioServices;
-import edu.eci.cvds.services.LaboratorioServiciosFactory;
-import edu.eci.cvds.services.ServicesException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.util.Factory;

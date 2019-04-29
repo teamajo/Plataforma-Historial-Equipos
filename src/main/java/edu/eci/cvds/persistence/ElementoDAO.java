@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.eci.cvds.entities.Elemento;
 
+
 public interface ElementoDAO{
 
     public List<Elemento> buscarElementoPorEquipo(int idEquipo) throws PersistenceException;
@@ -12,6 +13,9 @@ public interface ElementoDAO{
 	public List<Elemento> elementosDisponibles() throws PersistenceException;
 	public void asociarEquipo(int idEquipo,int id)throws PersistenceException ;
 	public int maxIdElemento() throws PersistenceException;
+	public Elemento buscarElemento(Integer id) throws PersistenceException;
+	public void desAsociarElemento(int id) throws PersistenceException;
+	
 
 
 } 

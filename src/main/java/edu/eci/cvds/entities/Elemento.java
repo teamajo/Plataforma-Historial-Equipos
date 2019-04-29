@@ -7,13 +7,13 @@ package edu.eci.cvds.entities;
  */
 
  public class Elemento {
-    private int id;
+    private Integer id;
     private String name;
     private Integer idEquipo;
     private Tipo tipo;
     private String descripcion;
 
-    public Elemento(int id, Tipo tipo, String name, Integer idEquipo, String descripcion) {
+    public Elemento(Integer id, Tipo tipo, String name, Integer idEquipo, String descripcion) {
         this.id = id;
         this.name = name;
         this.idEquipo=idEquipo;
@@ -63,14 +63,14 @@ package edu.eci.cvds.entities;
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     /**

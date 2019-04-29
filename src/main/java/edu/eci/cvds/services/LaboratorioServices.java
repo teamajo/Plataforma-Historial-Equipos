@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.entities.Tipo;
 
 public interface LaboratorioServices {
 
@@ -11,15 +12,21 @@ public interface LaboratorioServices {
 
     public List<Elemento> buscarElementos() throws ServicesException;
 
+    public Elemento buscarElemento(Integer id) throws ServicesException;
+
     public void registrarElemento(Elemento elemento) throws ServicesException;
 
     public List<Elemento> elementosDisponibles() throws ServicesException;
 
-    public void asociarEquipo(int idEquipo,int id) throws ServicesException;
+    public void asociarEquipo(int idEquipo,int id,Tipo tipo) throws ServicesException;
+
+    public void desAsociarElemento(int id) throws ServicesException;
     
     public List<Equipo> buscarEquipoPorLab(String lab) throws ServicesException;
 
     public List<Equipo> buscarEquipos() throws ServicesException;
+
+    public Equipo buscarEquipoPorId(Integer idEquipo) throws ServicesException;
 
     public void registrarEquipo(Equipo equipo) throws ServicesException;
 

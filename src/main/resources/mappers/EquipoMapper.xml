@@ -5,10 +5,7 @@
 
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.EquipoMapper">
 
-	<resultMap type='Equipo' id='EquipoResult'>
-		<id property='id' column='id' />
-		<result property='lab' column='lab' />
-	</resultMap>
+	
 
 		<select id="buscarEquipoPorLab" resultMap="EquipoResult"
 			parameterType="int">
@@ -16,16 +13,32 @@
 					e.id,
 					e.lab
 				from EQUIPO as e
-			<if test="lab != null">
 				WHERE e.lab = #{lab}
-			</if>
 		</select>
 	
 		<select id="buscarEquipo" resultMap="EquipoResult">
 			select 
 				e.id,
-				e.lab
+				e.lab,
+				e.activo,
+				e.pantalla,
+				e.mouse,
+				e.teclado,
+				e.torre
 			from EQUIPO as e
+		</select>
+
+		<select id="buscarEquipoPorId" resultMap="EquipoResult"
+			parameterType="int">
+				select 
+					e.id,
+					e.activo,
+					e.pantalla,
+					e.mouse,
+					e.teclado,
+					e.torre
+				from EQUIPO as e
+				WHERE e.id = #{id}
 		</select>
 
     <insert id="registrarEquipo" parameterType="edu.eci.cvds.entities.Equipo" >
@@ -35,6 +48,16 @@
 		<select id="maxIdEquipo" resultType="int">
        SELECT MAX(id) FROM EQUIPO
    </select>
+
+
+	 <resultMap type='Equipo' id='EquipoResult'>
+		<id property='id' column='id' />
+		<result property='lab' column='lab'  />
+		<association property="pantalla" column="pantalla" javaType="Elemento" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
+		<association property="mouse" column="mouse" javaType="Elemento" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
+		<association property="teclado" column="teclado" javaType="Elemento" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
+		<association property="torre" column="torre" javaType="Elemento" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
+	</resultMap>
 
 
     

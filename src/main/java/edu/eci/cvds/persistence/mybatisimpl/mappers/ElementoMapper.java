@@ -4,6 +4,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.entities.Tipo;
 import edu.eci.cvds.persistence.PersistenceException;
 
 public interface ElementoMapper {
@@ -17,6 +18,8 @@ public interface ElementoMapper {
     
 	public void asociarEquipo(@Param("idEquipo") int idEquipo,@Param("id") int id) throws PersistenceException;
 	public int maxIdElemento() throws PersistenceException;
+	public Elemento buscarElemento(@Param("id")Integer id) throws PersistenceException;
+	public void desAsociarElemento(@Param("id")int id) throws PersistenceException;
 	
 
 }

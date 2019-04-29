@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.inject.Inject;
 
 import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.entities.Tipo;
 import edu.eci.cvds.persistence.ElementoDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatisimpl.mappers.ElementoMapper;
@@ -67,6 +68,24 @@ public class MyBatisElementoDAO implements ElementoDAO {
 		   } catch (Exception e) {
 			   throw new PersistenceException("Load all persistence error", e);
 		   }
+	}
+
+	@Override
+	public Elemento buscarElemento(Integer id) throws PersistenceException {
+		try {
+		return elementoMapper.buscarElemento(id);
+		} catch (Exception e) {
+		throw new PersistenceException("Load all persistence error", e);
+	}
+	}
+
+	@Override
+	public void desAsociarElemento(int id) throws PersistenceException {
+		try {
+			 elementoMapper.desAsociarElemento(id);
+			} catch (Exception e) {
+			throw new PersistenceException("Load all persistence error", e);
+		}
 	}
 
 	

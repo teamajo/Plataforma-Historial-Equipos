@@ -38,6 +38,19 @@
 				WHERE e.idEquipo is not null
 
 		</select>
+		<select id="buscarElemento" resultMap="ElementoResult"
+		parameterType="int">
+			SELECT
+				e.id,
+				e.name,
+				e.idEquipo,
+				e.tipo,
+				e.descripcion
+			FROM
+				ELEMENTO as e
+				WHERE e.id == #{id}
+
+		</select>
 
 		<select id ="elementosDisponibles" resultMap="ElementoResult">
 		SELECT
@@ -54,6 +67,12 @@
 		<update id="asociarEquipo" parameterType="map" >
 		UPDATE ELEMENTO SET
 			idEquipo = #{idEquipo}
+		WHERE id = #{id}
+		</update>
+
+		<update id="asociarEquipo" parameterType="map" >
+		UPDATE ELEMENTO SET
+			idEquipo = null
 		WHERE id = #{id}
 		</update>
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
+import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.persistence.EquipoDAO;
 import edu.eci.cvds.persistence.PersistenceException;
@@ -11,9 +12,8 @@ import edu.eci.cvds.persistence.mybatisimpl.mappers.EquipoMapper;
 
 public class MyBatisEquipoDAO implements EquipoDAO {
 
-    @Inject
-    private EquipoMapper equipoMapper;
-    
+	@Inject
+	private EquipoMapper equipoMapper;
 
 	@Override
 	public List<Equipo> buscarEquipoPorLab(String lab) throws PersistenceException {
@@ -23,7 +23,7 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 			throw new PersistenceException("Load all persistence error", e);
 		}
 	}
-	
+
 	@Override
 	public List<Equipo> buscarEquipos() throws PersistenceException {
 		try {
@@ -31,9 +31,9 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 		} catch (Exception e) {
 			throw new PersistenceException(e.getMessage(), e);
 		}
-    }
-    
-    @Override
+	}
+
+	@Override
 	public void registrarEquipo(Equipo equipo) throws PersistenceException {
 		try {
 			equipoMapper.registrarEquipo(equipo);
@@ -46,6 +46,15 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 	public int maxIdEquipo() throws PersistenceException {
 		try {
 			return equipoMapper.maxIdEquipo();
+		} catch (Exception e) {
+			throw new PersistenceException(e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public Equipo buscarEquipoPorId(int id) throws PersistenceException {
+		try {
+			return equipoMapper.buscarEquipoPorId(id);
 		} catch (Exception e) {
 			throw new PersistenceException(e.getMessage(), e);
 		}

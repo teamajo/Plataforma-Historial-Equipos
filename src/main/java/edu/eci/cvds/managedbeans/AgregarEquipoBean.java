@@ -1,22 +1,18 @@
 package edu.eci.cvds.managedbeans;
 
 import edu.eci.cvds.entities.Elemento;
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
-import edu.eci.cvds.entities.Tipo;
+import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
-import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
+
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -24,83 +20,96 @@ import javax.faces.bean.SessionScoped;
  */
 @SuppressWarnings("agregarEquipo")
 @ManagedBean(name = "agregarEquipo")
-@SessionScoped 
+@SessionScoped
 public class AgregarEquipoBean extends BasePageBean {
 
     @Inject
     private LaboratorioServices laboratorioServices;
-	
+
     private Equipo nuevoEquipo;
     private Elemento torre;
     private Elemento pantalla;
     private Elemento mouse;
     private Elemento teclado;
+
+    private int idk, idp, idm, idt;
+
+    private boolean buscarK, buscarP, buscarM, buscarT;
+
+    public AgregarEquipoBean() {
+        nuevoEquipo = new Equipo();
   
-    private int idk,idp,idm,idt;
-    
-    private boolean buscarK,buscarP,buscarM,buscarT;
- 
-    public AgregarEquipoBean(){
-        nuevoEquipo= new Equipo();
-        torre = new Elemento();
-        torre.setTipo(Tipo.torre);
-        pantalla = new Elemento();
-        pantalla.setTipo(Tipo.pantalla);
-        mouse = new Elemento();
-        mouse.setTipo(Tipo.mouse);
-        teclado = new Elemento();
-        teclado.setTipo(Tipo.teclado);
     }
 
-    public void setIdp(int idp) {
-        if (buscarP){
-          this.idp = idp;
-          //pantalla=laboratorioServices.buscarElemento(idp);
-          //nuevoEquipo.setMouse(pantalla);
+    public void setIdp(int idp) throws ServicesException {
+        if (buscarP) {
+            this.idp = idp;
+            pantalla = laboratorioServices.buscarElemento(idp);
+            try {
+                nuevoEquipo.setMouse(pantalla);
+            } catch (PersistenceException e) {
+                
+                e.printStackTrace();
+            }
         }  
     }
 
-    public void setIdm(int idm) {
+    public void setIdm(int idm) throws ServicesException {
         if (buscarM){
           this.idm = idm;
-          //mouse=laboratorioServices.buscarElemento(idm);
-          //nuevoEquipo.setMouse(mouse);
+          mouse=laboratorioServices.buscarElemento(idm);
+            try {
+                nuevoEquipo.setMouse(mouse);
+            } catch (PersistenceException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }  
     }
     
-    public void setIdt(int idt) {
+    public void setIdt(int idt) throws ServicesException {
         if (buscarT){
           this.idt = idt;
-          //torre=laboratorioServices.buscarElemento(idt);
-          //nuevoEquipo.setTorre(torre);
+          torre=laboratorioServices.buscarElemento(idt);
+            try {
+                nuevoEquipo.setTorre(torre);
+            } catch (PersistenceException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }  
     }
     
        
-    public void setIdk(int idk) {
+    public void setIdk(int idk) throws ServicesException {
         if (buscarK){
           this.idk = idk;
-          //teclado=laboratorioServices.buscarElemento(idk);
-          //nuevoEquipo.setTeclado(teclado);
+          teclado=laboratorioServices.buscarElemento(idk);
+            try {
+                nuevoEquipo.setTeclado(teclado);
+            } catch (PersistenceException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }            
     }
     
-    public void setBuscarP(boolean buscarP) {
+    public void setBuscarP(boolean buscarP) throws ServicesException {
         this.buscarP = buscarP;
         setIdp(idp);
     }
 
-    public void setBuscarM(boolean buscarM) {
+    public void setBuscarM(boolean buscarM) throws ServicesException {
         this.buscarM = buscarM;
         setIdm(idm);
     }
 
-    public void setBuscarT(boolean buscarT) {
+    public void setBuscarT(boolean buscarT) throws ServicesException {
         this.buscarT = buscarT;
         setIdt(idt);
     }
     
-     public void setBuscarK(boolean buscarK) {
+     public void setBuscarK(boolean buscarK) throws ServicesException {
         this.buscarK = buscarK;
         setIdk(idk);
     }
@@ -153,24 +162,7 @@ public class AgregarEquipoBean extends BasePageBean {
     public void registrarEquipo() throws Exception {
         String mensaje;
         try {
-            nuevoEquipo.setMouse(mouse);
-            nuevoEquipo.setPantalla(pantalla);
-            nuevoEquipo.setTeclado(teclado);
-            nuevoEquipo.setTorre(torre);
             laboratorioServices.registrarEquipo(nuevoEquipo);
-            /*int idEquipo = laboratorioServices.maxIdEquipo();            
-            List<Elemento> elementos = null;
-            elementos = crearList();
-            for (int i = 0; i< elementos.size();i++){
-                laboratorioServices.registrarElemento(elementos.get(i));
-                int idElemento= laboratorioServices.maxIdElemento();
-                System.out.println( idEquipo+"  "+idElemento);
-                laboratorioServices.asociarEquipo( idEquipo,idElemento);
-            }
-            //if (Equipo.getTeclado()!=null && Equipo.getTorre!=null...){
-                
-            //   }*/
-           
             mensaje = "success !!";
         } catch (ServicesException ex) {
             mensaje = "Fail";
@@ -178,14 +170,6 @@ public class AgregarEquipoBean extends BasePageBean {
         }
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
     }
-    /*public List<Elemento> crearList(){
-        ArrayList<Elemento> elementos = new ArrayList<Elemento>();
-        elementos.add(torre);
-        elementos.add(pantalla);
-        elementos.add(mouse);
-        elementos.add(teclado);
-        return elementos;
-    }*/
 
 
      

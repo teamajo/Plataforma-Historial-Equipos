@@ -1,6 +1,7 @@
 package edu.eci.cvds.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.eci.cvds.persistence.PersistenceException;
 
@@ -10,14 +11,14 @@ import edu.eci.cvds.persistence.PersistenceException;
  */
 
  public class Equipo {
-    private int id;
+    private Integer id;
     private String lab;
     private Elemento torre;
     private Elemento pantalla;
     private Elemento mouse;
     private Elemento teclado;
 
-    public Equipo(int id, String lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado) throws PersistenceException {
+    public Equipo(Integer id, String lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado) throws PersistenceException {
         this.id = id;
         this.lab = lab;
         this.setTorre(torre);
@@ -27,7 +28,7 @@ import edu.eci.cvds.persistence.PersistenceException;
     }
 
 
-    public Equipo(int id, String lab) {
+    public Equipo(Integer id, String lab) {
         this.id = id;
         this.lab = lab;
     }
@@ -41,14 +42,14 @@ import edu.eci.cvds.persistence.PersistenceException;
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -145,6 +146,18 @@ import edu.eci.cvds.persistence.PersistenceException;
             throw new PersistenceException("no se puede asignar el elemento");
         }
         
+    }
+
+
+
+
+    public List<Elemento> getComponets(){
+        List<Elemento> componentes =new  ArrayList<>();
+        componentes.add(torre);
+        componentes.add(teclado);
+        componentes.add(mouse);
+        componentes.add(pantalla);
+        return componentes;
     }
 
     
