@@ -8,24 +8,24 @@ import edu.eci.cvds.persistence.PersistenceException;
  */
 
  public class Equipo {
-    private int id;
+    private Integer id;
     private String lab;
     private Elemento torre;
     private Elemento pantalla;
     private Elemento mouse;
     private Elemento teclado;
 
-    public Equipo(int id, String lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado) throws PersistenceException {
+    public Equipo(Integer id, String lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado) throws PersistenceException {
         this.id = id;
         this.lab = lab;
-        this.setTorre(torre);
-        this.setPantalla(pantalla);
-        this.setMouse(mouse);
-        this.setTeclado(teclado);
+        setTorre(torre);
+        setPantalla(pantalla);
+        setMouse(mouse);
+        setTeclado(teclado);
     }
 
 
-    public Equipo(int id, String lab) {
+    public Equipo(Integer id, String lab) {
         this.id = id;
         this.lab = lab;
     }
@@ -60,9 +60,10 @@ import edu.eci.cvds.persistence.PersistenceException;
     }
 
     /**
-     * @param set lab
+     * 
+     * @param lab
      */
-    public void setLab(String lab) {
+    public final void setLab(String lab) {
         this.lab = lab;
     }
 
@@ -77,7 +78,7 @@ import edu.eci.cvds.persistence.PersistenceException;
     /**
      * @param teclado the teclado to set
      */
-    public void setTeclado(Elemento teclado) throws PersistenceException{
+    public final void setTeclado(Elemento teclado) throws PersistenceException{
        
         if (teclado.getTipo().equals(Tipo.teclado)){
             this.teclado = teclado;
@@ -96,7 +97,7 @@ import edu.eci.cvds.persistence.PersistenceException;
     /**
      * @param mouse the mouse to set
      */
-    public void setMouse(Elemento mouse) throws PersistenceException {
+    public final void setMouse(Elemento mouse) throws PersistenceException {
         
         if (mouse.getTipo().equals(Tipo.mouse)){
             this.mouse = mouse;
@@ -116,7 +117,7 @@ import edu.eci.cvds.persistence.PersistenceException;
     /**
      * @param pantalla the pantalla to set
      */
-    public void setPantalla(Elemento pantalla) throws PersistenceException {
+    public final void setPantalla(Elemento pantalla) throws PersistenceException {
         
         if (pantalla.getTipo().equals(Tipo.pantalla)){
             this.pantalla = pantalla;
@@ -135,7 +136,7 @@ import edu.eci.cvds.persistence.PersistenceException;
     /**
      * @param torre the torre to set
      */
-    public void setTorre(Elemento torre) throws PersistenceException{
+    public final void setTorre(Elemento torre) throws PersistenceException{
         
         if (torre.getTipo().equals(Tipo.torre)){
             this.torre = torre;

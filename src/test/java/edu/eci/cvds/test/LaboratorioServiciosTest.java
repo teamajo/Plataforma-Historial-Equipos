@@ -117,13 +117,16 @@ public class LaboratorioServiciosTest {
             for(int i=1; i<=idEquimax;i++){
                 assert(serviciosLab.buscarElementoPorEquipo(i).size()==4);  
             }
+            assert(serviciosLab.buscarEquipos().size()==idEquimax);
            
         } catch (ServicesException ex) {            
             
             fail(getStackTrace(ex));
-        }
-        
+        }        
     }
+    
+    
+    
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

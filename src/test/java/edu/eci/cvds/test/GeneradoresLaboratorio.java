@@ -27,7 +27,7 @@ public class GeneradoresLaboratorio {
     
     public static Gen<Elemento> teclados(){
      
-       return cadenas(4,6).zip(cadenas(6,10), integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.teclado, name, null, des));
+       return cadenas(4,6).zip(cadenas(6,10),(name,des)-> new Elemento(null, Tipo.teclado, name, null, des));
     }
     
     public static Gen<String> cadenas(int min,int max){
@@ -36,26 +36,26 @@ public class GeneradoresLaboratorio {
     
      public static Gen<Elemento> pantallas(){
       
-       return cadenas(4,6).zip(cadenas(6,10), integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.pantalla, name, null, des));
+       return cadenas(4,6).zip(cadenas(6,10), (name,des)-> new Elemento(null, Tipo.pantalla, name, null, des));
     }
      
     public static Gen<Elemento> mouses(){
        
-       return cadenas(4,6).zip(cadenas(6,10),integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.mouse, name, null, des));
+       return cadenas(4,6).zip(cadenas(6,10),(name,des)-> new Elemento(null, Tipo.mouse, name, null, des));
     }
     
      public static Gen<Elemento> torres(){
        
-       return cadenas(4,6).zip(cadenas(6,10),integers().between(1,100000),(name,des,iditem)-> new Elemento(iditem, Tipo.torre, name, null, des));
+       return cadenas(4,6).zip(cadenas(6,10),(name,des)-> new Elemento(null, Tipo.torre, name, null, des));
     }
      
      public static Gen<Elemento> elemAleatorio(){
        
-       return cadenas(4,6).zip(cadenas(6,10),Generate.enumValues(Tipo.class),integers().between(1,1000000),(name,des,tipo,iditem)-> new Elemento(iditem, tipo, name, null, des));
+       return cadenas(4,6).zip(cadenas(6,10),Generate.enumValues(Tipo.class),(name,des,tipo)-> new Elemento(null, tipo, name, null, des));
      }
      
      public static Gen<Equipo> equipos(){
-        return cadenas(6,10).zip(integers().between(1,100000),(lab,id)-> new Equipo(id, lab));                 
+        return cadenas(6,10).map((lab)-> new Equipo(null, lab));                 
      }
      
      public static Gen<Equipo> completoEquipos() throws PersistenceException{
