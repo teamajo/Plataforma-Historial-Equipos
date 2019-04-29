@@ -5,7 +5,7 @@
 
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.NovedadElementoMapper">
 
-	<resultMap type='NovedadEquipo' id='NovedadEquipoResult'>
+	<resultMap type='NovedadEquipo' id='NovedadElementoResult'>
 		<id property='id' column='id' />
 		<result property='titulo' column='titulo' />
 		<result property='idEquipo' column='idEquipo' />
@@ -15,7 +15,7 @@
 		<result property='responsable' column='responsable' />
 	</resultMap>
 	
-		<select id="buscarNovedadesDeElementos" resultMap="ElementoResult">
+		<select id="buscarNovedadesDeElementos" resultMap="NovedadElementoResult">
 				SELECT
 					n.id,
 					n.titulo,
@@ -30,7 +30,7 @@
 
 		</select>
 		
-		<select id="buscarNovedadesDeElementosPorEquipos" resultMap="ElementoResult"
+		<select id="buscarNovedadesDeElementosPorEquipos" resultMap="NovedadElementoResult"
 			parameterType="int">
 				SELECT
 					n.id,
@@ -44,7 +44,7 @@
 					NOVEDADELEMENTO as n
 					WHERE n.idElemento = #{idEquipo}
 		</select>
-		<select id="buscarNovedadesDeElementosPorElementos" resultMap="ElementoResult"
+		<select id="buscarNovedadesDeElementosPorElementos" resultMap="NovedadElementoResult"
 			parameterType="int">
 				SELECT
 					n.id,
