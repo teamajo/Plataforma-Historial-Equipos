@@ -25,8 +25,7 @@ public class AgregarElementoBean extends BasePageBean {
     private LaboratorioServicesImpl laboratorioServices;
 	
     private Elemento nuevoElemento;
-    
-    private List<Elemento> disponibles;
+   
 
 
     public AgregarElementoBean(){
@@ -53,18 +52,7 @@ public class AgregarElementoBean extends BasePageBean {
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
     }
     
-    public List<Elemento> elementosDisponibles() throws Exception{
-        String mensaje;
-        if(disponibles==null){
-            try {
-            disponibles= laboratorioServices.elementosDisponibles();
-            mensaje = "success !!";
-            } catch (ServicesException ex) {
-                mensaje = "Fail";throw ex;
-            }
-            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));        
-        }        
-        return disponibles;
+  
 
   
 	
