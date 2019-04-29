@@ -19,6 +19,8 @@ import edu.eci.cvds.persistence.NovedadEquipoDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LaboratorioServicesImpl implements LaboratorioServices {
 
@@ -113,50 +115,53 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 		@Override
 		@Transactional
 	  public void registrarEquipo(Equipo equipo) throws ServicesException{
-	      try {
-					equipoDAO.registrarEquipo(equipo);
-					int idEquipo = maxIdEquipo();
-					List<Elemento> elementos = new ArrayList<Elemento>();
-					int idElemento= 0;
-					elementos.add(equipo.getTorre());
-					elementos.add(equipo.getMouse());
-					elementos.add(equipo.getPantalla());
-					elementos.add(equipo.getTeclado());
-					for (Elemento e:elementos){
-						if(e.getId()==null){
-							registrarElemento(e);
-							idElemento= maxIdElemento();
-						}else{
-							idElemento=e.getId();
-						}
-						asociarEquipo( idEquipo,idElemento,e.getTipo());
-				}
+            try {
+                equipoDAO.registrarEquipo(equipo);
+                int idEquipo = maxIdEquipo();
+                List<Elemento> elementos = new ArrayList<Elemento>();
+                int idElemento= 0;
+                elementos.add(equipo.getTorre());
+                elementos.add(equipo.getMouse());
+                elementos.add(equipo.getPantalla());
+                elementos.add(equipo.getTeclado());
+                
+                for (Elemento e:elementos){
+                    if(e.getId()==null){
+                            registrarElemento(e);
+                            idElemento= maxIdElemento();
+                    }else{
+                            idElemento=e.getId();
+                    }
+                    asociarEquipo( idEquipo,idElemento,e.getTipo());
+                }
+                
+                
 				
-			} catch (PersistenceException ex) {
-				throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
-			}
+            } catch (PersistenceException ex) {
+                    throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
+            }
 	
 	  }
 	  
   @Override
   public void asociarEquipo(int idEquipo,int id,Tipo tipo) throws ServicesException {
     try {
-			Boolean flag = false;
-			List<Elemento> elementos = buscarEquipoPorId(idEquipo).getComponets();
-			for (Elemento e:elementos){
-				if (e.getTipo() == tipo){
-					desAsociarElemento(e.getId());
-					elementoDAO.asociarEquipo(idEquipo, id);
-					flag=true	;
-				}
-			}
-			if (!flag){
-				elementoDAO.asociarEquipo(idEquipo,id);
-			}
+            Boolean flag = false;
+            List<Elemento> elementos = buscarEquipoPorId(idEquipo).getComponets();
+            
+            for (Elemento e:elementos){                
+                if(e!=null){
+                    if (e.getTipo() == tipo){
+                        desAsociarElemento(e.getId());                                                   
+                    }
+                }
+            }
+           elementoDAO.asociarEquipo(idEquipo, id);  
+   
     } catch (PersistenceException ex) {
-      throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+        Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);
     }
-	}
+  }
 	@Override
   public void desAsociarElemento(int id) throws ServicesException {
     try {

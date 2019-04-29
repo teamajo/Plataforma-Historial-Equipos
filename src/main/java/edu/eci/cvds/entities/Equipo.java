@@ -13,6 +13,7 @@ import edu.eci.cvds.persistence.PersistenceException;
  public class Equipo {
     private Integer id;
     private String lab;
+    private boolean activo;
     private Elemento torre;
     private Elemento pantalla;
     private Elemento mouse;
@@ -25,16 +26,19 @@ import edu.eci.cvds.persistence.PersistenceException;
         setPantalla(pantalla);
         setMouse(mouse);
         setTeclado(teclado);
+        activo=true;
     }
 
 
     public Equipo(Integer id, String lab) {
         this.id = id;
         this.lab = lab;
+        activo=true;
     }
 
     public Equipo() {
         super();
+        activo=true;
     }
 
 
@@ -95,6 +99,15 @@ import edu.eci.cvds.persistence.PersistenceException;
      */
     public Elemento getMouse() {
         return mouse;
+    }
+
+   
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public boolean isActivo() {
+        return activo;
     }
 
     /**

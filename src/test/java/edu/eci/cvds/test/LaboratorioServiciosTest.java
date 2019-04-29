@@ -6,6 +6,9 @@
 package edu.eci.cvds.test;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Elemento;
+import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.entities.Tipo;
 
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
@@ -100,7 +103,7 @@ public class LaboratorioServiciosTest {
    
     
     
-   @Test
+    @Test
     public void agregarEquipoTest() throws PersistenceException{        
         qt().forAll(GeneradoresLaboratorio.completoEquipos()).check(
             (eq)->{                
@@ -118,14 +121,14 @@ public class LaboratorioServiciosTest {
             for(int i=1; i<=idEquimax;i++){
                 assert(serviciosLab.buscarElementoPorEquipo(i).size()==4);  
             }
-            assert(serviciosLab.buscarEquipos().size()==idEquimax);
+           assert(serviciosLab.buscarEquipos().size()==idEquimax);
            
         } catch (ServicesException ex) {            
             
             fail(getStackTrace(ex));
         }        
     }
-    
+ 
     
     
 

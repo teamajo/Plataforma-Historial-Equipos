@@ -53,8 +53,32 @@
 				select 
 					e.id as ideq,
 					e.activo as aceq,
-					e.lab as laeq
-				from EQUIPO as e
+					e.lab as laeq,
+					p.id as pa_id,
+					p.name as pa_name,
+					p.descripcion as pa_desc,
+					p.idequipo as pa_ideq,
+					p.tipo as pa_tipo,
+					m.id as mo_id,
+					m.name as mo_name,
+					m.descripcion as mo_desc,
+					m.idequipo as mo_ideq,
+					m.tipo as mo_tipo,
+					t.id as torre_id,
+					t.name as torre_name,
+					t.idequipo as torre_ideq,
+					t.descripcion as torre_desc,
+					t.tipo as torre_tipo,
+					k.id as ke_id,
+					k.name as ke_name,
+					k.idequipo as ke_ideq,
+					k.descripcion as ke_desc,
+					k.tipo as ke_tipo
+				from EQUIPO e
+				left outer join elemento as p on p.idequipo = e.id and p.tipo='pantalla'
+				left outer join elemento as m on m.idequipo = e.id and m.tipo='mouse'
+				left outer join elemento as t on t.idequipo = e.id and t.tipo='torre'
+				left outer join elemento as k on k.idequipo = e.id and k.tipo='teclado'
 				WHERE e.id = #{id}
 		</select>
 
@@ -67,14 +91,15 @@
    </select>
 
 
-	 <resultMap type='Equipo' id='EquipoResult'>
-		<id property='id' column='id' />
-		<result property='lab' column='lab'  />
-		<association property="pantalla"  columnPrefix="pa_" javaType="Elemento" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
-		<association property="mouse"  columnPrefix="mo_" javaType="Elemento"  resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
-		<association property="teclado"  columnPrefix="ke_" javaType="Elemento"  resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
-		<association property="torre" columnPrefix="torre_" javaType="Elemento" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
-	</resultMap>
+    <resultMap type='Equipo' id='EquipoResult'>
+           <id property='id' column='ideq' />
+           <result property='lab' column='laeq'/>
+           <result property='activo' column='aceq'/>
+           <association property="pantalla"  columnPrefix="pa_" javaType="Elemento" resultMap="edu.eci.cvds.persistence.mybatisimpl.mappers.ElementoMapper.ElementoResult"></association>
+           <association property="mouse"  columnPrefix="mo_" javaType="Elemento"  resultMap="edu.eci.cvds.persistence.mybatisimpl.mappers.ElementoMapper.ElementoResult"></association>
+           <association property="teclado"  columnPrefix="ke_" javaType="Elemento"  resultMap="edu.eci.cvds.persistence.mybatisimpl.mappers.ElementoMapper.ElementoResult"></association>
+           <association property="torre" columnPrefix="torre_" javaType="Elemento" resultMap="edu.eci.cvds.persistence.mybatisimpl.mappers.ElementoMapper.ElementoResult"></association>
+   </resultMap>
 
 
     
