@@ -59,5 +59,10 @@ public class NovedadEquipo {
 	public void setResponsable(String responsable) {
 		this.responsable = responsable;
 	}
+	
+    @Override
+    public String toString() {
+        return "NovedadEquipo{id=" + id + ", Titulo="+titulo+ ", idEquipo=" + idEquipo +'}';
+    }
 
 }

@@ -9,9 +9,13 @@ import org.mybatis.guice.datasource.helper.JdbcHelper;
 
 import edu.eci.cvds.persistence.ElementoDAO;
 import edu.eci.cvds.persistence.EquipoDAO;
+import edu.eci.cvds.persistence.NovedadElementoDAO;
+import edu.eci.cvds.persistence.NovedadEquipoDAO;
 import edu.eci.cvds.persistence.UsuarioDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisElementoDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisEquipoDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisNovedadElementoDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisNovedadEquipoDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisUsuarioDAO;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
@@ -48,6 +52,12 @@ public class GuiceContextListener implements ServletContextListener {
 				
 				//equipo 
 				bind(EquipoDAO.class).to(MyBatisEquipoDAO.class);
+				
+				//NovedadEquipo 
+				bind(NovedadEquipoDAO.class).to(MyBatisNovedadEquipoDAO.class);
+				
+				//NovedadElemento 
+				bind(NovedadElementoDAO.class).to(MyBatisNovedadElementoDAO.class);
 				
 				
 				

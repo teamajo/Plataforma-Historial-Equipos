@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.NovedadEquipoMapper">
+
+	<resultMap type='NovedadEquipo' id='NovedadEquipoResult'>
+		<id property='id' column='id' />
+		<result property='titulo' column='titulo' />
+		<result property='idEquipo' column='idEquipo' />
+		<result property='fecha' column='fecha' />
+		<result property='descripcion' column='descripcion' />
+		<result property='responsable' column='responsable' />
+	</resultMap>
+	
+		<select id="buscarNovedadesDeEquipos" resultMap="ElementoResult">
+				SELECT
+					n.id,
+					n.titulo,
+					n.idEquipo,
+					n.fecha,
+					n.descripcion,
+					n.responsable
+				FROM
+					NOVEDADEQUIPO as n
+					WHERE n.idEquipo is not null
+
+		</select>
+		
+		<select id="buscarNovedadesDeEquiposPorEquipos" resultMap="ElementoResult"
+			parameterType="int">
+				SELECT
+					n.id,
+					n.titulo,
+					n.idEquipo,
+					n.fecha,
+					n.descripcion,
+					n.responsable
+				FROM
+					NOVEDADEQUIPO as n
+					WHERE n.idEquipo = #{idEquipo}
+		</select>
+		
+	    <insert id="registrarNovedadEquipo" parameterType="edu.eci.cvds.entities.NovedadEquipo" >
+	        insert into NOVEDADEQUIPO(id,titulo,idEquipo,fecha,descripcion,responsable) values (#{id}, #{titulo}, #{idEquipo},#{fecha},#{descripcion}, #{responsable})  
+	    </insert>	
+
+    
+</mapper>

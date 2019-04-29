@@ -68,5 +68,8 @@ public class NovedadElemento {
 		this.responsable = responsable;
 	}
    
-
+    @Override
+    public String toString() {
+        return "NovedadEquipo{id=" + id + ", Titulo="+titulo+ ", idElemento=" + idElemento +'}';
+    }
 }
