@@ -70,10 +70,10 @@
 	 <resultMap type='Equipo' id='EquipoResult'>
 		<id property='id' column='id' />
 		<result property='lab' column='lab'  />
-		<association property="pantalla" column="" columnPrefix="el_" javaType="Elemento" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
-		<association property="mouse" column="mo" javaType="Elemento" columnPrefix="el_" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
-		<association property="teclado" column="te" javaType="Elemento" columnPrefix="el_" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
-		<association property="torre" column="to" javaType="Elemento" columnPrefix="el_" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
+		<association property="pantalla"  columnPrefix="pa_" javaType="Elemento" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
+		<association property="mouse"  columnPrefix="mo_" javaType="Elemento"  resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
+		<association property="teclado"  columnPrefix="ke_" javaType="Elemento"  resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
+		<association property="torre" columnPrefix="torre_" javaType="Elemento" resultMap="edu.eci.cvds.resources.mappers.ElementoMapper.Elemento"></association>
 	</resultMap>
 
 
