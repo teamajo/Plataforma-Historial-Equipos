@@ -55,7 +55,8 @@ public class LaboratorioServiciosTest {
             try {                      
                 serviciosLab.registrarElemento(elem);                
                 return true;
-            } catch (ServicesException ex) {                  
+            } catch (ServicesException ex) { 
+                
                 return false;
             }
            }

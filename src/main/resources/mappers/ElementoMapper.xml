@@ -70,7 +70,7 @@
 		WHERE id = #{id}
 		</update>
 
-		<update id="asociarEquipo" parameterType="map" >
+		<update id="desAsociarEquipo" parameterType="map" >
 		UPDATE ELEMENTO SET
 			idEquipo = null
 		WHERE id = #{id}
