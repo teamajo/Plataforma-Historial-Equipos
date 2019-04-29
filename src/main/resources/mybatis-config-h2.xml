@@ -30,7 +30,7 @@
        <mapper resource="mappers/ElementoMapper.xml"></mapper>     
        <mapper resource="mappers/EquipoMapper.xml"></mapper> 
        <mapper resource="mappers/NovedadEquipoMapper.xml"></mapper>   
-       <mapper resource="mappers/NovedadElementoMapper.xml"></mapper>             
+       <mapper resource="mappers/NovedadElementoMapper.xml"></mapper>            
     </mappers> 
         
         
