@@ -68,7 +68,7 @@ public class AgregarNovedadEquipoBean extends BasePageBean  {
         String mensaje;
         List<NovedadEquipo> disponibles= null;
         try {
-            disponibles= laboratorioServices.buscarNovedadesDeEquiposPorEquipos(idEquipo);
+            disponibles= laboratorioServices.buscarNovedadesPorEquipo(idEquipo);
             mensaje = "success !!";
 		} catch (ServicesException ex) {
             mensaje = "Fail";

@@ -157,6 +157,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
                 }
             }
            elementoDAO.asociarEquipo(idEquipo, id);  
+          
    
     } catch (PersistenceException ex) {
         Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -190,7 +191,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	}
 
 	@Override
-	public List<NovedadEquipo> buscarNovedadesDeEquiposPorEquipos(int idEquipo) throws ServicesException {
+	public List<NovedadEquipo> buscarNovedadesPorEquipo(int idEquipo) throws ServicesException {
         try {
 			return novedadEquipoDAO.buscarNovedadesDeEquiposPorEquipos(idEquipo);
 		} catch (PersistenceException ex) {

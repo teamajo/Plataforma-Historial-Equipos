@@ -38,7 +38,7 @@ public interface LaboratorioServices {
 
     public int maxIdElemento() throws ServicesException;
     
-    public List<NovedadEquipo> buscarNovedadesDeEquiposPorEquipos(int idEquipo) throws ServicesException;
+    public List<NovedadEquipo> buscarNovedadesPorEquipo(int idEquipo) throws ServicesException;
     
     public List<NovedadEquipo> buscarNovedadesDeEquipos() throws ServicesException;
     

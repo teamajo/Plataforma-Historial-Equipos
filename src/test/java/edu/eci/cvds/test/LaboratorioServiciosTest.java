@@ -104,18 +104,22 @@ public class LaboratorioServiciosTest {
     
     
     @Test
-    public void agregarEquipoTest() throws PersistenceException{        
+    public void agregarEquipoTest() throws PersistenceException{   
+        
         qt().forAll(GeneradoresLaboratorio.completoEquipos()).check(
             (eq)->{                
                 try {
                     serviciosLab.registrarEquipo(eq);
                     idEquimax++;
+                   
                     return true;
                 } catch (ServicesException ex) {
                     Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
                     return false;
                 }
+               
             }
+           
         );     
         try {
             for(int i=1; i<=idEquimax;i++){
