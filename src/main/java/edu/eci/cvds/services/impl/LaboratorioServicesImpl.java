@@ -19,6 +19,8 @@ import edu.eci.cvds.persistence.NovedadEquipoDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -154,8 +156,8 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     try {
             Boolean flag = false;
             List<Elemento> elementos = buscarEquipoPorId(idEquipo).getComponets();
-            
-            for (Elemento e:elementos){                
+            NovedadEquipo novedad = new NovedadEquipo(null,"Asociando Equipo",idEquipo,Calendar.getInstance().getTime(),"En equipo:","Adm");
+            for (Elemento e:elementos){  
                 if(e!=null){
                     if (e.getTipo() == tipo){
                         desAsociarElemento(e.getId());                                                   
@@ -163,7 +165,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
                 }
             }
            elementoDAO.asociarEquipo(idEquipo, id);  
-          
+           novedadEquipoDAO.registrarNovedadEquipo(novedad);
    
     } catch (PersistenceException ex) {
         Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);

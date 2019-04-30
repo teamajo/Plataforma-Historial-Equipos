@@ -8,14 +8,17 @@ package edu.eci.cvds.test;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.entities.NovedadEquipo;
 import edu.eci.cvds.entities.Tipo;
 
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.LaboratorioServiciosFactory;
 import edu.eci.cvds.services.ServicesException;
+import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Calendar;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -133,6 +136,24 @@ public class LaboratorioServiciosTest {
         }        
     }
  
+    /**
+    @Test
+    public void agregarNovedadEquipoTest() throws PersistenceException{  
+        Elemento torre = new Elemento(null,Tipo.torre,"Torre 1",123,"torre de 123");
+        Elemento teclado = new Elemento(null,Tipo.teclado,"teclado 1",123,"teclado de 123");
+        Elemento pantalla = new Elemento(null,Tipo.pantalla,"pantalla 1",123,"pantalla de 123");
+        Elemento mouse = new Elemento(null,Tipo.mouse,"mouse 1",123,"mouse de 123");
+
+        Equipo equipo = new Equipo(null,"b0",torre,pantalla,mouse,teclado);
+        
+        try {
+            serviciosLab.registrarEquipo(equipo);
+        } catch (ServicesException ex) {            
+            
+            fail(getStackTrace(ex));
+        }   
+    }*/
+    
     
     
 
