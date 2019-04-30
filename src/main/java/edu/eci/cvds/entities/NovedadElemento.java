@@ -4,7 +4,7 @@ import java.util.Date;
 
 
 public class NovedadElemento {
-    private int id;
+    private Integer id;
     private String titulo;
     private Integer idEquipo;
     private Integer idElemento;
@@ -12,7 +12,7 @@ public class NovedadElemento {
     private String descripcion;
     private String responsable;
     
-	public NovedadElemento(int id, String titulo, Integer idEquipo, Integer idElemento, Date fecha, String descripcion, String responsable) {
+	public NovedadElemento(Integer id, String titulo, Integer idEquipo, Integer idElemento, Date fecha, String descripcion, String responsable) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -25,10 +25,10 @@ public class NovedadElemento {
 		super();
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getTitulo() {
