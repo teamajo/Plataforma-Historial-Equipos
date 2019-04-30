@@ -52,6 +52,35 @@ public class AgregarElementoBean extends BasePageBean {
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
     }
     
+    public List<Elemento> elementosDisponibles() throws Exception {
+        try {
+            return laboratorioServices.elementosDisponibles();
+        } catch (ServicesException ex) {
+            
+            throw ex;
+        }
+        
+    }
+
+    public List<Elemento> elementosDisponiblesPorTipo(String tipo) throws Exception {
+        try {
+            return laboratorioServices.elementosDisponiblesPorTipo(tipo);
+        } catch (ServicesException ex) {
+            
+            throw ex;
+        }
+        
+    }
+
+    public List<Elemento> consultarElementos() throws Exception {
+        try {
+            return laboratorioServices.buscarElementos();
+        } catch (ServicesException ex) {
+            
+            throw ex;
+        }
+        
+    }
   
 
   

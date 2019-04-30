@@ -75,9 +75,18 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 
     }
   @Override
-  public List<Elemento> elementosDisponibles(String tipo) throws ServicesException{
+  public List<Elemento> elementosDisponiblesPorTipo(String tipo) throws ServicesException{
     try {
-      return elementoDAO.elementosDisponibles(tipo);
+      return elementoDAO.elementosDisponiblesPorTipo(tipo);
+    } catch (PersistenceException ex) {
+      throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+    }
+	}
+	
+	@Override
+  public List<Elemento> elementosDisponibles() throws ServicesException{
+    try {
+      return elementoDAO.elementosDisponibles();
     } catch (PersistenceException ex) {
       throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
     }
@@ -251,7 +260,6 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 		}
 		
 	}
-	
 	
 
 

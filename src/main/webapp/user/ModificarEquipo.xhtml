@@ -18,9 +18,9 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
   
     <h1>Agregar Equipo</h1>
    
-    <h:form class="formulario">
+    <h:form class="formulario" id="torreformulario">
        
-        <p:panel  id="torreformulario" header="Torre"> 
+        <p:panel   header="Torre"> 
             <div class="compartido">
                 <div class="switch">
                     <img src="../imagenes/tower.png" alt="elemento"/>  
@@ -31,7 +31,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                 </div>
                 <div>               
                     <h4>Torres Disponibles</h4>
-                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponibles()}" scrollable="true" scrollHeight="100">
+                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('torre')}" scrollable="true" scrollHeight="100">
                         <p:column headerText="Id">
                             <h:outputText value="#{elem.id}" />
                         </p:column>           
@@ -47,11 +47,11 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
                  <h:panelGrid rendered="#{!agregarEquipo.buscarT}" columns="3" cellpadding="5">
                     <p:outputLabel for="text1" value="Descripcion:" />
-                    <p:inputText id="text1" value="" required="#{!agregarEquipo.buscarT}"/>
+                    <p:inputText id="text1" value="#{agregarEquipo.torre.descripcion}" required="#{!agregarEquipo.buscarT}"/>
                     <p:message for="text1" />
 
                     <p:outputLabel for="text2" value="Nombre:" />
-                    <p:inputText id="text2" value="" required="#{!agregarEquipo.buscarT}"/>
+                    <p:inputText id="text2" value="#{agregarEquipo.torre.name}" required="#{!agregarEquipo.buscarT}"/>
                     <p:message for="text2" />            
                  </h:panelGrid>
 
@@ -65,8 +65,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
         </p:panel>       
     </h:form>   
     
-    <h:form class="formulario" >
-        <p:panel id="pantallaformulario" header="Pantalla">                      
+    <h:form class="formulario" id="pantallaformulario">
+        <p:panel  header="Pantalla">                      
            <div class="compartido">
                 <div class="switch">
                     <img src="../imagenes/monitor.png" alt="elemento"/>  
@@ -77,7 +77,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                 </div>
                 <div>               
                     <h4>Pantallas Disponibles</h4>
-                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponibles()}" scrollable="true" scrollHeight="100">
+                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('pantalla')}" scrollable="true" scrollHeight="100">
                         <p:column headerText="Id">
                             <h:outputText value="#{elem.id}" />
                         </p:column>           
@@ -93,11 +93,11 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
                  <h:panelGrid rendered="#{!agregarEquipo.buscarP}" columns="3" cellpadding="5">
                     <p:outputLabel for="text4" value="Descripcion:" />
-                    <p:inputText id="text4" value="" required="#{!agregarEquipo.buscarP}"/>
+                    <p:inputText id="text4" value="#{agregarEquipo.pantalla.descripcion}" required="#{!agregarEquipo.buscarP}"/>
                     <p:message for="text4" />
 
                     <p:outputLabel for="text5" value="Nombre:" />
-                    <p:inputText id="text5" value="" required="#{!agregarEquipo.buscarP}"/>
+                    <p:inputText id="text5" value="#{agregarEquipo.pantalla.name}" required="#{!agregarEquipo.buscarP}"/>
                     <p:message for="text5" />            
                  </h:panelGrid>
 
@@ -110,8 +110,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
         </p:panel>
     </h:form>
     
-    <h:form class="formulario" >
-        <p:panel id="pantallaformulario" header="Teclado">                      
+    <h:form class="formulario" id="tecladoformulario" >
+        <p:panel  header="Teclado">                      
            <div class="compartido">
                 <div class="switch">
                     <img src="../imagenes/keyboard.png" alt="elemento"/>  
@@ -121,8 +121,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     </p:inputSwitch>
                 </div>
                 <div>               
-                    <h4>Pantallas Disponibles</h4>
-                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponibles()}" scrollable="true" scrollHeight="100">
+                    <h4>Teclado Disponibles</h4>
+                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('teclado')}" scrollable="true" scrollHeight="100">
                         <p:column headerText="Id">
                             <h:outputText value="#{elem.id}" />
                         </p:column>           
@@ -138,11 +138,11 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
                  <h:panelGrid rendered="#{!agregarEquipo.buscarK}" columns="3" cellpadding="5">
                     <p:outputLabel for="text7" value="Descripcion:" />
-                    <p:inputText id="text7" value="" required="#{!agregarEquipo.buscarK}"/>
+                    <p:inputText id="text7" value="#{agregarEquipo.teclado.descripcion}" required="#{!agregarEquipo.buscarK}"/>
                     <p:message for="text7" />
 
                     <p:outputLabel for="text8" value="Nombre:" />
-                    <p:inputText id="text8" value="" required="#{!agregarEquipo.buscarK}"/>
+                    <p:inputText id="text8" value="#{agregarEquipo.teclado.name}" required="#{!agregarEquipo.buscarK}"/>
                     <p:message for="text8" />            
                  </h:panelGrid>
 
@@ -155,8 +155,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
         </p:panel>
     </h:form>
     
-    <h:form class="formulario" >
-        <p:panel id="mouseformulario" header="Teclado">                      
+    <h:form class="formulario" id="mouseformulario">
+        <p:panel  header="Mouse">                      
            <div class="compartido">
                 <div class="switch">
                     <img src="../imagenes/mouse.png" alt="elemento"/>  
@@ -166,8 +166,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     </p:inputSwitch>
                 </div>
                 <div>               
-                    <h4>Pantallas Disponibles</h4>
-                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponibles()}" scrollable="true" scrollHeight="100">
+                    <h4>Mouse Disponibles</h4>
+                    <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('mouse')}" scrollable="true" scrollHeight="100">
                         <p:column headerText="Id">
                             <h:outputText value="#{elem.id}" />
                         </p:column>           
@@ -183,11 +183,11 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
                  <h:panelGrid  rendered="#{!agregarEquipo.buscarM}" columns="3" cellpadding="5">
                     <p:outputLabel for="text10" value="Descripcion:" />
-                    <p:inputText id="text10" value="" required="#{!agregarEquipo.buscarM}"/>
+                    <p:inputText id="text10" value="#{agregarEquipo.mouse.descripcion}" required="#{!agregarEquipo.buscarM}"/>
                     <p:message for="text10" />
 
                     <p:outputLabel for="text11" value="Nombre:" />
-                    <p:inputText id="text11" value="" required="#{!agregarEquipo.buscarM}"/>
+                    <p:inputText id="text11" value="#{agregarEquipo.mouse.name}" required="#{!agregarEquipo.buscarM}"/>
                     <p:message for="text11" />            
                  </h:panelGrid>
 
@@ -201,7 +201,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     </h:form>
     
     <h:form class="final">
-        <h:commandButton class="boton" value="Registrar Equipo" ></h:commandButton>
+        <p:commandButton class="boton" value="Registrar Elemento" actionListener="#{agregarElemento.registrarElemento}" update="@form :torreformulario,@form :pantallaformulario,@form :tecladoformulario,@form :mouseformulario,@this"
+                          partialSubmit="true"  process="@form :torreformulario,@form :pantallaformulario,@form :tecladoformulario,@form :mouseformulario,@this"></p:commandButton>
     </h:form>
     
 </h:body>

@@ -34,7 +34,10 @@ public class AgregarEquipoBean extends BasePageBean {
 
     private int idk, idp, idm, idt;
 
-    private boolean buscarK, buscarP, buscarM, buscarT;
+    private boolean buscarK =false;
+    private boolean buscarP =false;
+    private boolean buscarM =false;
+    private boolean buscarT =false;
 
     public AgregarEquipoBean() {
         nuevoEquipo = new Equipo();
@@ -96,22 +99,22 @@ public class AgregarEquipoBean extends BasePageBean {
     
     public void setBuscarP(boolean buscarP) throws ServicesException {
         this.buscarP = buscarP;
-        setIdp(idp);
+        //setIdp(idp);
     }
 
     public void setBuscarM(boolean buscarM) throws ServicesException {
         this.buscarM = buscarM;
-        setIdm(idm);
+        //setIdm(idm);
     }
 
     public void setBuscarT(boolean buscarT) throws ServicesException {
         this.buscarT = buscarT;
-        setIdt(idt);
+        //setIdt(idt);
     }
     
      public void setBuscarK(boolean buscarK) throws ServicesException {
         this.buscarK = buscarK;
-        setIdk(idk);
+        //setIdk(idk);
     }
     
 

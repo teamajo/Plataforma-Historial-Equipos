@@ -48,11 +48,11 @@
 				e.descripcion
 			FROM
 				ELEMENTO as e
-				WHERE e.id == #{id}
+				WHERE e.id = #{id}
 
 		</select>
 
-		<select id ="elementosDisponibles" resultMap="ElementoResult" parameterType="String">
+		<select id ="elementosDisponiblesPorTipo" resultMap="ElementoResult" parameterType="String">
 		SELECT
 				e.id,
 				e.name,
@@ -62,6 +62,18 @@
 			FROM
 				ELEMENTO as e
 				Where idEquipo is null and tipo = #{tipo}
+		</select>
+
+		<select id ="elementosDisponibles" resultMap="ElementoResult" >
+		SELECT
+				e.id,
+				e.name,
+				e.idEquipo,
+				e.tipo,
+				e.descripcion
+			FROM
+				ELEMENTO as e
+				Where idEquipo is null 
 		</select>
 
 		<update id="asociarEquipo" parameterType="map" >
