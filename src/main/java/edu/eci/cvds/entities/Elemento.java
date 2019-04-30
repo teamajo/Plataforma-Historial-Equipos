@@ -21,11 +21,17 @@ package edu.eci.cvds.entities;
         this.tipo=tipo;
 
     }
+    
+    public Elemento(Tipo t){
+        id=null;
+        this.tipo=t;
+    }
 
 
 
     public Elemento() {
         super();
+        id=null;
     }
 
 

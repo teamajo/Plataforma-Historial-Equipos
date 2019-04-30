@@ -26,6 +26,7 @@ public class AgregarElementoBean extends BasePageBean {
 	
     private Elemento nuevoElemento;
    
+    private   List<Elemento> todos;
 
 
     public AgregarElementoBean(){
@@ -63,6 +64,7 @@ public class AgregarElementoBean extends BasePageBean {
     }
 
     public List<Elemento> elementosDisponiblesPorTipo(String tipo) throws Exception {
+        
         try {
             return laboratorioServices.elementosDisponiblesPorTipo(tipo);
         } catch (ServicesException ex) {
@@ -74,7 +76,10 @@ public class AgregarElementoBean extends BasePageBean {
 
     public List<Elemento> consultarElementos() throws Exception {
         try {
-            return laboratorioServices.buscarElementos();
+            if(todos==null){
+                todos=laboratorioServices.buscarElementos();
+            }
+            return todos;
         } catch (ServicesException ex) {
             
             throw ex;

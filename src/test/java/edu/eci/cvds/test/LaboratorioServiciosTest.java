@@ -9,8 +9,10 @@ import com.google.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.Tipo;
+import edu.eci.cvds.persistence.ElementoDAO;
 
 import edu.eci.cvds.persistence.PersistenceException;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisElementoDAO;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.LaboratorioServiciosFactory;
 import edu.eci.cvds.services.ServicesException;
@@ -133,7 +135,19 @@ public class LaboratorioServiciosTest {
         }        
     }
  
-    
+    @Test
+    public void etc(){
+       
+        ElementoDAO serv=new MyBatisElementoDAO();
+        try {
+             serviciosLab.registrarElemento(new Elemento(null, Tipo.mouse, "preuba", null, "desc"));
+             int id =serviciosLab.maxIdElemento();
+             Elemento e= serviciosLab.buscarElemento(id);     
+             System.out.println(e);
+        } catch (ServicesException ex) {
+            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 
     // TODO add test methods here.

@@ -53,7 +53,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
       
     </h:form>   
     <h:form>
-        <p:commandButton class="boton" value="Registrar Elemento" actionListener="#{agregarElemento.registrarElemento}" update="@form :formulario,@this"
+        <p:commandButton class="boton" value="Registrar Elemento"
+                         actionListener="#{agregarElemento.registrarElemento}" update="@form :formulario,@this"
                           partialSubmit="true"  process="@this, :formulario"></p:commandButton>
     </h:form>
     

@@ -36,11 +36,13 @@ import edu.eci.cvds.persistence.PersistenceException;
         activo=true;
     }
 
-    public Equipo() {
-        super();
-        activo=true;
+    public Equipo() throws PersistenceException {       
+        setTorre(new Elemento(Tipo.torre));      
+        setPantalla(new Elemento(Tipo.pantalla));
+        setMouse(new Elemento(Tipo.mouse));
+        setTeclado(new Elemento(Tipo.teclado));
     }
-
+  
 
 
     /**

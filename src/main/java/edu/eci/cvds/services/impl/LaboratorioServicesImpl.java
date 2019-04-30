@@ -124,28 +124,28 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 		@Override
 		@Transactional
 	  public void registrarEquipo(Equipo equipo) throws ServicesException{
-			try {
-					equipoDAO.registrarEquipo(equipo);
-					int idEquipo = maxIdEquipo();
-					List<Elemento> elementos = new ArrayList<Elemento>();
-					int idElemento= 0;
-					elementos.add(equipo.getTorre());
-					elementos.add(equipo.getMouse());
-					elementos.add(equipo.getPantalla());
-					elementos.add(equipo.getTeclado());
-					
-					for (Elemento e:elementos){
-							if(e.getId()==null){
-								registrarElemento(e);
-								idElemento= maxIdElemento();
-							}else{
-											idElemento=e.getId();
-							}
-							asociarEquipo( idEquipo,idElemento,e.getTipo());
-					}
-			} catch (PersistenceException ex) {
-							throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
-			}
+            try {
+                equipoDAO.registrarEquipo(equipo);
+                int idEquipo = maxIdEquipo();
+                List<Elemento> elementos = new ArrayList<Elemento>();
+                int idElemento= 0;
+                elementos.add(equipo.getTorre());
+                elementos.add(equipo.getMouse());
+                elementos.add(equipo.getPantalla());
+                elementos.add(equipo.getTeclado());
+
+                for (Elemento e:elementos){
+                    if(e.getId()==null){
+                            registrarElemento(e);
+                            idElemento= maxIdElemento();
+                    }else{
+                        idElemento=e.getId();
+                    }
+                    asociarEquipo( idEquipo,idElemento,e.getTipo());
+                }
+            } catch (PersistenceException ex) {
+                                            throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
+            }
 	
 	  }
 	  
@@ -156,7 +156,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
             List<Elemento> elementos = buscarEquipoPorId(idEquipo).getComponets();
             
             for (Elemento e:elementos){                
-                if(e!=null){
+                if(e!=null && e.getId()!=null ){
                     if (e.getTipo() == tipo){
                         desAsociarElemento(e.getId());                                                   
                     }

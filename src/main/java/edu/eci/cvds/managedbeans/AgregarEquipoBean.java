@@ -27,94 +27,39 @@ public class AgregarEquipoBean extends BasePageBean {
     private LaboratorioServices laboratorioServices;
 
     private Equipo nuevoEquipo;
-    private Elemento torre;
-    private Elemento pantalla;
-    private Elemento mouse;
-    private Elemento teclado;
+ 
 
-    private int idk, idp, idm, idt;
+    private int idK, idP, idM, idT;
 
-    private boolean buscarK =false;
-    private boolean buscarP =false;
-    private boolean buscarM =false;
-    private boolean buscarT =false;
+    private static boolean buscarK ;
+    private static boolean buscarP ;
+    private static boolean buscarM ;
+    private static boolean buscarT ;
 
-    public AgregarEquipoBean() {
+    public AgregarEquipoBean() throws PersistenceException {
         nuevoEquipo = new Equipo();
   
     }
 
-    public void setIdp(int idp) throws ServicesException {
-        if (buscarP) {
-            this.idp = idp;
-            pantalla = laboratorioServices.buscarElemento(idp);
-            try {
-                nuevoEquipo.setMouse(pantalla);
-            } catch (PersistenceException e) {
-                
-                e.printStackTrace();
-            }
-        }  
-    }
-
-    public void setIdm(int idm) throws ServicesException {
-        if (buscarM){
-          this.idm = idm;
-          mouse=laboratorioServices.buscarElemento(idm);
-            try {
-                nuevoEquipo.setMouse(mouse);
-            } catch (PersistenceException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }  
-    }
-    
-    public void setIdt(int idt) throws ServicesException {
-        if (buscarT){
-          this.idt = idt;
-          torre=laboratorioServices.buscarElemento(idt);
-            try {
-                nuevoEquipo.setTorre(torre);
-            } catch (PersistenceException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }  
-    }
-    
-       
-    public void setIdk(int idk) throws ServicesException {
-        if (buscarK){
-          this.idk = idk;
-          teclado=laboratorioServices.buscarElemento(idk);
-            try {
-                nuevoEquipo.setTeclado(teclado);
-            } catch (PersistenceException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }            
-    }
-    
+        
     public void setBuscarP(boolean buscarP) throws ServicesException {
         this.buscarP = buscarP;
-        //setIdp(idp);
+        //setidp(idp);
     }
 
     public void setBuscarM(boolean buscarM) throws ServicesException {
         this.buscarM = buscarM;
-        //setIdm(idm);
+        //setidm(idm);
     }
 
     public void setBuscarT(boolean buscarT) throws ServicesException {
         this.buscarT = buscarT;
-        //setIdt(idt);
+        //setidt(idt);
     }
     
      public void setBuscarK(boolean buscarK) throws ServicesException {
         this.buscarK = buscarK;
-        //setIdk(idk);
+        //setidk(idk);
     }
     
 
@@ -130,24 +75,41 @@ public class AgregarEquipoBean extends BasePageBean {
         return buscarT;
     }
 
-    public int getIdk() {
-        return idk;
-    }
-
-    public int getIdp() {
-        return idp;
-    }
-
-    public int getIdm() {
-        return idm;
-    }
-
-    public int getIdt() {
-        return idt;
-    }
-
+   
     public boolean isBuscarK() {
         return buscarK;
+    }
+
+    public int getIdK() {
+        return idK;
+    }
+
+    public int getIdP() {
+        return idP;
+    }
+
+    public int getIdM() {
+        return idM;
+    }
+
+    public int getIdT() {
+        return idT;
+    }
+
+    public void setIdK(int idK) {
+        this.idK = idK;
+    }
+
+    public void setIdP(int idP) {
+        this.idP = idP;
+    }
+
+    public void setIdM(int idM) {
+        this.idM = idM;
+    }
+
+    public void setIdT(int idT) {
+        this.idT = idT;
     }
 
   
@@ -164,78 +126,37 @@ public class AgregarEquipoBean extends BasePageBean {
 
     public void registrarEquipo() throws Exception {
         String mensaje;
+        
         try {
-            laboratorioServices.registrarEquipo(nuevoEquipo);
-            mensaje = "success !!";
+            System.out.println("/ "+idT+"/ "+idM+"/ "+idP+"/ "+idK);
+            
+            if(buscarK){
+                nuevoEquipo.setTeclado(laboratorioServices.buscarElemento(idK));
+            }
+             if(buscarM){
+               nuevoEquipo.setMouse(laboratorioServices.buscarElemento(idM));
+            }
+            if(buscarP){
+                nuevoEquipo.setPantalla(laboratorioServices.buscarElemento(idP));
+            }
+             if(buscarT){
+                nuevoEquipo.setTorre(laboratorioServices.buscarElemento(idT));
+            }
+           System.out.println("X--X-X-X-X-X-X-XX-X-X-X-X-X-X-X"+nuevoEquipo.getTorre()+ "/ "+nuevoEquipo.getPantalla()+ " /"+nuevoEquipo.getTeclado()+ "/ "+nuevoEquipo.getMouse()+ " ");
+           
+           laboratorioServices.registrarEquipo(nuevoEquipo);
+           mensaje = "success !!";
         } catch (ServicesException ex) {
             mensaje = "Fail";
             throw ex;
         }
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
+  
     }
 
 
      
-
-    /**
-     * @return the mouse
-     */
-    public Elemento getMouse() {
-        return mouse;
-    }
-
-    /**
-     * @param mouse the mouse to set
-     */
-    public void setMouse(Elemento mouse) {
-        this.mouse = mouse;
-    }
-
-    /**
-     * @return the teclado
-     */
-    public Elemento getTeclado() {
-        return teclado;
-    }
-
-    /**
-     * @param teclado the teclado to set
-     */
-    public void setTeclado(Elemento teclado) {
-        this.teclado = teclado;
-    }
-
-    /**
-     * @return the pantalla
-     */
-    public Elemento getPantalla() {
-        return pantalla;
-    }
-
-    /**
-     * @param pantalla the pantalla to set
-     */
-    public void setPantalla(Elemento pantalla) {
-        this.pantalla = pantalla;
-    }
-
-    /**
-     * @return the torre
-     */
-    public Elemento getTorre() {
-        return torre;
-    }
-
-    /**
-     * @param torre the torre to set
-     */
-    public void setTorre(Elemento torre) {
-        this.torre = torre;
-    }
-	    
-    
-  
-    
+   
 
     
    

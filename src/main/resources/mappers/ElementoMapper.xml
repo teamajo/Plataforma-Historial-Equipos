@@ -18,9 +18,9 @@
 			SELECT
 				e.id,
 				e.name,
-				e.idEquipo,
+				e.idEquipo as ideq,
 				e.tipo,
-				e.descripcion
+				e.descripcion as desc
 			FROM
 				ELEMENTO as e
 				WHERE e.idEquipo = #{idEquipo}
@@ -30,9 +30,9 @@
 			SELECT
 				e.id,
 				e.name,
-				e.idEquipo,
+				e.idEquipo as ideq,
 				e.tipo,
-				e.descripcion
+				e.descripcion as desc
 			FROM
 				ELEMENTO as e
 				WHERE e.idEquipo is not null
@@ -43,9 +43,9 @@
 			SELECT
 				e.id,
 				e.name,
-				e.idEquipo,
+				e.idEquipo as ideq,
 				e.tipo,
-				e.descripcion
+				e.descripcion as desc
 			FROM
 				ELEMENTO as e
 				WHERE e.id = #{id}
@@ -56,9 +56,9 @@
 		SELECT
 				e.id,
 				e.name,
-				e.idEquipo,
+				e.idEquipo as ideq,
 				e.tipo,
-				e.descripcion
+				e.descripcion as desc
 			FROM
 				ELEMENTO as e
 				Where idEquipo is null and tipo = #{tipo}
@@ -68,9 +68,9 @@
 		SELECT
 				e.id,
 				e.name,
-				e.idEquipo,
+				e.idEquipo as ideq,
 				e.tipo,
-				e.descripcion
+				e.descripcion as desc
 			FROM
 				ELEMENTO as e
 				Where idEquipo is null 
