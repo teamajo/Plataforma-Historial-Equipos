@@ -75,9 +75,9 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 
     }
   @Override
-  public List<Elemento> elementosDisponibles() throws ServicesException{
+  public List<Elemento> elementosDisponibles(String tipo) throws ServicesException{
     try {
-      return elementoDAO.elementosDisponibles();
+      return elementoDAO.elementosDisponibles(tipo);
     } catch (PersistenceException ex) {
       throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
     }
@@ -115,31 +115,28 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 		@Override
 		@Transactional
 	  public void registrarEquipo(Equipo equipo) throws ServicesException{
-            try {
-                equipoDAO.registrarEquipo(equipo);
-                int idEquipo = maxIdEquipo();
-                List<Elemento> elementos = new ArrayList<Elemento>();
-                int idElemento= 0;
-                elementos.add(equipo.getTorre());
-                elementos.add(equipo.getMouse());
-                elementos.add(equipo.getPantalla());
-                elementos.add(equipo.getTeclado());
-                
-                for (Elemento e:elementos){
-                    if(e.getId()==null){
-                            registrarElemento(e);
-                            idElemento= maxIdElemento();
-                    }else{
-                            idElemento=e.getId();
-                    }
-                    asociarEquipo( idEquipo,idElemento,e.getTipo());
-                }
-                
-                
-				
-            } catch (PersistenceException ex) {
-                    throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
-            }
+			try {
+					equipoDAO.registrarEquipo(equipo);
+					int idEquipo = maxIdEquipo();
+					List<Elemento> elementos = new ArrayList<Elemento>();
+					int idElemento= 0;
+					elementos.add(equipo.getTorre());
+					elementos.add(equipo.getMouse());
+					elementos.add(equipo.getPantalla());
+					elementos.add(equipo.getTeclado());
+					
+					for (Elemento e:elementos){
+							if(e.getId()==null){
+								registrarElemento(e);
+								idElemento= maxIdElemento();
+							}else{
+											idElemento=e.getId();
+							}
+							asociarEquipo( idEquipo,idElemento,e.getTipo());
+					}
+			} catch (PersistenceException ex) {
+							throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
+			}
 	
 	  }
 	  

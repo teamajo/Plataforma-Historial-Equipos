@@ -20,7 +20,7 @@ public interface LaboratorioServices {
 
     public void registrarElemento(Elemento elemento) throws ServicesException;
 
-    public List<Elemento> elementosDisponibles() throws ServicesException;
+    public List<Elemento> elementosDisponibles(String tipo) throws ServicesException;
 
     public void asociarEquipo(int idEquipo,int id,Tipo tipo) throws ServicesException;
 

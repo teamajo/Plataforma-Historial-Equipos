@@ -52,7 +52,7 @@
 
 		</select>
 
-		<select id ="elementosDisponibles" resultMap="ElementoResult">
+		<select id ="elementosDisponibles" resultMap="ElementoResult" parameterType="String">
 		SELECT
 				e.id,
 				e.name,
@@ -61,7 +61,7 @@
 				e.descripcion
 			FROM
 				ELEMENTO as e
-				Where idEquipo is null
+				Where idEquipo is null and tipo = #{tipo}
 		</select>
 
 		<update id="asociarEquipo" parameterType="map" >

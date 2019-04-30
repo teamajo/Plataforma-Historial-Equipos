@@ -45,9 +45,9 @@ public class MyBatisElementoDAO implements ElementoDAO {
 
 
 	@Override
-	public List<Elemento> elementosDisponibles() throws PersistenceException {
+	public List<Elemento> elementosDisponibles(String tipo) throws PersistenceException {
 		try {
-			return elementoMapper.elementosDisponibles();
+			return elementoMapper.elementosDisponibles(tipo);
 		} catch (Exception e) {
 			throw new PersistenceException("Load all persistence error", e);
 		}
