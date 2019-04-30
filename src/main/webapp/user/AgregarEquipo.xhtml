@@ -7,7 +7,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
  <title>Plataformas Historial de Equipos</title>
  <link rel="stylesheet" type="text/css" href="../css/general.css"/>
- <link rel="stylesheet" type="text/css" href="../css/modificarEquipo.css"/>  
+ <link rel="stylesheet" type="text/css" href="../css/agregarEquipo.css"/>  
 </h:head>
 <h:body>
     <header>
@@ -17,8 +17,9 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     </header>
   
     <h1>Agregar Equipo</h1>
-   
-    <h:form class="formulario" id="torreformulario">
+    <div class="column">
+     <div class="row">
+    <h:form class="formulario" id="torreformulario" >
        
         <p:panel   header="Torre"> 
             <div class="compartido">
@@ -63,7 +64,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
             </h:panelGroup>    
             
         </p:panel>       
-    </h:form>   
+    </h:form>    
     
     <h:form class="formulario" id="pantallaformulario">
         <p:panel  header="Pantalla">                      
@@ -109,7 +110,11 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
             </h:panelGroup>    
         </p:panel>
     </h:form>
+    </div>
+    </div>
     
+     <div class="column">
+          <div class="row">
     <h:form class="formulario" id="tecladoformulario" >
         <p:panel  header="Teclado">                      
            <div class="compartido">
@@ -199,13 +204,15 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
             </h:panelGroup>    
         </p:panel>
     </h:form>
-    
-    <h:form class="final">
+           </div>
+     </div>
+    <h:form class="final formulario">
          <p:messages id="messages" />
         <p:commandButton class="boton" value="Registrar Equipo" actionListener="#{agregarEquipo.registrarEquipo}" 
                          update="@form :torreformulario,@form :pantallaformulario,@form :tecladoformulario,@form :mouseformulario,@this"
                           partialSubmit="true"  process="@this :torreformulario, :pantallaformulario, :tecladoformulario, :mouseformulario"></p:commandButton>
     </h:form>
+   
     
 </h:body>
 </html>

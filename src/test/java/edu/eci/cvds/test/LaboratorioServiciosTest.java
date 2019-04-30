@@ -132,6 +132,7 @@ public class LaboratorioServiciosTest {
             }
            assert(serviciosLab.buscarEquipos().size()==idEquimax);
            
+           
         } catch (ServicesException ex) {            
             
             fail(getStackTrace(ex));
@@ -140,16 +141,16 @@ public class LaboratorioServiciosTest {
  
 
     @Test
-    public void etc(){
-       
-        ElementoDAO serv=new MyBatisElementoDAO();
+    public void etc(){     
+    
         try {
-             serviciosLab.registrarElemento(new Elemento(null, Tipo.mouse, "preuba", null, "desc"));
-             int id =serviciosLab.maxIdElemento();
-             Elemento e= serviciosLab.buscarElemento(id);     
-             System.out.println(e);
-        } catch (ServicesException ex) {
+            serviciosLab.registrarElemento(new Elemento(null, Tipo.mouse, "prueba", null, "desc"));
+            int id =serviciosLab.maxIdElemento();
+            Elemento e= serviciosLab.buscarElemento(id+1);       
+            fail("");
+        } catch (ServicesException ex) {     
             Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+            assert(true);
         }
     }
 

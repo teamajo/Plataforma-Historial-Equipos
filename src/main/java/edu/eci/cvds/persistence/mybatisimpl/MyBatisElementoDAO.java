@@ -81,11 +81,18 @@ public class MyBatisElementoDAO implements ElementoDAO {
 
 	@Override
 	public Elemento buscarElemento(Integer id) throws PersistenceException {
-		try {
-		return elementoMapper.buscarElemento(id);
-		} catch (Exception e) {
-		throw new PersistenceException("Load all persistence error", e);
-	}
+            Elemento el;
+            try{
+                el=elementoMapper.buscarElemento(id);
+                if(el==null){
+                   throw new PersistenceException("No existe el elemento");
+                }     
+            } catch (Exception e) {
+                throw e;
+            }               
+                       
+            return el;
+           
 	}
 
 	@Override

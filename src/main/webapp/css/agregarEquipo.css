@@ -28,13 +28,39 @@ and open the template in the editor.
   padding: 10px; 
 }
 
-.boton{
-    font-size: 25px;
+img{
+    max-height: 100px;
+    margin-right: 10px;
 }
 
-img{
-    display: block;
-    max-height: 100px;
-    margin-left: 35%;
-    margin-bottom: 10px;
+.formulario{
+   max-width: 60%;
+   min-width: 900px;
+}
+
+
+
+.compartido>div{
+     display: inline-block;
+     width: 47%;
+     vertical-align: middle;
+}  
+
+.campos table{
+   
+    margin: 0 auto;
+    text-align: center;
+    
+}
+
+h4{
+    margin: 4px;
+}
+
+.boton{
+    font-size: 24px;
+}
+
+.final {
+    padding-bottom: 50px;   
 }

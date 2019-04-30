@@ -14,6 +14,8 @@ import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
 
 import javax.faces.bean.SessionScoped;
+import org.primefaces.PrimeFaces;
+import org.primefaces.context.RequestContext;
 
 /**
  * Bean para la interfaz de usuario de las decanaturas
@@ -126,31 +128,38 @@ public class AgregarEquipoBean extends BasePageBean {
 
     public void registrarEquipo() throws Exception {
         String mensaje;
-        
+        FacesMessage.Severity fm=FacesMessage.SEVERITY_ERROR;
         try {
-            System.out.println("/ "+idT+"/ "+idM+"/ "+idP+"/ "+idK);
+         
             
-            if(buscarK){
+            if(buscarK){                
                 nuevoEquipo.setTeclado(laboratorioServices.buscarElemento(idK));
             }
              if(buscarM){
                nuevoEquipo.setMouse(laboratorioServices.buscarElemento(idM));
             }
             if(buscarP){
-                nuevoEquipo.setPantalla(laboratorioServices.buscarElemento(idP));
+                nuevoEquipo.setPantalla(laboratorioServices.buscarElemento(idP));               
             }
              if(buscarT){
                 nuevoEquipo.setTorre(laboratorioServices.buscarElemento(idT));
-            }
-           System.out.println("X--X-X-X-X-X-X-XX-X-X-X-X-X-X-X"+nuevoEquipo.getTorre()+ "/ "+nuevoEquipo.getPantalla()+ " /"+nuevoEquipo.getTeclado()+ "/ "+nuevoEquipo.getMouse()+ " ");
-           
-           laboratorioServices.registrarEquipo(nuevoEquipo);
-           mensaje = "success !!";
+            }         
+
+            laboratorioServices.registrarEquipo(nuevoEquipo);
+            mensaje = "success !!";
+            fm=FacesMessage.SEVERITY_INFO;
+            nuevoEquipo=new Equipo();
+            RequestContext.getCurrentInstance().update(":torreformulario");
+            RequestContext.getCurrentInstance().update(":pantallaformulario");
+            RequestContext.getCurrentInstance().update(":tecladoformulario");
+            RequestContext.getCurrentInstance().update(":mouseformulario");
+          
         } catch (ServicesException ex) {
-            mensaje = "Fail";
-            throw ex;
+            mensaje = "Algun item no encontrado";           
+        } catch (PersistenceException ex){
+            mensaje = "Algun item no correspoonde con su tipo"; 
         }
-        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
+        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(fm,mensaje,""));
   
     }
 

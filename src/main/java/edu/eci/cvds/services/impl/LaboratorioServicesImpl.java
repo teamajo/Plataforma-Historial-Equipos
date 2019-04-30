@@ -60,10 +60,10 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 		@Override
     public Elemento buscarElemento(Integer id) throws ServicesException{
         try {
-			return elementoDAO.buscarElemento(id);
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-		}
+                  return elementoDAO.buscarElemento(id);
+        } catch (PersistenceException ex) {
+                throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+        }
 
     }
 
