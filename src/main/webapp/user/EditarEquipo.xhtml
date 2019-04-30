@@ -1,0 +1,75 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+ <title>Plataformas Historial de Equipos</title>
+ <link rel="stylesheet" type="text/css" href="../css/general.css"/>
+ <link rel="stylesheet" type="text/css" href="../css/agregarElemento.css"/>  
+</h:head>
+<h:body>
+    <header>
+         <ui:insert name="header" >
+            <ui:include src="../header.xhtml" />
+         </ui:insert>
+    </header>
+  
+    <h1>Agregar Elemento</h1>
+    <div id="iconos">
+        <img src="../imagenes/keyboard.png" alt="elemento"/>
+        <img src="../imagenes/mouse.png" alt="elemento"/>
+        <img src="../imagenes/tower.png" alt="elemento"/>
+        <img src="../imagenes/monitor.png" alt="elemento"/>
+    </div>
+    <h:form id="formulario">
+        <p:panel id="panel" header="Datos del Elemento">
+            <p:messages id="messages" />
+            <h:panelGrid columns="2" cellpadding="5">
+                <p:outputLabel for="console" value="Tipo:"  />
+                <p:outputLabel id="console" value="nuevoElemento.tipo" />
+                 
+                <p:outputLabel for="text1" value="Descripcion Actual:" />
+                <p:outputLabel id="text1" value="nuevoElemento.desc" />
+                
+                 
+                <p:outputLabel for="text2" value="Nombre Actual:" />
+                <p:outputLabel id="text2" value="nuevoElemento.nombre" />
+                
+            </h:panelGrid>
+             <p:inputSwitch  value="#{agregarEquipo.buscarM}" onLabel="Asociar" offLabel="Crear">
+                <f:ajax event="change" execute="@this" render="opt" />
+            </p:inputSwitch>
+            
+              <h:panelGroup id="opt" class="campos"> 
+                    <h:panelGrid columns="3" cellpadding="5" rendered="bean.buscarelemento">
+
+
+                        <p:outputLabel for="text3" value="Nueva Descripcion" />                
+                        <p:inputText id="text3" value="nuevoElemento.descripcion" required="bean.buscarelemento"/>
+                        <p:message for="text3" />
+
+
+                        <p:outputLabel for="text4" value="Nuevo Nombre:" />
+                        <p:inputText id="text4" value="nuevoelemento.nombre}" required="bean.buscarelemento"/>
+                        <p:message for="text4" />
+
+                    </h:panelGrid>
+                  
+                   <h:panelGrid columns="3" rendered="bean.buscarelemento" cellpadding="5">
+                        <p:outputLabel for="text4" value="ID:" />      
+                        <p:inputText id="text4" value="bean.elementoid" required="bean.buscarelemento"/>                         
+                        <p:message for="text4" />
+                   </h:panelGrid>
+              </h:panelGroup>
+        </p:panel>
+      
+    </h:form>   
+    <h:form>
+        <p:commandButton class="boton" value="Modificar Elemento" actionListener="#{agregarElemento.registrarElemento}" update="@form :formulario,@this"
+                          partialSubmit="true"  process="@this, :formulario"></p:commandButton>
+    </h:form>
+    
+</h:body>
+</html>
