@@ -6,3 +6,6 @@
 Credenciales temporales:
 Usuario: admin
 clave: 12345
+
+
+URL Heroku: https://historial-equipos-app.herokuapp.com/
