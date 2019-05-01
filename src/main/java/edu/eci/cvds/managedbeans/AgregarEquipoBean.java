@@ -2,6 +2,8 @@ package edu.eci.cvds.managedbeans;
 
 import edu.eci.cvds.entities.Elemento;
 
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -27,6 +29,10 @@ public class AgregarEquipoBean extends BasePageBean {
 
     @Inject
     private LaboratorioServices laboratorioServices;
+
+    
+    
+
 
     private Equipo nuevoEquipo;
  
@@ -162,6 +168,14 @@ public class AgregarEquipoBean extends BasePageBean {
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(fm,mensaje,""));
   
     }
+
+    public List<Equipo> buscarEquipos() throws Exception{
+        return laboratorioServices.buscarEquipos();
+        
+        
+    }
+
+    
 
 
      

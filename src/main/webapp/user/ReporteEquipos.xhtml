@@ -25,9 +25,10 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h1>Reporte de Equipo</h1>
     
         <h:form>
-            <p:dataTable var="equipo" value="" paginator="true"
+            <p:dataTable var="equipo" value="#{agregarEquipo.buscarEquipos()}" paginator="true"
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                  rows="20" class="lista">
+                
                 <p:column headerText="Id" sortBy="#{equipo.id}" class="delgado">
                     <h:outputText value="#{equipo.id}" />
                 </p:column>           
@@ -39,6 +40,10 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                  <p:column headerText="Activo" sortBy="#{equipo.activo}" class="ancho">
                     <h:outputText value="#{equipo.activo}" />
                 </p:column>  
+
+                <p:column headerText="VerEquipo">
+                    <p:button outcome="Equipo?equipoSeleccionado=#{equipo.id}" value="Ver equipo" />
+                </p:column> 
 
 
                 <f:facet name="paginatorTopLeft">

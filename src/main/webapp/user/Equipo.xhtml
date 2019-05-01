@@ -16,7 +16,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
          </ui:insert>
     </header>
   
-    <h1>Equipo</h1>
+    <h1>Equipo #{equipoBean.getEquipo().id}</h1>
     
     <h:form id="formularioequipo">
         <div class="row">
@@ -26,27 +26,27 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     <h:panelGrid columns="2" cellpadding="5">
                         
                         <p:outputLabel for="idt" value="ID:" />
-                        <p:outputLabel id="idt" value="equipo.torre.id" />
+                        <p:outputLabel id="idt" value="#{equipoBean.getEquipo().torre.id}" />
                     
                         
                         <p:outputLabel for="dest" value="Descripcion:" />
-                        <p:outputLabel id="dest" value="equipo.torre.descripcion" />                     
+                        <p:outputLabel id="dest" value="#{equipoBean.getEquipo().torre.descripcion}" />                     
 
                         
                     </h:panelGrid>
-                    <p:button outcome=EditarEquipo?elemento=#{equipo.torre}" value="Modificar Torre" />
+                    <p:button outcome="EditarEquipo?elemento=#{equipo.torre}" value="Modificar Torre" />
                 </p:panel>
                 <p:panel class="formulario" id="pantallaformulario" header="Pantalla">                      
                     <img src="../imagenes/monitor.png" alt="elemento"/>
                     <h:panelGrid columns="2" cellpadding="5">                   
 
                         <p:outputLabel for="idp" value="ID:" />
-                        <p:outputLabel id="idp" value="equipo.pantalla.id" />                    
+                        <p:outputLabel id="idp" value="#{equipoBean.getEquipo().pantalla.id}" />                    
                         
                         <p:outputLabel for="desp" value="Descripcion:" />
-                        <p:outputLabel id="desp" value="equipo.pantalla.descripcion" />    
+                        <p:outputLabel id="desp" value="#{equipoBean.getEquipo().pantalla.descripcion}" />    
                     </h:panelGrid>
-                    <p:button outcome=EditarEquipo?elemento=#{equipo.pantalla}" value="Modificar Pantalla" />
+                    <p:button outcome="EditarEquipo?elemento=#{equipo.pantalla}" value="Modificar Pantalla" />
                 </p:panel>
              </div>    
              <div class="column">
@@ -55,13 +55,13 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     <h:panelGrid columns="2" cellpadding="5">
 
                         <p:outputLabel for="idk" value="ID:"/>
-                        <p:outputLabel id="idk" value="equipo.teclado.id" />                    
+                        <p:outputLabel id="idk" value="#{equipoBean.getEquipo().teclado.id}" />                    
                         
                         <p:outputLabel for="desk" value="Descripcion:" />
-                        <p:outputLabel id="desk" value="equipo.teclado.descripcion" />     
+                        <p:outputLabel id="desk" value="#{equipoBean.getEquipo().teclado.descripcion}" />     
 
                     </h:panelGrid>
-                     <p:button outcome=EditarEquipo?elemento=#{equipo.teclado}" value="Modificar Teclado" />
+                     <p:button outcome="EditarEquipo?elemento=#{equipo.teclado}" value="Modificar Teclado" />
                 </p:panel>
                 <p:panel class="formulario" id="mouseformulario" header="Mouse"> 
                      
@@ -70,12 +70,12 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     <h:panelGrid columns="2" cellpadding="5">                   
 
                         <p:outputLabel for="idm" value="ID:" />
-                        <p:outputLabel id="idm" value="equipo.mouse.id" />                    
+                        <p:outputLabel id="idm" value="#{equipoBean.getEquipo().mouse.id}" />                    
                         
                         <p:outputLabel for="desm" value="Descripcion:" />
-                        <p:outputLabel id="desm" value="equipo.mouse.descripcion" />    
+                        <p:outputLabel id="desm" value="#{equipoBean.getEquipo().mouse.descripcion}" />    
                     </h:panelGrid>
-                     <p:button outcome=EditarEquipo?elemento=#{equipo.mouse}" value="Modificar Mouse" />
+                     <p:button outcome="EditarEquipo?elemento=#{equipo.mouse}" value="Modificar Mouse" />
                 </p:panel>
              </div>  
         </div>
