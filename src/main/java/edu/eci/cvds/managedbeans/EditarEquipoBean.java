@@ -11,6 +11,11 @@ import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Tipo;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+//import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 
 /**
@@ -27,19 +32,27 @@ public class EditarEquipoBean extends BasePageBean {
     
     private Elemento elemento;
 
-    @ManagedProperty(value = "#{param.elemento}")
-    private Tipo elementoTipo;
+    @ManagedProperty(value = "#{param.idElemento}")
+    private Integer idElemento;
 
-
-
-
-
-    
+//    @PostConstruct
+//    public void init() {
+//        idElemento = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("editarEquipo"));       
+//    }
 
     /**
      * @return the elemento
      */
     public Elemento getElemento() {
+        if (elemento == null && idElemento != null) {
+            try {
+                System.out.print(idElemento);
+                elemento = laboratorioServices.buscarElemento(idElemento);
+            } catch (ServicesException ex) {
+                Logger.getLogger(EditarEquipoBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        }
         return elemento;
     }
 
@@ -49,18 +62,13 @@ public class EditarEquipoBean extends BasePageBean {
     public void setElemento(Elemento elemento) {
         this.elemento = elemento;
     }
+    public Integer getIdElemento() {
+        return idElemento;
+    }
 
-
-
-
-
-
-    
-
-    
-
-
-
+    public void setIdElemento(Integer idElemento) {
+        this.idElemento = idElemento;
+    }
 
 
 }

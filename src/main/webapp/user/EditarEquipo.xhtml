@@ -16,7 +16,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
          </ui:insert>
     </header>
   
-    <h1>Agregar Elemento</h1>
+    <h1>Elemento #{editarEquipo.elemento.name} de tipo #{editarEquipo.elemento.tipo}</h1>
     <div id="iconos">
         <img src="../imagenes/keyboard.png" alt="elemento"/>
         <img src="../imagenes/mouse.png" alt="elemento"/>
@@ -28,14 +28,14 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
             <p:messages id="messages" />
             <h:panelGrid columns="2" cellpadding="5">
                 <p:outputLabel for="console" value="Tipo:"  />
-                <p:outputLabel id="console" value="nuevoElemento.tipo" />
+                <p:outputLabel id="console" value="#{editarEquipo.elemento.tipo}" />
                  
                 <p:outputLabel for="text1" value="Descripcion Actual:" />
-                <p:outputLabel id="text1" value="nuevoElemento.desc" />
+                <p:outputLabel id="text1" value=" #{editarEquipo.elemento.descripcion}" />
                 
                  
                 <p:outputLabel for="text2" value="Nombre Actual:" />
-                <p:outputLabel id="text2" value="nuevoElemento.nombre" />
+                <p:outputLabel id="text2" value=" #{editarEquipo.elemento.name}" />
                 
             </h:panelGrid>
              <p:inputSwitch  value="#{agregarEquipo.buscarM}" onLabel="Asociar" offLabel="Crear">
@@ -47,12 +47,12 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 
                         <p:outputLabel for="text3" value="Nueva Descripcion" />                
-                        <p:inputText id="text3" value="nuevoElemento.descripcion" required="bean.buscarelemento"/>
+                        <p:inputText id="text3" value="" required="bean.buscarelemento"/>
                         <p:message for="text3" />
 
 
                         <p:outputLabel for="text4" value="Nuevo Nombre:" />
-                        <p:inputText id="text4" value="nuevoelemento.nombre}" required="bean.buscarelemento"/>
+                        <p:inputText id="text4" value="" required="bean.buscarelemento"/>
                         <p:message for="text4" />
 
                     </h:panelGrid>
