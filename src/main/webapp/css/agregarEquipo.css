@@ -13,10 +13,7 @@ and open the template in the editor.
   display: flex; 
 }
 
-#formularioequipo{
-   max-width: 60%;
-   min-width: 900px;
-}
+
 .formulario{
   margin-bottom: 10px;
 }
@@ -31,12 +28,10 @@ and open the template in the editor.
 img{
     max-height: 100px;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
-.formulario{
-   max-width: 60%;
-   min-width: 900px;
-}
+
 
 
 
