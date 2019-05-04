@@ -14,7 +14,8 @@ import edu.eci.cvds.services.ServicesException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-//import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ViewScoped;
+
 import javax.faces.context.FacesContext;
 
 
@@ -34,11 +35,15 @@ public class EditarEquipoBean extends BasePageBean {
 
     @ManagedProperty(value = "#{param.idElemento}")
     private Integer idElemento;
+    
+    public EditarEquipoBean(){
+        System.out.println("Creado de nuevo");
+    }
 
 //    @PostConstruct
 //    public void init() {
 //        idElemento = Integer.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("editarEquipo"));       
-//    }
+//   }
 
     /**
      * @return the elemento
@@ -60,7 +65,12 @@ public class EditarEquipoBean extends BasePageBean {
      * @param elemento the elemento to set
      */
     public void setElemento(Elemento elemento) {
-        this.elemento = elemento;
+        if(elemento!=null){
+              System.out.print("No set null");
+            this.elemento = elemento;       
+        }else{
+             System.out.print("Set null");
+        }
     }
     public Integer getIdElemento() {
         return idElemento;
@@ -68,6 +78,10 @@ public class EditarEquipoBean extends BasePageBean {
 
     public void setIdElemento(Integer idElemento) {
         this.idElemento = idElemento;
+    }
+    
+    public void dosomething(){
+
     }
 
 

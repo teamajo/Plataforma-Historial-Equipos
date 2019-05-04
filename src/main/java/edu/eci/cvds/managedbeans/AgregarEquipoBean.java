@@ -171,7 +171,6 @@ public class AgregarEquipoBean extends BasePageBean {
         
         
     }
-
     
 
 

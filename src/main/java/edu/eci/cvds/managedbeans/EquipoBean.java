@@ -10,6 +10,8 @@ import javax.faces.bean.SessionScoped;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
+import java.util.List;
+import javax.faces.bean.ViewScoped;
 
 
 /**
@@ -60,7 +62,11 @@ public class EquipoBean extends BasePageBean {
         this.equipoId = equipoId;
     }
 
-    
+     public List<Equipo> buscarEquipos() throws Exception{
+        return laboratorioServices.buscarEquipos();
+        
+        
+    }
 
     
 

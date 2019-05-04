@@ -4,18 +4,19 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import edu.eci.cvds.entities.NovedadElemento;
 import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
+import javax.faces.bean.RequestScoped;
 
 
 @SuppressWarnings("agregarNovedadElemento")
 @ManagedBean(name = "agregarNovedadElemento")
-@SessionScoped 
+@RequestScoped 
 public class AgregarNovedadElementoBean extends BasePageBean  {
 
 	@Inject

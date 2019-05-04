@@ -8,6 +8,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
  <title>Plataformas Historial de Equipos</title>
  <link rel="stylesheet" type="text/css" href="../css/general.css"/>
  <link rel="stylesheet" type="text/css" href="../css/agregarEquipo.css"/>  
+  
 </h:head>
 <h:body>
     <header>
@@ -21,60 +22,126 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:form id="formularioequipo">
         <div class="row">
             <div class="column">
-                <p:panel class="formulario" id="torreformulario" header="Torre">                  
-                    <img src="../imagenes/tower.png" alt="elemento"/>       
-                    <h:panelGrid columns="2" cellpadding="5">
-                        
-                        <p:outputLabel for="idt" value="ID:" />
-                        <p:outputLabel id="idt" value="#{equipoBean.equipo.torre.id}" />
-                    
-                        
-                        <p:outputLabel for="dest" value="Descripcion:" />
-                        <p:outputLabel id="dest" value="#{equipoBean.equipo.torre.descripcion}" />                     
+                <p:panel class="formulario" id="torreformulario" header="Torre"> 
+                    <div class="compartido">
+                        <div>    
+                        <img src="../imagenes/tower.png" alt="elemento"/>       
+                        <h:panelGrid columns="2" cellpadding="5">
 
-                        
-                    </h:panelGrid>
+                            <p:outputLabel for="idt" value="ID:" />
+                            <p:outputLabel id="idt" value="#{equipoBean.equipo.torre.id}" />
+
+
+                            <p:outputLabel for="dest" value="Descripcion:" />
+                            <p:outputLabel id="dest" value="#{equipoBean.equipo.torre.descripcion}" />                     
+
+
+                        </h:panelGrid>
+                        </div>
+                        <div>               
+                            <h4>Novedades de la Torre</h4>
+                            <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('torre')}" scrollable="true" scrollHeight="100">
+                                <p:column headerText="Id">
+                                    <h:outputText value="#{elem.id}" />
+                                </p:column>           
+
+                                <p:column headerText="Nombre">
+                                    <h:outputText value="#{elem.name}" />
+                                </p:column>                   
+                            </p:dataTable>                   
+                        </div>                        
+                    </div>
                     <p:button outcome="EditarEquipo?idElemento=#{equipoBean.equipo.torre.id}" value="Modificar Torre" />
                 </p:panel>
-                <p:panel class="formulario" id="pantallaformulario" header="Pantalla">                      
-                    <img src="../imagenes/monitor.png" alt="elemento"/>
-                    <h:panelGrid columns="2" cellpadding="5">                   
+                <p:panel class="formulario" id="pantallaformulario" header="Pantalla"> 
+                    <div class="compartido">
+                        <div>
+                            <img src="../imagenes/monitor.png" alt="elemento"/>
+                            <h:panelGrid columns="2" cellpadding="5">                   
 
-                        <p:outputLabel for="idp" value="ID:" />
-                        <p:outputLabel id="idp" value="#{equipoBean.equipo.pantalla.id}" />                    
-                        
-                        <p:outputLabel for="desp" value="Descripcion:" />
-                        <p:outputLabel id="desp" value="#{equipoBean.equipo.pantalla.descripcion}" />    
-                    </h:panelGrid>
+                                <p:outputLabel for="idp" value="ID:" />
+                                <p:outputLabel id="idp" value="#{equipoBean.equipo.pantalla.id}" />                    
+
+                                <p:outputLabel for="desp" value="Descripcion:" />
+                                <p:outputLabel id="desp" value="#{equipoBean.equipo.pantalla.descripcion}" />    
+                            </h:panelGrid>
+                        </div>
+                        <div>               
+                            <h4>Novedades de la Pantalla</h4>
+                            <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('torre')}" scrollable="true" scrollHeight="100">
+                                <p:column headerText="Id">
+                                    <h:outputText value="#{elem.id}" />
+                                </p:column>           
+
+                                <p:column headerText="Nombre">
+                                    <h:outputText value="#{elem.name}" />
+                                </p:column>                   
+                            </p:dataTable>                   
+                        </div>
+                    </div>
+                    
                     <p:button outcome="EditarEquipo?idElemento=#{equipoBean.equipo.pantalla.id}" value="Modificar Pantalla" />
                 </p:panel>
              </div>    
              <div class="column">
                 <p:panel class="formulario"  id="tecladoformulario" header="Teclado">
-                    <img src="../imagenes/keyboard.png" alt="elemento"/>       
-                    <h:panelGrid columns="2" cellpadding="5">
+                    <div class="compartido">
+                        <div>
+                            <img src="../imagenes/keyboard.png" alt="elemento"/>       
+                            <h:panelGrid columns="2" cellpadding="5">
 
-                        <p:outputLabel for="idk" value="ID:"/>
-                        <p:outputLabel id="idk" value="#{equipoBean.equipo.teclado.id}" />                    
+                                <p:outputLabel for="idk" value="ID:"/>
+                                <p:outputLabel id="idk" value="#{equipoBean.equipo.teclado.id}" />                    
+
+                                <p:outputLabel for="desk" value="Descripcion:" />
+                                <p:outputLabel id="desk" value="#{equipoBean.getEquipo().teclado.descripcion}" />     
+
+                            </h:panelGrid>
+                        </div>
+                         <div>               
+                            <h4>Novedades de la Teclado</h4>
+                            <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('torre')}" scrollable="true" scrollHeight="100">
+                                <p:column headerText="Id">
+                                    <h:outputText value="#{elem.id}" />
+                                </p:column>           
+
+                                <p:column headerText="Nombre">
+                                    <h:outputText value="#{elem.name}" />
+                                </p:column>                   
+                            </p:dataTable>                   
+                        </div>
+                    </div>
                         
-                        <p:outputLabel for="desk" value="Descripcion:" />
-                        <p:outputLabel id="desk" value="#{equipoBean.getEquipo().teclado.descripcion}" />     
-
-                    </h:panelGrid>
                      <p:button outcome="EditarEquipo?idElemento=#{equipoBean.equipo.teclado.id}" value="Modificar Teclado" />
                 </p:panel>
                 <p:panel class="formulario" id="mouseformulario" header="Mouse"> 
-                     
-                    <img src="../imagenes/mouse.png" alt="elemento"/>
-        
-                    <h:panelGrid columns="2" cellpadding="5">                   
+                    <div class="compartido">
+                        <div>                     
+                        <img src="../imagenes/mouse.png" alt="elemento"/>
 
-                        <p:outputLabel for="idm" value="ID:" />
-                        <p:outputLabel id="idm" value="#{equipoBean.equipo.mouse.id}" />                    
+                        <h:panelGrid columns="2" cellpadding="5">                   
+
+                            <p:outputLabel for="idm" value="ID:" />
+                            <p:outputLabel id="idm" value="#{equipoBean.equipo.mouse.id}" />                    
+
+                            <p:outputLabel for="desm" value="Descripcion:" />
+                            <p:outputLabel id="desm" value="#{equipoBean.getEquipo().mouse.descripcion}" />    
+                        </h:panelGrid>
+                        </div>
+                          <div>               
+                            <h4>Novedades del Mouse</h4>
+                            <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('torre')}" scrollable="true" scrollHeight="100">
+                                <p:column headerText="Id">
+                                    <h:outputText value="#{elem.id}" />
+                                </p:column>           
+
+                                <p:column headerText="Nombre">
+                                    <h:outputText value="#{elem.name}" />
+                                </p:column>                   
+                            </p:dataTable>                   
+                        </div>
+                    </div>
                         
-                        <p:outputLabel for="desm" value="Descripcion:" />
-                        <p:outputLabel id="desm" value="#{equipoBean.getEquipo().mouse.descripcion}" />    
-                    </h:panelGrid>
                      <p:button outcome="EditarEquipo?idElemento=#{equipoBean.equipo.mouse.id}" value="Modificar Mouse" />
                 </p:panel>
              </div>  
