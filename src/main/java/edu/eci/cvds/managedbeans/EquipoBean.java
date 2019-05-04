@@ -30,6 +30,8 @@ public class EquipoBean extends BasePageBean {
     
     @ManagedProperty(value = "#{param.equipoSeleccionado}")
     private Integer equipoId;
+    
+    private List<Equipo> equipos;
 
 
 
@@ -63,7 +65,10 @@ public class EquipoBean extends BasePageBean {
     }
 
      public List<Equipo> buscarEquipos() throws Exception{
-        return laboratorioServices.buscarEquipos();
+         if(equipos==null){
+             equipos=laboratorioServices.buscarEquipos();
+         }
+        return equipos;
         
         
     }

@@ -24,11 +24,20 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
   
     <h1>Reporte de Equipo</h1>
     
-        <h:form>
-            <p:dataTable var="equipo" value="#{equipoBean.buscarEquipos()}" paginator="true"
-                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                 rows="15" class="lista">
+    <h:form>
+            <p:dataTable id="equipos" var="equipo" value="#{equipoBean.buscarEquipos()}" paginator="true"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                 rows="15" class="lista" selectionMode="multiple" rowKey="#{equipo.id}" >
                 
+                    <f:facet name="{Exporters}">
+                        <div style="float:right;padding-top: 5px;">
+                            <h:commandLink id="excel">
+                                <p:graphicImage library="images"  value="../imagenes/excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="equipos" fileName="equipos" />
+                            </h:commandLink>
+                        </div>
+                    </f:facet>
+                 
                 <p:column headerText="Id" sortBy="#{equipo.id}" class="delgado">
                     <h:outputText value="#{equipo.id}" />
                 </p:column>           
@@ -44,17 +53,13 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                 <p:column headerText="VerEquipo" class="mediado">
                     <p:button class="centre" outcome="Equipo?equipoSeleccionado=#{equipo.id}" value="Ver equipo" />
                 </p:column> 
-
-
-                <f:facet name="paginatorTopLeft">
-                    <p:commandButton type="button" icon="pi pi-refresh" />
-                </f:facet>
-
-                <f:facet name="paginatorBottomRight">
-                    <p:commandButton type="button" icon="pi pi-cloud-upload" />
-                </f:facet>
+                                  
 
             </p:dataTable>
+        <p:panel  class="gridcenter" style="max-width: 600px;" id="darbajapc" header="Dar de Baja">
+            <p:outputLabel value="Seleccione Equipos con Ctrl/Shift + click: " style="margin-right: 10px;"/>
+                <p:commandButton class="boton" value="Dar de Baja" />       
+        </p:panel>
         </h:form>
 </h:body>
 </html>
