@@ -44,7 +44,11 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
                 <p:column headerText="Nombre" sortBy="#{elem.name}" class="ancho">
                     <h:outputText value="#{elem.name}" />
-                </p:column>                 
+                </p:column>    
+                
+                <p:column headerText="Tipo" sortBy="#{elem.tipo}" class="ancho">
+                    <h:outputText value="#{elem.tipo}" />
+                </p:column>  
 
             </p:dataTable>
             <p:panel  class="gridcenter" style="max-width: 600px;" id="darbajael" header="Dar de Baja">
