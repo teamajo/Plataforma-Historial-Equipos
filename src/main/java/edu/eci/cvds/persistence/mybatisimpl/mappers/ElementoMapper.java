@@ -22,6 +22,7 @@ public interface ElementoMapper {
 	public int maxIdElemento() throws PersistenceException;
 	public Elemento buscarElemento(@Param("id")Integer id) throws PersistenceException;
 	public void desAsociarElemento(@Param("id")int id) throws PersistenceException;
+	public void darBajaElemento(@Param("id")Integer id) throws PersistenceException;
 	
 
 }

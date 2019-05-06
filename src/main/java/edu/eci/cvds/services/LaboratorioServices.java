@@ -53,5 +53,9 @@ public interface LaboratorioServices {
     public List<NovedadElemento> buscarNovedadesDeElementos() throws ServicesException;
     
     public void registrarNovedadElemento(NovedadElemento novedad) throws ServicesException;
+
+    public void darBajaEquipo(int id) throws ServicesException;
+    
+    public void darBajaElemento(int id) throws ServicesException;
     
 }

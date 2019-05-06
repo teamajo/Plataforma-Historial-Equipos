@@ -8,6 +8,7 @@
 	<resultMap type='Elemento' id='ElementoResult'>
 		<id property='id' column='id' />
 		<result property='name' column='name' />
+		<result property='activo' column='acel' />
 		<result property='idEquipo' column='ideq' />
 		<result property='tipo' column='tipo' />
 		<result property='descripcion' column='desc' />
@@ -18,6 +19,7 @@
 			SELECT
 				e.id,
 				e.name,
+				e.activo as acel,
 				e.idEquipo as ideq,
 				e.tipo,
 				e.descripcion as desc
@@ -30,12 +32,13 @@
 			SELECT
 				e.id,
 				e.name,
+				e.activo as acel,
 				e.idEquipo as ideq,
 				e.tipo,
 				e.descripcion as desc
 			FROM
-				ELEMENTO as e
-				WHERE e.idEquipo is not null
+				ELEMENTO as e  
+				WHERE e.activo = true
 
 		</select>
 		<select id="buscarElemento" resultMap="ElementoResult"
@@ -43,12 +46,14 @@
 			SELECT
 				e.id,
 				e.name,
+				e.activo as acel,
 				e.idEquipo as ideq,
 				e.tipo,
 				e.descripcion as desc
 			FROM
 				ELEMENTO as e
-				WHERE e.id = #{id}
+				WHERE e.id = #{id} 
+
 
 		</select>
 
@@ -56,6 +61,7 @@
 		SELECT
 				e.id,
 				e.name,
+				e.activo as acel,
 				e.idEquipo as ideq,
 				e.tipo,
 				e.descripcion as desc
@@ -68,6 +74,7 @@
 		SELECT
 				e.id,
 				e.name,
+				e.activo as acel,
 				e.idEquipo as ideq,
 				e.tipo,
 				e.descripcion as desc
@@ -85,6 +92,18 @@
 		<update id="desAsociarEquipo" parameterType="map" >
 		UPDATE ELEMENTO SET
 			idEquipo = null
+		WHERE id = #{id}
+		</update>
+
+		<update id="darBajaElemento" parameterType="map" >
+		UPDATE ELEMENTO SET
+			activo = false
+		WHERE id = #{id}
+		</update>
+
+		<update id="activarElemento" parameterType="map" >
+		UPDATE ELEMENTO SET
+			activo = true
 		WHERE id = #{id}
 		</update>
 

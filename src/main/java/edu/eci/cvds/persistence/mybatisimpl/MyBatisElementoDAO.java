@@ -104,6 +104,17 @@ public class MyBatisElementoDAO implements ElementoDAO {
 		}
 	}
 
+	@Override
+	public void darBajaElemento(int id) throws PersistenceException {
+		try {
+			elementoMapper.darBajaElemento(id);
+
+	   } catch (Exception ex) {
+		   throw new PersistenceException(ex.getMessage(), ex);
+	   }
+   
+	}
+
 	
 	
 	

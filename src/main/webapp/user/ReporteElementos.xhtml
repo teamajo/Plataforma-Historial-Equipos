@@ -25,9 +25,10 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h1>Reporte de Elementos</h1>
     
         <h:form>
+                <p:messages id="messages" />
             <p:dataTable id="elementos" var="elem" value="#{agregarElemento.consultarElementos()}" paginator="true"
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
-                 rows="20" class="lista">
+                 rows="20" class="lista" selectionMode="multiple" selection = "#{agregarElemento.seleccionados}" rowKey="#{elem.id}"  >
                 
                 <f:facet name="{Exporters}">
                     <div style="float:right;padding-top: 5px;">
@@ -50,10 +51,19 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     <h:outputText value="#{elem.tipo}" />
                 </p:column>  
 
+                <p:column headerText="Equipo Asociado" sortBy="#{elem.idEquipo}" class="ancho">
+                    <h:outputText value="#{elem.idEquipo}" />
+                </p:column>
+
+
+                <p:column headerText="VerElemento" class="mediado">
+                    <p:button class="centre" value="Ver Elemento" />
+                </p:column> 
+
             </p:dataTable>
             <p:panel  class="gridcenter" style="max-width: 600px;" id="darbajael" header="Dar de Baja">
                 <p:outputLabel value="Seleccione Elementos con Ctrl/Shift + click: " style="margin-right: 10px;"/>
-                    <p:commandButton class="boton" value="Dar de Baja" />       
+                    <p:commandButton class="boton" value="Dar de Baja" actionListener="#{agregarElemento.darBajaElementos}"/>       
             </p:panel>
         </h:form>
 </h:body>

@@ -12,6 +12,7 @@ public interface EquipoDAO{
     public void registrarEquipo(Equipo equipo) throws PersistenceException;
 	public int maxIdEquipo() throws PersistenceException;
 	public Equipo buscarEquipoPorId(int idEquipo) throws PersistenceException;
+	public void darBajaEquipo(int id) throws PersistenceException;
 
 
 } 
