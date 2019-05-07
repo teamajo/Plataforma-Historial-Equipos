@@ -153,8 +153,7 @@ public class LaboratorioServiciosTest {
             assert(true);
         }
     }
-
-    /**
+/**
     @Test
     public void agregarNovedadEquipoTest() throws PersistenceException{  
         Elemento torre = new Elemento(null,Tipo.torre,"Torre 1",123,"torre de 123");
@@ -163,7 +162,7 @@ public class LaboratorioServiciosTest {
         Elemento mouse = new Elemento(null,Tipo.mouse,"mouse 1",123,"mouse de 123");
 
         Equipo equipo = new Equipo(null,"b0",torre,pantalla,mouse,teclado);
-        
+       
         try {
             serviciosLab.registrarEquipo(equipo);
         } catch (ServicesException ex) {            

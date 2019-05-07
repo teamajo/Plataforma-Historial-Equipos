@@ -43,7 +43,7 @@
 		</select>
 		
 	    <insert id="registrarNovedadEquipo" parameterType="edu.eci.cvds.entities.NovedadEquipo" >
-	        insert into NOVEDADEQUIPO(id,titulo,idEquipo,fecha,descripcion,responsable) values (#{id}, #{titulo}, #{idEquipo},#{fecha},#{descripcion}, #{responsable})  
+	        insert into NOVEDADEQUIPO(titulo,idEquipo,fecha,descripcion,responsable) values (#{titulo}, #{idEquipo},#{fecha},#{descripcion}, #{responsable})  
 	    </insert>	
 
     

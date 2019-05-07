@@ -1,4 +1,4 @@
-package edu.eci.cvds.services.impl;
+ package edu.eci.cvds.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,6 +135,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
                 elementos.add(equipo.getMouse());
                 elementos.add(equipo.getPantalla());
                 elementos.add(equipo.getTeclado());
+                java.util.Date fechaActual = new java.util.Date();
 
                 for (Elemento e:elementos){
                     if(e.getId()==null){
@@ -143,6 +144,8 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
                     }else{
                         idElemento=e.getId();
                     }
+                    NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo registar",idEquipo,fechaActual,"se registro el equipo","admin");
+                    novedadEquipoDAO.registrarNovedadEquipo(novedad);
                     asociarEquipo( idEquipo,idElemento,e.getTipo());
                 }
             } catch (PersistenceException ex) {
@@ -155,9 +158,10 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
   public void asociarEquipo(int idEquipo,int id,Tipo tipo) throws ServicesException {
     try {
             Boolean flag = false;
+            java.util.Date fechaActual = new java.util.Date();            
             List<Elemento> elementos = buscarEquipoPorId(idEquipo).getComponets();
-
-            
+            NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
+             
             for (Elemento e:elementos){                
                 if(e!=null && e.getId()!=null ){
                     if (e.getTipo() == tipo){
@@ -166,7 +170,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
                 }
             }
            elementoDAO.asociarEquipo(idEquipo, id);          
-   
+           novedadEquipoDAO.registrarNovedadEquipo(novedad);
     } catch (PersistenceException ex) {
         Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -174,6 +178,9 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	@Override
   public void desAsociarElemento(int id) throws ServicesException {
     try {
+       java.util.Date fechaActual = new java.util.Date();
+       NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo desasociacion", id,fechaActual,"se desasocio el equipo","admin");
+       novedadEquipoDAO.registrarNovedadEquipo(novedad);
        elementoDAO.desAsociarElemento(id);
     } catch (PersistenceException ex) {
       throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
