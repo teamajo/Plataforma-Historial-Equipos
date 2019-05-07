@@ -206,7 +206,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     </h:form>
            </div>
      </div>
-    <h:form class="final formulario">
+    <h:form  id="proceso" class="final formulario">
          <p:messages id="messages" />
         <p:commandButton class="boton" value="Registrar Equipo" actionListener="#{agregarEquipo.registrarEquipo}" 
                          update="@form :torreformulario,@form :pantallaformulario,@form :tecladoformulario,@form :mouseformulario,@this"

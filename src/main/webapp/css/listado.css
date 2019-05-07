@@ -14,12 +14,17 @@ and open the template in the editor.
 }
 
 .ancho{
-    width: 300px;
+   max-width: 300px;
 }
 
 .lista{
-    width: 50%;
+    max-width: 600px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+.mediano{
+    max-width: 50px;  
+    text-align: center;
 }

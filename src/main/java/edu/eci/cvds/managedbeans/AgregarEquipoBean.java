@@ -2,9 +2,11 @@ package edu.eci.cvds.managedbeans;
 
 import edu.eci.cvds.entities.Elemento;
 
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -12,9 +14,10 @@ import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
+import java.util.Iterator;
+import javax.faces.bean.ViewScoped;
 
-import javax.faces.bean.SessionScoped;
-import org.primefaces.PrimeFaces;
+
 import org.primefaces.context.RequestContext;
 
 /**
@@ -22,28 +25,29 @@ import org.primefaces.context.RequestContext;
  */
 @SuppressWarnings("agregarEquipo")
 @ManagedBean(name = "agregarEquipo")
-@RequestScoped 
+@ViewScoped
 public class AgregarEquipoBean extends BasePageBean {
 
     @Inject
     private LaboratorioServices laboratorioServices;
 
     private Equipo nuevoEquipo;
- 
+    
 
     private int idK, idP, idM, idT;
 
-    private static boolean buscarK ;
-    private static boolean buscarP ;
-    private static boolean buscarM ;
-    private static boolean buscarT ;
+    private boolean buscarK;
+    private boolean buscarP;
+    private boolean buscarM;
+    private boolean buscarT;
 
     public AgregarEquipoBean() throws PersistenceException {
         nuevoEquipo = new Equipo();
-  
+
     }
 
-        
+    
+
     public void setBuscarP(boolean buscarP) throws ServicesException {
         this.buscarP = buscarP;
         //setidp(idp);
@@ -128,10 +132,10 @@ public class AgregarEquipoBean extends BasePageBean {
 
     public void registrarEquipo() throws Exception {
         String mensaje;
-        FacesMessage.Severity fm=FacesMessage.SEVERITY_ERROR;
-        try {
-         
-            
+        FacesMessage.Severity fs=FacesMessage.SEVERITY_ERROR;
+        FacesMessage fm=new FacesMessage(fs,"","");      
+          
+        try {                     
             if(buscarK){                
                 nuevoEquipo.setTeclado(laboratorioServices.buscarElemento(idK));
             }
@@ -147,21 +151,30 @@ public class AgregarEquipoBean extends BasePageBean {
 
             laboratorioServices.registrarEquipo(nuevoEquipo);
             mensaje = "success !!";
-            fm=FacesMessage.SEVERITY_INFO;
-            nuevoEquipo=new Equipo();
-            RequestContext.getCurrentInstance().update(":torreformulario");
-            RequestContext.getCurrentInstance().update(":pantallaformulario");
-            RequestContext.getCurrentInstance().update(":tecladoformulario");
-            RequestContext.getCurrentInstance().update(":mouseformulario");
-          
+            fs=FacesMessage.SEVERITY_INFO;
+            nuevoEquipo=new Equipo();            
+                     
         } catch (ServicesException ex) {
             mensaje = "Algun item no encontrado";           
         } catch (PersistenceException ex){
             mensaje = "Algun item no correspoonde con su tipo"; 
-        }
-        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(fm,mensaje,""));
-  
+        }       
+        fm.setSeverity(fs);
+        fm.setSummary(mensaje);      
+        FacesContext.getCurrentInstance().addMessage(null,fm);
+              
     }
+    
+  
+
+    public List<Equipo> buscarEquipos() throws Exception{
+        return laboratorioServices.buscarEquipos();
+        
+        
+    }
+    
+
+    
 
 
      

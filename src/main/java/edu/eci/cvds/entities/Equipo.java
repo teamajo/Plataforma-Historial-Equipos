@@ -18,17 +18,20 @@ import edu.eci.cvds.persistence.PersistenceException;
     private Elemento pantalla;
     private Elemento mouse;
     private Elemento teclado;
+    private String name;
 
-    public Equipo(Integer id, String lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado) throws PersistenceException {
+    public Equipo(Integer id, String lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado,String name)throws PersistenceException {
         this.id = id;
         this.lab = lab;
         setTorre(torre);
         setPantalla(pantalla);
         setMouse(mouse);
         setTeclado(teclado);
-        activo=true;
+        activo = true;
+        setName(name);
     }
 
+    
 
     public Equipo(Integer id, String lab) {
         this.id = id;
@@ -162,6 +165,19 @@ import edu.eci.cvds.persistence.PersistenceException;
             throw new PersistenceException("no se puede asignar el elemento");
         }
         
+    }
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
 

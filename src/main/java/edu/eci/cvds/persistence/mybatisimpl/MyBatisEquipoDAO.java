@@ -60,5 +60,14 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 		}
 	}
 
+	@Override
+	public void darBajaEquipo(int id) throws PersistenceException {
+		try {
+			 equipoMapper.darBajaEquipo(id);
+		} catch (Exception ex) {
+			throw new PersistenceException(ex.getMessage(), ex);
+		}
+	}
+
 
 }

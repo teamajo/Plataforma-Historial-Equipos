@@ -17,24 +17,36 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     </header>
   
     <h1>Agregar Elemento</h1>
-    <div id="iconos">
-        <img src="../imagenes/keyboard.png" alt="elemento"/>
-        <img src="../imagenes/mouse.png" alt="elemento"/>
-        <img src="../imagenes/tower.png" alt="elemento"/>
-        <img src="../imagenes/monitor.png" alt="elemento"/>
-    </div>
-    <h:form id="formulario">
+  
+    <h:form id="formulario" class="formulario">
+        <h:panelGroup id="imag" class="campos">              
+            <div id="iconos" class="imggrandes">
+                
+                <h:graphicImage library="images" value="../imagenes/cual.png" rendered="#{agregarElemento.nuevoElemento.tipo.toString()==null or agregarElemento.nuevoElemento.tipo.toString()=='null' }"/>
+
+               <h:graphicImage library="images" value="../imagenes/keyboard.png" rendered="#{agregarElemento.nuevoElemento.tipo.toString()=='teclado'}"/>
+
+               <h:graphicImage library="images" value="../imagenes/mouse.png" rendered="#{agregarElemento.nuevoElemento.tipo.toString()=='mouse'}"/>
+
+               <h:graphicImage library="images" value="../imagenes/monitor.png" rendered="#{agregarElemento.nuevoElemento.tipo.toString()=='pantalla'}"/>
+               <h:graphicImage library="images" value="../imagenes/tower.png" rendered="#{agregarElemento.nuevoElemento.tipo.toString()=='torre'}"/> 
+               
+              
+           </div>
+        </h:panelGroup> 
         <p:panel id="panel" header="Datos del Elemento">
             <p:messages id="messages" />
             <h:panelGrid columns="3" cellpadding="5">
                 
                 <p:outputLabel for="console" value="Tipo:"  />
                 <p:selectOneMenu id="console" value="#{agregarElemento.nuevoElemento.tipo}" style="width:125px" required="true">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
+                    <f:selectItem itemLabel="Select One"  noSelectionOption="true"  itemDisabled="#{agregarElemento.nuevoElemento.tipo.toString()==null}"/>
                     <f:selectItem itemLabel="Torre" itemValue="torre" />
                     <f:selectItem itemLabel="Pantalla" itemValue="pantalla" />
                     <f:selectItem itemLabel="Teclado" itemValue="teclado" />
-                    <f:selectItem itemLabel="Mouse" itemValue="mouse" />
+                    <f:selectItem itemLabel="Mouse" itemValue="mouse" />                       
+                    <f:ajax event="itemSelect" execute="@this" render="imag"/>
+                  
                 </p:selectOneMenu>
                 <p:message for="console" />
                  

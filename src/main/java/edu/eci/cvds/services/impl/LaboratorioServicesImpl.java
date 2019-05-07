@@ -123,9 +123,9 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	
 	  }
 	
-		@Override
-		@Transactional
-	  public void registrarEquipo(Equipo equipo) throws ServicesException{
+	@Override
+        @Transactional
+	public void registrarEquipo(Equipo equipo) throws ServicesException{
             try {
                 equipoDAO.registrarEquipo(equipo);
                 int idEquipo = maxIdEquipo();
@@ -149,9 +149,8 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
                     asociarEquipo( idEquipo,idElemento,e.getTipo());
                 }
             } catch (PersistenceException ex) {
-                                            throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
+                 throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
             }
-	
 	  }
 	  
   @Override
@@ -268,6 +267,27 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
 		}
 		
+	}
+
+	@Override
+	public void darBajaEquipo(int id) throws ServicesException {
+		try {
+			equipoDAO.darBajaEquipo(id);
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+		}
+	}
+
+	@Override
+	public void darBajaElemento(int id) throws ServicesException {
+		try {
+			
+			elementoDAO.darBajaElemento(id);
+			
+			
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+		}
 	}
 	
 

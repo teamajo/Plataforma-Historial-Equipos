@@ -2,8 +2,10 @@ body{
     color:black;
     background-color: white;    
     font-weight: bold;
-    padding-top: 1%;    
+   
 }
+
+
 
 #iconos{
     text-align: center;
@@ -20,16 +22,21 @@ body *,label{
     font-size: 20px;    
 }
 
+h1{
+   font-size: 35px; 
+   padding-top: 30px;
+}
 
 
-#formulario,img, h1{  
+
+#formulario,img{  
     text-align: center;
     margin-left: auto;
     margin-right: auto;     
 }
 
 
-#formulario{        
+.formulario{        
     min-width: 600px;
     max-width: 40%;
 }
@@ -38,3 +45,9 @@ body *,label{
     margin-top: 20px;
 }
 
+.compartidosmall{
+    max-width: 320px;
+}
+.compartido{
+    text-align: center;
+}

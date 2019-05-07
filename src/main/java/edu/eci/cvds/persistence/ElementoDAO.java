@@ -16,6 +16,7 @@ public interface ElementoDAO{
 	public int maxIdElemento() throws PersistenceException;
 	public Elemento buscarElemento(Integer id) throws PersistenceException;
 	public void desAsociarElemento(int id) throws PersistenceException;
+	public void darBajaElemento(int id) throws PersistenceException;
 
 	
 

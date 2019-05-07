@@ -10,9 +10,35 @@
 		<select id="buscarEquipoPorLab" resultMap="EquipoResult"
 			parameterType="int">
 				select 
-					e.id,
-					e.lab
-				from EQUIPO as e
+					e.id as ideq,
+					e.activo as aceq,
+					e.lab as laeq,
+					e.name as naeq,
+					p.id as pa_id,
+					p.name as pa_name,
+					p.descripcion as pa_desc,
+					p.idequipo as pa_ideq,
+					p.tipo as pa_tipo,
+					m.id as mo_id,
+					m.name as mo_name,
+					m.descripcion as mo_desc,
+					m.idequipo as mo_ideq,
+					m.tipo as mo_tipo,
+					t.id as torre_id,
+					t.name as torre_name,
+					t.idequipo as torre_ideq,
+					t.descripcion as torre_desc,
+					t.tipo as torre_tipo,
+					k.id as ke_id,
+					k.name as ke_name,
+					k.idequipo as ke_ideq,
+					k.descripcion as ke_desc,
+					k.tipo as ke_tipo
+				from EQUIPO e
+				left outer join elemento as p on p.idequipo = e.id and p.tipo='pantalla'
+				left outer join elemento as m on m.idequipo = e.id and m.tipo='mouse'
+				left outer join elemento as t on t.idequipo = e.id and t.tipo='torre'
+				left outer join elemento as k on k.idequipo = e.id and k.tipo='teclado'
 				WHERE e.lab = #{lab}
 		</select>
 	
@@ -21,6 +47,7 @@
 					e.id as ideq,
 					e.activo as aceq,
 					e.lab as laeq,
+					e.name as naeq,
 					p.id as pa_id,
 					p.name as pa_name,
 					p.descripcion as pa_desc,
@@ -54,6 +81,7 @@
 					e.id as ideq,
 					e.activo as aceq,
 					e.lab as laeq,
+					e.name as naeq,
 					p.id as pa_id,
 					p.name as pa_name,
 					p.descripcion as pa_desc,
@@ -90,9 +118,22 @@
        SELECT MAX(id) FROM EQUIPO
    </select>
 
+	 <update id="darBajaEquipo" parameterType="map" >
+		UPDATE EQUIPO SET
+			activo = false
+		WHERE id = #{id}
+		</update>
+
+		<update id="activarEquipo" parameterType="map" >
+		UPDATE EQUIPO SET
+			activo = true
+		WHERE id = #{id}
+		</update>
+
 
     <resultMap type='Equipo' id='EquipoResult'>
            <id property='id' column='ideq' />
+					 <result property='name' column='naeq'/>
            <result property='lab' column='laeq'/>
            <result property='activo' column='aceq'/>
            <association property="pantalla"  columnPrefix="pa_" javaType="Elemento" resultMap="edu.eci.cvds.persistence.mybatisimpl.mappers.ElementoMapper.ElementoResult"></association>

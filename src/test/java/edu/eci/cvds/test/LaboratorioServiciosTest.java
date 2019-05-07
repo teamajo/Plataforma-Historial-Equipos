@@ -149,7 +149,7 @@ public class LaboratorioServiciosTest {
             Elemento e= serviciosLab.buscarElemento(id+1);       
             fail("");
         } catch (ServicesException ex) {     
-            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+           // Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
             assert(true);
         }
     }

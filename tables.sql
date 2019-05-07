@@ -10,6 +10,7 @@ CREATE TABLE users (
 CREATE TABLE equipo (
 	id int4 serial NOT NULL,
 	lab varchar(10) NOT NULL,
+	name varchar(10) ,
 	activo bool NULL DEFAULT true,
 	CONSTRAINT equipo_pkey PRIMARY KEY (id)
 );
@@ -20,6 +21,7 @@ CREATE TABLE elemento (
 	id serial NOT NULL,
 	name varchar NOT NULL,
 	idequipo int4 NULL,
+	activo bool NULL DEFAULT true,
 	tipo varchar NOT NULL,
 	descripcion varchar NOT NULL,
 	CONSTRAINT elemento_pkey PRIMARY KEY (id),

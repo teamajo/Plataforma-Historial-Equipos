@@ -2,6 +2,7 @@ package edu.eci.cvds.persistence;
 
 import java.util.List;
 
+import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.NovedadElemento;
 
 public interface NovedadElementoDAO {

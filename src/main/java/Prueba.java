@@ -1,3 +1,4 @@
+import edu.eci.cvds.entities.Tipo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.util.Factory;
@@ -23,23 +24,7 @@ public class Prueba {
      */
     public static void main(String[] args) {
 
-        //log.info("My First Apache Shiro Application");
-
-        //1.
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("src/main/webapp/WEB-INF/shiro.ini");
-       
-        //2.
-        SecurityManager securityManager = factory.getInstance();
-        
-        //3.
-        SecurityUtils.setSecurityManager(securityManager);
-        Subject currentUser = SecurityUtils.getSubject();
-        
-        UsernamePasswordToken token = new UsernamePasswordToken("admin", "12345");
-        //UsernamePasswordToken token = new UsernamePasswordToken("admin", "1235");
-        token.setRememberMe(true);
-      
-        currentUser.login(token);
+        System.out.println(" asdasd "+Tipo.pantalla);
         
        
     }
