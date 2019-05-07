@@ -32,21 +32,22 @@ public class AgregarEquipoBean extends BasePageBean {
     private LaboratorioServices laboratorioServices;
 
     private Equipo nuevoEquipo;
- 
+    
 
     private int idK, idP, idM, idT;
 
-    private boolean buscarK ;
-    private boolean buscarP ;
-    private boolean buscarM ;
-    private boolean buscarT ;
+    private boolean buscarK;
+    private boolean buscarP;
+    private boolean buscarM;
+    private boolean buscarT;
 
     public AgregarEquipoBean() throws PersistenceException {
         nuevoEquipo = new Equipo();
-  
+
     }
 
-        
+    
+
     public void setBuscarP(boolean buscarP) throws ServicesException {
         this.buscarP = buscarP;
         //setidp(idp);
@@ -171,6 +172,8 @@ public class AgregarEquipoBean extends BasePageBean {
         
         
     }
+    
+
     
 
 

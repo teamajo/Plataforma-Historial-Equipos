@@ -13,7 +13,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
  <title>Plataformas Historial de Equipos</title>
  <link rel="stylesheet" type="text/css" href="../css/general.css"/>
- <link rel="stylesheet" type="text/css" href="../css/listado.css"/>  
+ <link rel="stylesheet" type="text/css" href="../css/listado.css"/>
 </h:head>
 <h:body>
     <header>
@@ -21,14 +21,14 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
             <ui:include src="../header.xhtml" />
          </ui:insert>
     </header>
-  
+
     <h1>Reporte de Equipo</h1>
-    
+
     <h:form>
             <p:dataTable id="equipos" var="equipo" value="#{equipoBean.buscarEquipos()}" paginator="true"
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
-                 rows="15" class="lista" selectionMode="multiple" rowKey="#{equipo.id}" >
-                
+                 rows="15" class="lista" selectionMode="multiple" selection = "#{equipoBean.seleccionados}" rowKey="#{equipo.id}" >
+
                     <f:facet name="{Exporters}">
                         <div style="float:right;padding-top: 5px;">
                             <h:commandLink id="excel">
@@ -37,23 +37,23 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                             </h:commandLink>
                         </div>
                     </f:facet>
-                 
+
                 <p:column headerText="Id" filterBy="#{equipo.id}" sortBy="#{equipo.id}" class="delgado">
                     <h:outputText value="#{equipo.id}" />
-                </p:column>           
+                </p:column>
 
                 <p:column headerText="Lab" filterBy="#{equipo.lab}" sortBy="#{equipo.lab}" class="ancho">
                     <h:outputText value="#{equipo.lab}" />
                 </p:column>  
-                
+
                  <p:column headerText="Activo" filterBy="#{equipo.activo}" sortBy="#{equipo.activo}" class="mediano">
                     <h:outputText value="#{equipo.activo}" />
-                </p:column>  
+                </p:column>
 
                 <p:column headerText="Inspeccionar " class="mediado">
                     <p:button class="gridcenter" outcome="Equipo?equipoSeleccionado=#{equipo.id}" value="Ver equipo" />
-                </p:column> 
-                                  
+                </p:column>
+
 
             </p:dataTable>
         <p:panel  class="gridcenter" style="max-width: 600px;" id="darbajapc" header="Dar de Baja">
@@ -61,10 +61,10 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
              <p:commandButton value="Dar de Baja" type="button" onclick="PF('dlg2').show();" />
         </p:panel>
         <p:dialog class="dialog centre" header="Dar de Baja a Equipos Seleccionados" widgetVar="dlg2" modal="true" height="100">
-            <p:commandButton class="boton" value="Con Elementos" />   
-            <p:commandButton class="boton" value="Sin Elementos" />   
+            <p:commandButton class="boton" value="Con Elementos" />
+            <p:commandButton class="boton" value="Sin Elementos" />
            <p:commandButton value="Cancelar" type="button" onclick="PF('dlg2').hide();" />
-        </p:dialog>   
+        </p:dialog>
 
         </h:form>
 </h:body>

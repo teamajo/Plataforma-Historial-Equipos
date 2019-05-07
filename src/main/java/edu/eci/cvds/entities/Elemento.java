@@ -12,17 +12,32 @@ package edu.eci.cvds.entities;
     private Integer idEquipo;
     private Tipo tipo;
     private String descripcion;
+    private boolean activo;
 
     public Elemento(Integer id, Tipo tipo, String name, Integer idEquipo, String descripcion) {
         this.id = id;
         this.name = name;
-        this.idEquipo=idEquipo;
-        this.descripcion=descripcion;
-        this.tipo=tipo;
+        this.idEquipo = idEquipo;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
 
     }
-    
-    public Elemento(Tipo t){
+
+    /**
+     * @return the activo
+     */
+    public boolean isActivo() {
+        return activo;
+    }
+
+    /**
+     * @param activo the activo to set
+     */
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public Elemento(Tipo t) {
         id=null;
         this.tipo=t;
     }

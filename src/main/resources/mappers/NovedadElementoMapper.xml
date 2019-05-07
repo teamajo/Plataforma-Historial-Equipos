@@ -59,7 +59,7 @@
 					WHERE n.idElemento = #{idElemento}
 		</select>
 	    <insert id="registrarNovedadElemento" parameterType="edu.eci.cvds.entities.NovedadElemento" >
-	        insert into NOVEDADELEMENTO(id,titulo,idEquipo,idElemento,fecha,descripcion,responsable) values (#{id}, #{titulo}, #{idEquipo}, #{idElemento},#{fecha},#{descripcion}, #{responsable})  
+	        insert into NOVEDADELEMENTO(titulo,idEquipo,idElemento,fecha,descripcion,responsable) values (#{titulo}, #{idEquipo}, #{idElemento},#{fecha},#{descripcion}, #{responsable})  
 	    </insert>	
 
     

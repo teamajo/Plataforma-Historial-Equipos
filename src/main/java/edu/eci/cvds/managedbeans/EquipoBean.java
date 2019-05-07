@@ -33,6 +33,8 @@ public class EquipoBean extends BasePageBean {
     
     private List<Equipo> equipos;
 
+    private List<Equipo> seleccionados;
+
 
 
 
@@ -73,6 +75,26 @@ public class EquipoBean extends BasePageBean {
         
     }
 
+    /**
+     * @return the seleccionados
+     */
+    public List<Equipo> getSeleccionados() {
+        return seleccionados;
+    }
+
+    /**
+     * @param seleccionados the seleccionados to set
+     */
+    public void setSeleccionados(List<Equipo> seleccionados) {
+        this.seleccionados = seleccionados;
+    }
+
+    public void darBajaEquipos()  throws Exception{
+        for (Equipo e:seleccionados){
+            //System.out.println(e.getId());
+            laboratorioServices.darBajaEquipo(e.getId());
+        }
+    }
     
 
 

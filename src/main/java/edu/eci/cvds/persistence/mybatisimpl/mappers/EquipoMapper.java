@@ -14,6 +14,7 @@ public interface EquipoMapper {
     public void registrarEquipo(Equipo equipo) throws PersistenceException;
 	public int maxIdEquipo() throws PersistenceException;
 	public Equipo buscarEquipoPorId(@Param("id") Integer id) throws PersistenceException;
+	public void darBajaEquipo(@Param("id") Integer id) throws PersistenceException;
 
 
 
