@@ -27,7 +27,9 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
         <h:form>
             <p:dataTable id="elementos" var="elem" value="#{agregarElemento.consultarElementos()}" paginator="true"
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
-                 rows="20" class="lista">
+                 rows="15" class="lista" widgetVar="elet">
+                
+             
                 
                 <f:facet name="{Exporters}">
                     <div style="float:right;padding-top: 5px;">
@@ -38,23 +40,33 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     </div>
                 </f:facet>
                 
-                <p:column headerText="Id" sortBy="#{elem.id}" class="delgado">
+                <p:column headerText="Id" filterBy="#{elem.id}"  sortBy="#{elem.id}" class="delgado">
                     <h:outputText value="#{elem.id}" />
                 </p:column>           
 
-                <p:column headerText="Nombre" sortBy="#{elem.name}" class="ancho">
+                <p:column headerText="Nombre" filterBy="#{elem.name}" sortBy="#{elem.name}" class="ancho">
                     <h:outputText value="#{elem.name}" />
                 </p:column>    
                 
-                <p:column headerText="Tipo" sortBy="#{elem.tipo}" class="ancho">
+                <p:column headerText="Tipo" filterBy="#{elem.tipo}" sortBy="#{elem.tipo}" class="ancho">
                     <h:outputText value="#{elem.tipo}" />
                 </p:column>  
+                
+                  <p:column headerText="Inspeccionar" class="mediado">
+                    <p:button class="gridcenter" value="Ver Elemento" />
+                </p:column> 
 
             </p:dataTable>
-            <p:panel  class="gridcenter" style="max-width: 600px;" id="darbajael" header="Dar de Baja">
+             <p:panel  class="gridcenter" style="max-width: 600px;" id="darbajapc" header="Dar de Baja">
                 <p:outputLabel value="Seleccione Elementos con Ctrl/Shift + click: " style="margin-right: 10px;"/>
-                    <p:commandButton class="boton" value="Dar de Baja" />       
+                 <p:commandButton value="Dar de Baja" type="button" onclick="PF('dlg2').show();" />
             </p:panel>
+            <p:dialog class="dialog centre" header="Dar de Baja a Elementos : Esta seguro?" widgetVar="dlg2" modal="true" height="100">
+                <p:commandButton class="boton" value="Si" />   
+             
+                <p:commandButton value="Cancelar" class="cancelar" type="button" onclick="PF('dlg2').hide();" />
+            </p:dialog>   
+            
         </h:form>
 </h:body>
 </html>

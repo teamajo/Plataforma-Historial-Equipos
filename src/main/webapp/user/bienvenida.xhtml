@@ -18,13 +18,13 @@
   
     
     <h1> Bienvenido , ya ha ingresado</h1>
-     <h:form>
-        <h:button value="Registrar Elemento" outcome="AgregarElemento.xhtml" />
-        <h:button value="Registrar Equipo" outcome="AgregarEquipo.xhtml" />
+     <h:form class="listado">
         <h:button value="Reporte de Elementos" outcome="ReporteElementos.xhtml" />
-        <h:button value="Reporte de Equipo" outcome="ReporteEquipos.xhtml" />   
+        <h:button value="Reporte de Equipo" outcome="ReporteEquipos.xhtml" />  
+        <h:button value="Registrar Elemento" outcome="AgregarElemento.xhtml" />
+        <h:button value="Registrar Equipo" outcome="AgregarEquipo.xhtml" />        
         <h:commandButton value="logout" action="#{loginBean.logout}" />
-      </h:form>
+    </h:form>
 </body>
    
 </html>
