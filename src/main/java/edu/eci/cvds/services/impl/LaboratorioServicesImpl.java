@@ -70,10 +70,14 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     @Override
     public void registrarElemento(Elemento elemento) throws ServicesException{
         try {
-			elementoDAO.registrarElemento(elemento);
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-		}
+            elementoDAO.registrarElemento(elemento);
+            java.util.Date fechaActual = new java.util.Date();
+            NovedadElemento novedad = new NovedadElemento(null,"novedad elmentpo registrar",elemento.getIdEquipo(),maxIdElemento(),fechaActual,"se registro el elemento","admin");
+            novedadElementoDAO.registrarNovedadElemento(novedad);
+            
+	} catch (PersistenceException ex) {
+            throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+	}
 
     }
   @Override
@@ -139,15 +143,15 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 
                 for (Elemento e:elementos){
                     if(e.getId()==null){
-                            registrarElemento(e);
-                            idElemento= maxIdElemento();
+                        registrarElemento(e);
+                        idElemento= maxIdElemento();
                     }else{
                         idElemento=e.getId();
                     }
-                    NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo registar",idEquipo,fechaActual,"se registro el equipo","admin");
-                    novedadEquipoDAO.registrarNovedadEquipo(novedad);
                     asociarEquipo( idEquipo,idElemento,e.getTipo());
                 }
+                NovedadEquipo novedadeq = new NovedadEquipo(null,"novedad equipo registar",idEquipo,fechaActual,"se registro el equipo","admin");
+                novedadEquipoDAO.registrarNovedadEquipo(novedadeq);
             } catch (PersistenceException ex) {
                  throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
             }
@@ -160,8 +164,10 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
             java.util.Date fechaActual = new java.util.Date();            
             List<Elemento> elementos = buscarEquipoPorId(idEquipo).getComponets();
             NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
-             
-            for (Elemento e:elementos){                
+            NovedadElemento novedadel = new NovedadElemento(null,"novedad elmentpo asociar",idEquipo,id,fechaActual,"se asocio el elemento","admin");
+            novedadElementoDAO.registrarNovedadElemento(novedadel); 
+            for (Elemento e:elementos){ 
+                
                 if(e!=null && e.getId()!=null ){
                     if (e.getTipo() == tipo){
                         desAsociarElemento(e.getId());                                                   
