@@ -72,7 +72,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
         try {
             elementoDAO.registrarElemento(elemento);
             java.util.Date fechaActual = new java.util.Date();
-            NovedadElemento novedad = new NovedadElemento(null,"novedad elmentpo registrar",elemento.getIdEquipo(),maxIdElemento(),fechaActual,"se registro el elemento","admin");
+            NovedadElemento novedad = new NovedadElemento(null,"novedad elmento registrar",elemento.getIdEquipo(),maxIdElemento(),fechaActual,"se registro el elemento","admin");
             novedadElementoDAO.registrarNovedadElemento(novedad);
             
 	} catch (PersistenceException ex) {
@@ -164,7 +164,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
             java.util.Date fechaActual = new java.util.Date();            
             List<Elemento> elementos = buscarEquipoPorId(idEquipo).getComponets();
             NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
-            NovedadElemento novedadel = new NovedadElemento(null,"novedad elmentpo asociar",idEquipo,id,fechaActual,"se asocio el elemento","admin");
+            NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,id,fechaActual,"se asocio el elemento","admin");
             novedadElementoDAO.registrarNovedadElemento(novedadel); 
             for (Elemento e:elementos){ 
                 
@@ -278,7 +278,10 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	@Override
 	public void darBajaEquipo(int id) throws ServicesException {
 		try {
-			equipoDAO.darBajaEquipo(id);
+                    //java.util.Date fechaActual = new java.util.Date();
+                    //NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo darBajaEquipo", id,fechaActual,"se dio de baja el equipo","admin");
+                    //novedadEquipoDAO.registrarNovedadEquipo(novedad);
+                    equipoDAO.darBajaEquipo(id);
 		} catch (PersistenceException ex) {
 			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
 		}
@@ -287,10 +290,11 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	@Override
 	public void darBajaElemento(int id) throws ServicesException {
 		try {
-			
-			elementoDAO.darBajaElemento(id);
-			
-			
+                    //java.util.Date fechaActual = new java.util.Date();
+                    //NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento darBajaElemento",buscarElemento(id).getIdEquipo(),id,fechaActual,"se asocio el elemento","admin");
+                    //novedadElementoDAO.registrarNovedadElemento(novedadel); 
+                    elementoDAO.darBajaElemento(id);
+				
 		} catch (PersistenceException ex) {
 			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
 		}
