@@ -156,6 +156,7 @@ public class LaboratorioServiciosTest {
     
     @Test
     public void novedadEquipoTest(){
+        /**
         qt().forAll(GeneradoresLaboratorio.completoEquipos()).check(
             (eq)->{                
                 try {
@@ -169,8 +170,84 @@ public class LaboratorioServiciosTest {
                
             }
            
-        );     
+        );     */
+        fail("");
     } 
+    
+    @Test
+    public void darDeBajaTest(){
+        qt().forAll(GeneradoresLaboratorio.completoEquipos()).check(
+            (eq)->{                
+                try {
+                    serviciosLab.registrarEquipo(eq);
+                    idEquimax++;   
+                    boolean ans=serviciosLab.buscarEquipoPorId(idEquimax).isActivo()==true;
+                    serviciosLab.darBajaEquipo(idEquimax);
+                    return serviciosLab.buscarEquipoPorId(idEquimax).isActivo()==false && ans;
+                    
+                } catch (ServicesException ex) {
+                    Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+                    return false;
+                }
+               
+            }
+           
+        ); 
+    }
+    /**
+    @Test
+    public void noPoderAsociarTest(){
+        
+        qt().forAll(GeneradoresLaboratorio.completoEquipos()).check(
+            (eq)->{                
+                try {
+                    serviciosLab.registrarEquipo(eq);
+                    idEquimax++; 
+                    Equipo eqb=serviciosLab.buscarEquipoPorId(idEquimax);
+                    Elemento torre=eqb.getTorre();
+           
+                                     
+                    serviciosLab.darBajaEquipo(eqb.getId());
+                    
+                    serviciosLab.asociarEquipo(eqb.getId(), torre.getId(), Tipo.torre);                   
+                    
+                    return true;
+                    
+                } catch (ServicesException ex) {
+                    Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+                    return false;
+                }               
+            }
+           
+        );
+    }
+    * */
+    @Test
+    public void noPoderAsociarTest(){
+        Elemento torre=new Elemento(null, Tipo.torre, "abs", null, "asda");
+        Elemento pantalla=new Elemento(null, Tipo.pantalla, "abs", null, "asda");
+                Elemento mouse=new Elemento(null, Tipo.mouse, "abs", null, "asda");
+                        Elemento teclado=new Elemento(null, Tipo.teclado, "abs", null, "asda");
+        try {
+            Equipo eq=new Equipo(null, "ab", torre, pantalla, mouse, teclado, "Preuba");
+            serviciosLab.registrarEquipo(eq);
+            idEquimax++; 
+            
+            Equipo eqb=serviciosLab.buscarEquipoPorId(idEquimax);
+            torre=serviciosLab.buscarElemento(eqb.getTorre().getId());
+             System.out.println("XXXXXX-------XXXXXXXXX");
+            System.out.println(eqb.getId()+" && "+idEquimax+" Este es el id ; y el id de la torre: "+ torre.getId());
+              System.out.println("XXXXXXXXXX-----XXXXX");
+            serviciosLab.darBajaEquipo(eqb.getId());            
+            serviciosLab.asociarEquipo(eqb.getId(), torre.getId(), Tipo.torre);         
+            
+        } catch (PersistenceException ex) {
+            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ServicesException ex) {
+            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
     
     

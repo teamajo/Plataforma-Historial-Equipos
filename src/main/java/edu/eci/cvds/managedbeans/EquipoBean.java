@@ -19,7 +19,7 @@ import javax.faces.bean.ViewScoped;
  */
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "equipoBean")
-@RequestScoped
+@SessionScoped
 public class EquipoBean extends BasePageBean {
 
     @Inject
@@ -45,9 +45,9 @@ public class EquipoBean extends BasePageBean {
      */
     public Equipo getEquipo() throws ServicesException {
        if (equipo == null && equipoId != null) {
-			equipo = laboratorioServices.buscarEquipoPorId(equipoId);
-		}
-		return equipo;
+                equipo = laboratorioServices.buscarEquipoPorId(equipoId);
+        }
+        return equipo;
     }
 
     /**
@@ -89,13 +89,14 @@ public class EquipoBean extends BasePageBean {
         this.seleccionados = seleccionados;
     }
 
+    
+    // ??? Exception ???
     public void darBajaEquipos()  throws Exception{
         for (Equipo e:seleccionados){
             //System.out.println(e.getId());
             laboratorioServices.darBajaEquipo(e.getId());
         }
-    }
-    
+    } 
 
 
 

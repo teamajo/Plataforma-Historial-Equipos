@@ -164,23 +164,7 @@ public class AgregarEquipoBean extends BasePageBean {
         FacesContext.getCurrentInstance().addMessage(null,fm);
               
     }
-    
-  
-
-    public List<Equipo> buscarEquipos() throws Exception{
-        return laboratorioServices.buscarEquipos();
-        
-        
-    }
-    
-
-    
-
-
-     
-   
-
-    
+      
    
   
 }

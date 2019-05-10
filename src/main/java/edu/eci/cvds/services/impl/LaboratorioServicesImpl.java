@@ -140,15 +140,24 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
                 elementos.add(equipo.getPantalla());
                 elementos.add(equipo.getTeclado());
                 java.util.Date fechaActual = new java.util.Date();
-
+                // List<Elemento> elementos=equipo.getComponets(); ??? <-----------
                 for (Elemento e:elementos){
                     if(e.getId()==null){
                         registrarElemento(e);
+                        
                         idElemento= maxIdElemento();
                     }else{
                         idElemento=e.getId();
                     }
-                    asociarEquipo( idEquipo,idElemento,e.getTipo());
+                    /**
+                        if(e.getId()==null){
+                           registrarElemento(e);
+                          e.setId(maxIdElemento());;
+                       }
+                     * 
+                     *  asociarEquipo( idEquipo,e);
+                     */
+                    asociarEquipo( idEquipo,idElemento,e.getTipo());  // No deberia enviar el Tipo
                 }
                 NovedadEquipo novedadeq = new NovedadEquipo(null,"novedad equipo registar",idEquipo,fechaActual,"se registro el equipo","admin");
                 novedadEquipoDAO.registrarNovedadEquipo(novedadeq);
@@ -157,14 +166,19 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
             }
 	  }
 	  
+        
+    /// El tipo se deberia sacar del ID , que pasa si el ID es correcto y el tipo no ? al llamar al metodo ???
+        // Siguiendo los comentarios de Registrar deberia llegar el elemento asociarEquipo(idEquipo,e) { 
   @Override
   public void asociarEquipo(int idEquipo,int id,Tipo tipo) throws ServicesException {
     try {
             Boolean flag = false;
+            // tipo = servicios
             java.util.Date fechaActual = new java.util.Date();            
             List<Elemento> elementos = buscarEquipoPorId(idEquipo).getComponets();
+            
             NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
-            NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,id,fechaActual,"se asocio el elemento","admin");
+            NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,id,fechaActual,"sPe asocio el elemento","admin");
             novedadElementoDAO.registrarNovedadElemento(novedadel); 
             for (Elemento e:elementos){ 
                 
@@ -175,6 +189,8 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
                 }
             }
            elementoDAO.asociarEquipo(idEquipo, id);          
+           
+           // De esto habra un test.
            novedadEquipoDAO.registrarNovedadEquipo(novedad);
     } catch (PersistenceException ex) {
         Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);
