@@ -153,6 +153,27 @@ public class LaboratorioServiciosTest {
             assert(true);
         }
     }
+    
+    @Test
+    public void novedadEquipoTest(){
+        qt().forAll(GeneradoresLaboratorio.completoEquipos()).check(
+            (eq)->{                
+                try {
+                    serviciosLab.registrarEquipo(eq);
+                    idEquimax++;                         
+                    return serviciosLab.buscarNovedadesPorEquipo(idEquimax).size()>0 && serviciosLab.buscarNovedadesDeElementosPorEquipos(idEquimax).size()>3;
+                } catch (ServicesException ex) {
+                    Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+                    return false;
+                }
+               
+            }
+           
+        );     
+    } 
+    
+    
+    
 /**
     @Test
     public void agregarNovedadEquipoTest() throws PersistenceException{  

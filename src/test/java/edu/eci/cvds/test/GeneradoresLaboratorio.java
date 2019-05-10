@@ -58,7 +58,7 @@ public class GeneradoresLaboratorio {
         return cadenas(6,10).map((lab)-> new Equipo(null, lab));                 
      }
      
-     public static Gen<Equipo> completoEquipos() throws PersistenceException{
+     public static Gen<Equipo> completoEquipos() {
        return equipos().zip(pantallas(), mouses(), torres(), teclados(), (eq,p,m,to,te)->{
            try {
             eq.setMouse(m);
