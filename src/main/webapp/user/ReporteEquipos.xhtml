@@ -51,7 +51,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                 </p:column>
 
                 <p:column headerText="Inspeccionar " class="mediado">
-                    <p:button class="gridcenter" outcome="Equipo?equipoSeleccionado=#{equipo.id}" value="Ver equipo" />
+                    <p:commandButton value="Ver Equipo"  action="#{equipoBean.seleccionarEquipo(equipo)}" process="@this" />
                 </p:column>
 
 

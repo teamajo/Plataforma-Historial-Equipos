@@ -62,7 +62,7 @@ public class NovedadEquipo {
 	
     @Override
     public String toString() {
-        return "NovedadEquipo{id=" + id + ", Titulo="+titulo+ ", idEquipo=" + idEquipo +'}';
+        return "NovedadEquipo{id=" + id + ", Titulo="+titulo+", fecha="+fecha+ ", idEquipo=" + idEquipo +", Descripcion="+ descripcion +'}';
     }
 
 }

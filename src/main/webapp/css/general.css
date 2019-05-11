@@ -48,7 +48,8 @@ header input{
 }
 
 .switch *{
-  vertical-align: middle 
+  vertical-align: middle ; 
+ 
 }
 .switch label{
     margin-right: 10px;
@@ -60,9 +61,15 @@ header input{
 }
 
 .imggrandes img{
-    max-height: 300px;
+    width: 60%;
 }
 
+
+.campos table{
+   
+    margin: 0 auto;
+    text-align: center;    
+}
 
 
 .gridcenter{
@@ -71,11 +78,22 @@ header input{
 
 }
 
-.compartido>div{
+.compartido>div:nth-of-type(1){
      display: inline-block;
-     width: 47%;
+     width: 30%;
      vertical-align: middle;
 }  
+
+.compartido>div:nth-of-type(2){
+     display: inline-block;
+     width: 50%;
+     vertical-align: middle;
+} 
+
+
+
+
+
 
 .dialog button{
     margin: 4px;   

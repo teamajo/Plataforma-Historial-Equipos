@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10/05/2019, 06:39:02 PM
+    Author     : J. Eduardo Arias
+*/
+
+.compartido>div:nth-of-type(1){
+     display: inline-block;
+     width: 30%;
+     vertical-align: middle;
+}  
+
+.compartido>div:nth-of-type(2){
+     display: inline-block;
+     width: 40%;
+     vertical-align: middle;
+} 
+
+
+
+    
+
+
+@media only screen and (max-width: 1400px) {
+    
+    .compartido>div:nth-of-type(1){
+        display: inline-block;
+        width: 600px;
+        vertical-align: middle;
+   }  
+    .compartido>div:nth-of-type(2){
+        display: inline-block;
+        width: 300px;
+        vertical-align: middle;
+    }  
+    
+}

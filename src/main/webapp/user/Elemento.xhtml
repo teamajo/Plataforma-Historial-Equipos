@@ -15,7 +15,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
             <ui:include src="../header.xhtml" />
          </ui:insert>
     </header>    
-    <h1>Elemento #{editarEquipo.elemento.name} (#{editarEquipo.elemento.tipo})</h1>
+    <h1>Elemento #{equipoBean.elemento.name} (#{equipoBean.elemento.tipo})</h1>
+    <p:outputLabel rendered=""><h1> </h1></p:outputLabel>
     <div class="compartido">
        
         <div>
@@ -24,14 +25,14 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
                     <h:panelGrid columns="2" cellpadding="5" class="gridcenter">
                         <p:outputLabel for="console" value="Tipo:"  />
-                        <p:outputLabel id="console" value="#{editarEquipo.elemento.tipo}" />
+                        <p:outputLabel id="console" value="#{equipoBean.elemento.tipo}" />
 
                         <p:outputLabel for="text1" value="Descripcion Actual:" />
-                        <p:outputLabel id="text1" value=" #{editarEquipo.elemento.descripcion}" />
+                        <p:outputLabel id="text1" value=" #{equipoBean.elemento.descripcion}" />
 
 
                         <p:outputLabel for="text2" value="Nombre Actual:" />
-                        <p:outputLabel id="text2" value=" #{editarEquipo.elemento.name}" />
+                        <p:outputLabel id="text2" value=" #{equipoBean.elemento.name}" />
 
                     </h:panelGrid>
                  </p:panel>
@@ -43,13 +44,13 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                         
                         <h:panelGrid  columns="3" cellpadding="5" class="gridcenter">
                              <p:outputLabel for="text5" value="ID Equipo:" />      
-                             <p:inputText id="text5" value="#{editarEquipo.idElemento}" required="true"/>                         
+                             <p:inputText id="text5" value="#{equipoBean.elemento.idEquipo}" required="true"/>                         
                              <p:message for="text5" />
                         </h:panelGrid>
 
 
-                        <h4> Equipo Disponibles : (#{editarEquipo.elemento.tipo.toString()})</h4>
-                        <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo(editarEquipo.elemento.tipo)}" scrollable="true" scrollHeight="100">
+                        <h4> Equipo Disponibles : (#{equipoBean.elemento.tipo.toString()})</h4>
+                        <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo(equipoBean.elemento.tipo)}" scrollable="true" scrollHeight="100">
                             <p:column headerText="Id" class="delgado">
                                 <h:outputText value="#{elem.id}" />
                             </p:column>           
@@ -58,19 +59,19 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                                 <h:outputText value="#{elem.name}" />
                             </p:column>                   
                         </p:dataTable>                   
-                        <p:commandButton class="boton" value="Asociar Equipo"  actionListener="#{editarEquipo.dosomething()}" update="asociar"/>
+                        <p:commandButton class="boton" value="Asociar Equipo"   update="asociar"/>
                  </p:panel>              
              </h:form>               
         </div>
          <div class="compartidosmall">
             <div id="iconos" class="imggrandes">
 
-                <h:graphicImage library="images" value="../imagenes/keyboard.png" rendered="#{editarEquipo.elemento.tipo.toString()=='teclado'}"/>
+                <h:graphicImage library="images" value="../imagenes/keyboard.png" rendered="#{equipoBean.elemento.tipo.toString()=='teclado'}"/>
 
-                <h:graphicImage library="images" value="../imagenes/mouse.png" rendered="#{editarEquipo.elemento.tipo.toString()=='mouse'}"/>
+                <h:graphicImage library="images" value="../imagenes/mouse.png" rendered="#{equipoBean.elemento.tipo.toString()=='mouse'}"/>
 
-                <h:graphicImage library="images" value="../imagenes/monitor.png" rendered="#{editarEquipo.elemento.tipo.toString()=='pantalla'}"/>
-                <h:graphicImage library="images" value="../imagenes/tower.png" rendered="#{editarEquipo.elemento.tipo.toString()=='torre'}"/>     
+                <h:graphicImage library="images" value="../imagenes/monitor.png" rendered="#{equipoBean.elemento.tipo.toString()=='pantalla'}"/>
+                <h:graphicImage library="images" value="../imagenes/tower.png" rendered="#{equipoBean.elemento.tipo.toString()=='torre'}"/>     
             </div>
         </div>
     </div>
