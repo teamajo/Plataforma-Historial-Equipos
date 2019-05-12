@@ -19,8 +19,6 @@ import edu.eci.cvds.persistence.NovedadEquipoDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -179,7 +177,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
             
             NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
             NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,id,fechaActual,"sPe asocio el elemento","admin");
-            novedadElementoDAO.registrarNovedadElemento(novedadel); 
+             
             for (Elemento e:elementos){ 
                 
                 if(e!=null && e.getId()!=null ){
@@ -189,7 +187,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
                 }
             }
            elementoDAO.asociarEquipo(idEquipo, id);          
-           
+           novedadElementoDAO.registrarNovedadElemento(novedadel);
            // De esto habra un test.
            novedadEquipoDAO.registrarNovedadEquipo(novedad);
     } catch (PersistenceException ex) {
@@ -201,8 +199,8 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     try {
        java.util.Date fechaActual = new java.util.Date();
        NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo desasociacion", id,fechaActual,"se desasocio el equipo","admin");
-       novedadEquipoDAO.registrarNovedadEquipo(novedad);
        elementoDAO.desAsociarElemento(id);
+       novedadEquipoDAO.registrarNovedadEquipo(novedad);
     } catch (PersistenceException ex) {
       throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
     }
