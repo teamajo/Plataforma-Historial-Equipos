@@ -17,6 +17,16 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     </header>
   
     <h1>Agregar Equipo</h1>
+    <h:form id="general" class="formulario" style="max-width: 600px;">
+        <p:panel   header="Informacion General"  > 
+            <h:panelGrid columns="3" cellpadding="5" class="centrado">
+                <p:outputLabel for="text13" value="Nombre" />
+                <p:inputText id="text13" value="#{agregarEquipo.nuevoEquipo.name}" required="true"/>
+                <p:message for="text13" />            
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+    
     <div class="column">
      <div class="row">
     <h:form class="formulario" id="torreformulario" >
@@ -209,8 +219,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:form  id="proceso" class="final formulario">
          <p:messages id="messages" />
         <p:commandButton class="boton" value="Registrar Equipo" actionListener="#{agregarEquipo.registrarEquipo}" 
-                         update="@form :torreformulario,@form :pantallaformulario,@form :tecladoformulario,@form :mouseformulario,@this"
-                         partialSubmit="true"  process="@this, :torreformulario, :pantallaformulario, :tecladoformulario, :mouseformulario" ></p:commandButton>
+                         update="@form :torreformulario,@form :pantallaformulario,@form :tecladoformulario,@form :mouseformulario,@form :general,@this"
+                         partialSubmit="true"  process="@this, :torreformulario, :pantallaformulario, :tecladoformulario, :mouseformulario, :general" ></p:commandButton>
     </h:form>
    
     

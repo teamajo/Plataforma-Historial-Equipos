@@ -130,7 +130,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	
 	@Override
   @Transactional
-	public void registrarEquipo(Equipo equipo) throws ServicesException{
+    public void registrarEquipo(Equipo equipo) throws ServicesException{
     try {
       equipoDAO.registrarEquipo(equipo);
       Integer idEquipo = maxIdEquipo();
@@ -142,11 +142,9 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
           registrarElemento(e);
           idElemento= maxIdElemento();
         }else{
-          idElemento=e.getId();
-
-            
-        }
-        asociarEquipo( idEquipo,buscarElemento(idElemento));  // No deberia enviar el Tipo
+          idElemento=e.getId();            
+        }     
+        asociarEquipo( idEquipo, buscarElemento(idElemento));  // No deberia enviar el Tipo
       }
         NovedadEquipo novedadeq = new NovedadEquipo(null,"novedad equipo registar",idEquipo,fechaActual,"se registro el equipo","admin");
         novedadEquipoDAO.registrarNovedadEquipo(novedadeq);
@@ -166,6 +164,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
       java.util.Date fechaActual = new java.util.Date();      
       Equipo equi = buscarEquipoPorId(idEquipo);
       List<Elemento> elementos = equi.getComponets();
+      // ?? Esto que ??
       NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
       NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,el.getId(),fechaActual,"sPe asocio el elemento","admin");
       
@@ -390,9 +389,9 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
   }
 
   @Override
-    public void buscarEquiposDisponibles() throws ServicesException {
+    public  List<Equipo> buscarEquiposDisponibles() throws ServicesException {
     try { 
-        equipoDAO.buscarEquiposDisponibles();
+        return equipoDAO.buscarEquiposDisponibles();
 
     } catch (PersistenceException ex) {
             throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);

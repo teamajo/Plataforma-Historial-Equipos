@@ -88,9 +88,9 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 	}
 
 	@Override
-	public void buscarEquiposDisponibles() throws PersistenceException {
+	public List<Equipo> buscarEquiposDisponibles() throws PersistenceException {
 		try {
-			equipoMapper.buscarEquiposDisponibles();
+			return equipoMapper.buscarEquiposDisponibles();
 	   } catch (Exception ex) {
 		   throw new PersistenceException(ex.getMessage(), ex);
 	   }

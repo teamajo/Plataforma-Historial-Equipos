@@ -15,7 +15,7 @@ public interface EquipoDAO{
     public void darBajaEquipo(Integer id) throws PersistenceException;
     public void asociarEquipoAlab(Integer idEquipo,Integer id)throws PersistenceException ;
     public void desAsociarEquipoAlab(Integer idEquipo) throws PersistenceException;
-    public void buscarEquiposDisponibles() throws PersistenceException;
+    public List<Equipo> buscarEquiposDisponibles() throws PersistenceException;
     
     
 

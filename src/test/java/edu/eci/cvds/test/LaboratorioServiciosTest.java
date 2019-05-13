@@ -47,7 +47,7 @@ public class LaboratorioServiciosTest {
     
     private static int idEquimax=0;  
     private LaboratorioServices serviciosLab;
-   
+    private static boolean st=true;
     
     
     
@@ -117,7 +117,7 @@ public class LaboratorioServiciosTest {
                 try {
                     serviciosLab.registrarEquipo(eq);
                     idEquimax++;
-                   
+             
                     return true;
                 } catch (ServicesException ex) {
                     Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -163,7 +163,7 @@ public class LaboratorioServiciosTest {
                 try {
                     serviciosLab.registrarEquipo(eq);
                     idEquimax++;                         
-                    return serviciosLab.buscarNovedadesPorEquipo(idEquimax).size()>0 && serviciosLab.buscarNovedadesDeElementosPorEquipos(idEquimax).size()>3;
+                    return serviciosLab.buscarNovedadesDeElementosPorEquipos(idEquimax).size()>3;
                 } catch (ServicesException ex) {
                     Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
                     return false;
@@ -196,6 +196,9 @@ public class LaboratorioServiciosTest {
            
         ); 
     }
+    
+    
+    
     /*
     @Test
     public void noPoderAsociarTest(){
@@ -269,32 +272,7 @@ public class LaboratorioServiciosTest {
             Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    @Test
-    public void noPoderAsociarTest(){
-        Elemento torre=new Elemento(null, Tipo.torre, "abs", null, "asda");
-        Elemento pantalla=new Elemento(null, Tipo.pantalla, "abs", null, "asda");
-        Elemento mouse=new Elemento(null, Tipo.mouse, "abs", null, "asda");
-        Elemento teclado=new Elemento(null, Tipo.teclado, "abs", null, "asda");
-        try {
-            Equipo eq=new Equipo(null, 1, torre, pantalla, mouse, teclado, "Preuba");
-            serviciosLab.registrarEquipo(eq);
-            idEquimax++; 
-            
-            Equipo eqb=serviciosLab.buscarEquipoPorId(idEquimax);
-            torre=serviciosLab.buscarElemento(eqb.getTorre().getId());
-             System.out.println("XXXXXX-------XXXXXXXXX");
-            System.out.println(eqb.getId()+" && "+idEquimax+" Este es el id ; y el id de la torre: "+ torre.getId());
-              System.out.println("XXXXXXXXXX-----XXXXX");
-            serviciosLab.darBajaEquipo(eqb.getId());            
-            serviciosLab.asociarEquipo(eqb.getId(), torre);         
-            
-        } catch (PersistenceException ex) {
-            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ServicesException ex) {
-            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
+  
     
     
     
