@@ -169,7 +169,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
       NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
       NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,el.getId(),fechaActual,"sPe asocio el elemento","admin");
       
-      if(equi.isActivo()){
+      if(equi.isActivo() && el.isActivo()){
         for (Elemento e:elementos){ 
           if(e!=null && e.getId()!=null ){
             if (e.getTipo() == el.getTipo()){
@@ -191,7 +191,8 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
   public void desAsociarElemento(Integer id) throws ServicesException {
     try {
        java.util.Date fechaActual = new java.util.Date();
-       NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo desasociacion", id,fechaActual,"se desasocio el equipo","admin");
+       Integer idEquipo = buscarElemento(id).getIdEquipo();
+       NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo desasociacion", idEquipo,fechaActual,"se desasocio el equipo","admin");
        elementoDAO.desAsociarElemento(id);
        novedadEquipoDAO.registrarNovedadEquipo(novedad);
     } catch (PersistenceException ex) {
@@ -284,14 +285,14 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 
 	@Override
 	public void darBajaEquipo(Integer id) throws ServicesException {
-		try {
+	try {
       //java.util.Date fechaActual = new java.util.Date();
       //NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo darBajaEquipo", id,fechaActual,"se dio de baja el equipo","admin");
       //novedadEquipoDAO.registrarNovedadEquipo(novedad);
-      equipoDAO.darBajaEquipo(id);
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-		}
+            equipoDAO.darBajaEquipo(id);
+        } catch (PersistenceException ex) {
+                throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+        }
 	}
 
 	@Override
@@ -349,53 +350,53 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
       }
   }
   @Override
-	public void darBajaLaboratorio(Integer id) throws ServicesException {
-		try { 
+    public void darBajaLaboratorio(Integer id) throws ServicesException {
+    try { 
       List<Equipo> equiposLab = buscarLaboratorioPorID(id).getEquipos();
       for (Equipo e : equiposLab){
         desAsociarEquipoAlab(e.getId());
       }
       laboratorioDAO.darBajaLaboratorio(id);
 
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-		}
+        } catch (PersistenceException ex) {
+                throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+        }
   }
   @Override
-	public void asociarEquipoAlab(Integer idEquipo, Integer id) throws ServicesException {
-		try { 
-      Equipo eq = buscarEquipoPorId(idEquipo);
-      if (eq.isActivo()){
-        if (eq.getlab() != null){
-          desAsociarEquipoAlab(idEquipo);
+    public void asociarEquipoAlab(Integer idEquipo, Integer id) throws ServicesException {
+    try { 
+        Equipo eq = buscarEquipoPorId(idEquipo);
+        if (eq.isActivo()){
+            if (eq.getlab() != null){
+                desAsociarEquipoAlab(idEquipo);
+            }
+            equipoDAO.asociarEquipoAlab(idEquipo,id);
         }
-        equipoDAO.asociarEquipoAlab(idEquipo,id);
-      }
       
 
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-		}
+        } catch (PersistenceException ex) {
+                throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+        }
   }
 
   @Override
-	public void desAsociarEquipoAlab(Integer idEquipo) throws ServicesException {
-		try { 
+    public void desAsociarEquipoAlab(Integer idEquipo) throws ServicesException {
+    try { 
       equipoDAO.desAsociarEquipoAlab(idEquipo);
 
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-		}
+    } catch (PersistenceException ex) {
+            throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+    }
   }
 
   @Override
-	public void buscarEquiposDisponibles() throws ServicesException {
-		try { 
-      equipoDAO.buscarEquiposDisponibles();
+    public void buscarEquiposDisponibles() throws ServicesException {
+    try { 
+        equipoDAO.buscarEquiposDisponibles();
 
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-		}
+    } catch (PersistenceException ex) {
+            throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+    }
   }
 
 }
