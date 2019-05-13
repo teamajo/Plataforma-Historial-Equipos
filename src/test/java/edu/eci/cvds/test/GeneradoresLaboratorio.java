@@ -8,7 +8,7 @@ package edu.eci.cvds.test;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.entities.Tipo;
-import edu.eci.cvds.persistence.PersistenceException;
+import edu.eci.cvds.services.ServicesException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -66,7 +66,7 @@ public class GeneradoresLaboratorio {
             eq.setPantalla(p);
             eq.setTeclado(te);
             eq.setTorre(to);
-         } catch (PersistenceException e) {
+         } catch (ServicesException e) {
             // TODO Auto-generated catch block
             Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, e);
          }
