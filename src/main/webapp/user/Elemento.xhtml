@@ -8,6 +8,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
  <title>Plataformas Historial de Equipos</title>
  <link rel="stylesheet" type="text/css" href="../css/general.css"/>
  <link rel="stylesheet" type="text/css" href="../css/agregarElemento.css"/>  
+ <link rel="stylesheet" type="text/css" href="../css/editarEquipo.css"/>  
 </h:head>
 <h:body>
     <header>
@@ -15,8 +16,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
             <ui:include src="../header.xhtml" />
          </ui:insert>
     </header>    
-    <h1>Elemento #{equipoBean.elemento.name} (#{equipoBean.elemento.tipo})</h1>
-    <p:outputLabel rendered=""><h1> </h1></p:outputLabel>
+    <h1>Elemento #{equipoBean.elemento.id} #{equipoBean.elemento.name} (#{equipoBean.elemento.tipo})</h1>
+    <p:outputLabel rendered="#{equipoBean.elemento.idEquipo!=null}"><h1> Pertenece a : #{equipoBean.elemento.idEquipo} </h1></p:outputLabel>
     <div class="compartido">
        
         <div>

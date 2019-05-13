@@ -51,18 +51,18 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                     <h:outputText value="#{elem.tipo}" />
                 </p:column>
 
-                  <p:column headerText="Inspeccionar" class="mediado">
-                    <p:button class="gridcenter" value="Ver Elemento" />
-                </p:column>
 
-                <p:column headerText="Equipo Asociado" sortBy="#{elem.idEquipo}" class="ancho">
+
+                <p:column filterBy="#{elem.idEquipo}" headerText="Equipo Asociado" sortBy="#{elem.idEquipo}" class="ancho">
                     <h:outputText value="#{elem.idEquipo}" />
                 </p:column>
 
-
-                <p:column headerText="VerElemento" class="mediado">
-                    <p:button class="centre" value="Ver Elemento" />
+                <p:column headerText="Inspeccionar" class="mediado">
+                    <p:commandButton value="Ver Elemento"  type="submit" action="#{equipoBean.seleccionarElemento()}" process="@this" >
+                         <f:param name="elementoID" value="#{elem.id}" />
+                    </p:commandButton>
                 </p:column>
+             
 
             </p:dataTable>
              <p:panel  class="gridcenter" style="max-width: 600px;" id="darbajapc" header="Dar de Baja">
@@ -71,7 +71,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
             </p:panel>
             <p:dialog class="dialog centre" header="Dar de Baja a Elementos : Esta seguro?" widgetVar="dlg2" modal="true" height="100">
                 <p:commandButton class="boton" value="Si" actionListener = "#{agregarElemento.darBajaElementos()}" onclick="PF('dlg2').hide();" />
-
+                
                 <p:commandButton value="Cancelar" class="cancelar" type="button" onclick="PF('dlg2').hide();" />
             </p:dialog>
 

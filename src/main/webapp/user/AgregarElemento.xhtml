@@ -7,7 +7,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
  <title>Plataformas Historial de Equipos</title>
  <link rel="stylesheet" type="text/css" href="../css/general.css"/>
- <link rel="stylesheet" type="text/css" href="../css/agregarElemento.css"/>  
+
+
 </h:head>
 <h:body>
     <header>
@@ -20,7 +21,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
   
     <h:form id="formulario" class="formulario">
         <h:panelGroup id="imag" class="campos">              
-            <div id="iconos" class="imggrandes">
+            <div id="iconos" class="imgmedianas">
                 
                 <h:graphicImage library="images" value="../imagenes/cual.png" rendered="#{agregarElemento.nuevoElemento.tipo.toString()==null or agregarElemento.nuevoElemento.tipo.toString()=='null' }"/>
 
@@ -34,7 +35,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
               
            </div>
         </h:panelGroup> 
-        <p:panel id="panel" header="Datos del Elemento">
+        <p:panel id="panel" header="Datos del Elemento" class="campos" style="max-width: 600px;">
             <p:messages id="messages" />
             <h:panelGrid columns="3" cellpadding="5">
                 

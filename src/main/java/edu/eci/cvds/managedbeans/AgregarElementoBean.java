@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -20,7 +21,7 @@ import javax.faces.bean.ViewScoped;
  */
 @SuppressWarnings("agregarElemento")
 @ManagedBean(name = "agregarElemento")
-@ViewScoped
+@SessionScoped
 public class AgregarElementoBean extends BasePageBean {
 
     @Inject
@@ -111,9 +112,8 @@ public class AgregarElementoBean extends BasePageBean {
         }
     }
   
-
+    
   
-	
 
     
 }

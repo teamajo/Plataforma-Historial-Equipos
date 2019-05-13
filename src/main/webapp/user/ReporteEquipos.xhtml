@@ -24,8 +24,8 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h1>Reporte de Equipo</h1>
 
-    <h:form>
-            <p:dataTable id="equipos" var="equipo" value="#{equipoBean.buscarEquipos()}" paginator="true"
+    <h:form id="tablaequipos">
+        <p:dataTable id="equipos" var="equipo" value="#{equipoBean.buscarEquipos()}" paginator="true"
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
                  rows="15" class="lista" selectionMode="multiple" selection = "#{equipoBean.seleccionados}" rowKey="#{equipo.id}" >
 
@@ -51,7 +51,9 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                 </p:column>
 
                 <p:column headerText="Inspeccionar " class="mediado">
-                    <p:commandButton value="Ver Equipo"  action="#{equipoBean.seleccionarEquipo(equipo)}" process="@this" />
+                    <p:commandButton value="Ver Equipo"  action="#{equipoBean.seleccionarEquipo()}" process="@this" >
+                         <f:param name="equipoID" value="#{equipo.id}" />
+                    </p:commandButton>
                 </p:column>
 
 
@@ -60,12 +62,17 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
             <p:outputLabel value="Seleccione Equipos con Ctrl/Shift + click: " style="margin-right: 10px;"/>
              <p:commandButton value="Dar de Baja" type="button" onclick="PF('dlg2').show();" />
         </p:panel>
+    </h:form>
+    <h:form>
+        
         <p:dialog class="dialog centre" header="Dar de Baja a Equipos Seleccionados" widgetVar="dlg2" modal="true" height="100">
-            <p:commandButton class="boton" value="Con Elementos"  actionListener = "#{equipoBean.darBajaEquiposConElementos()}" onclick="PF('dlg2').hide();" update = "equipos" />
-            <p:commandButton class="boton" value="Sin Elementos" actionListener = "#{equipoBean.darBajaEquiposSinElementos()}" onclick="PF('dlg2').hide();" update = "equipos" />
+            <p:commandButton class="boton" value="Con Elementos"  actionListener = "#{equipoBean.darBajaEquiposConElementos()}" onclick="PF('dlg2').hide();" 
+                             update = "@form :tablaequipos" />
+            <p:commandButton class="boton" value="Sin Elementos" actionListener = "#{equipoBean.darBajaEquiposSinElementos()}" onclick="PF('dlg2').hide();"
+                             update = "@form :tablaequipos" partialSubmit="true"  process="@this,:tablaequipos" />
            <p:commandButton value="Cancelar" type="button" onclick="PF('dlg2').hide();" />
         </p:dialog>
 
-        </h:form>
+    </h:form>
 </h:body>
 </html>

@@ -11,6 +11,9 @@ import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ViewScoped;
 
 
@@ -34,6 +37,8 @@ public class AgregarEquipoBean extends BasePageBean {
     private boolean buscarP;
     private boolean buscarM;
     private boolean buscarT;
+   
+    
 
     public AgregarEquipoBean() throws PersistenceException {
         nuevoEquipo = new Equipo();
@@ -159,6 +164,6 @@ public class AgregarEquipoBean extends BasePageBean {
               
     }
       
-   
+ 
   
 }

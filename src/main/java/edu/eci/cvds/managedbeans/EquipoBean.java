@@ -10,6 +10,10 @@ import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
 
 
 /**
@@ -27,6 +31,7 @@ public class EquipoBean extends BasePageBean {
     private Equipo equipo;   
  
     private Elemento elemento;
+    
     
     private List<Equipo> equipos;
 
@@ -52,12 +57,6 @@ public class EquipoBean extends BasePageBean {
         this.idElemento = idElemento;
     }
       
-    public void remplaceElemento(){
-    
-    }
-
- 
-
 
     /**
      * @return the equipo
@@ -82,26 +81,47 @@ public class EquipoBean extends BasePageBean {
         this.equipo = equipo;
     }
 
-    public String seleccionarEquipo(Equipo equipo){
-        setEquipo(equipo);
-        return "Equipo.xhtml?faces-redirect=true";      
+    public String seleccionarEquipo(){
+        try {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            Map<String,String> params =
+                    fc.getExternalContext().getRequestParameterMap();
+            String productIdString =  params.get("equipoID");
+            int id = Integer.parseInt(productIdString);
+            setEquipo(laboratorioServices.buscarEquipoPorId(id));      
+          
+        } catch (ServicesException ex) {
+            Logger.getLogger(EquipoBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "Equipo.xhtml?faces-redirect=true";
     }
     
-    public String seleccionarElemento(Elemento elemento){
+    public String editarElemento(Elemento elemento){
         setElemento(elemento);
         return "EditarEquipo.xhtml?faces-redirect=true";   
     }
+    
 
-
-
-     public List<Equipo> buscarEquipos() throws Exception{
-         if(equipos==null){
-             equipos=laboratorioServices.buscarEquipos();
-         }
-        return equipos;
-        
-        
+	
+    
+     public String seleccionarElemento(){
+        try {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            Map<String,String> params =
+                    fc.getExternalContext().getRequestParameterMap();
+            String productIdString =  params.get("elementoID");
+            int id = Integer.parseInt(productIdString);
+            setElemento(laboratorioServices.buscarElemento(id));   
+          
+        } catch (ServicesException ex) {
+            Logger.getLogger(EquipoBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "Elemento.xhtml?faces-redirect=true";
     }
+
+
+
+    
 
     /**
      * @return the seleccionados
@@ -128,6 +148,7 @@ public class EquipoBean extends BasePageBean {
             }
             laboratorioServices.darBajaEquipo(e.getId());
         }
+        refresh();
     } 
 
     public void darBajaEquiposSinElementos()  throws Exception{
@@ -140,9 +161,29 @@ public class EquipoBean extends BasePageBean {
             }
             laboratorioServices.darBajaEquipo(e.getId());
         }
+        refresh();
     } 
 
-
+    public List<Equipo> buscarEquipos(){
+       if (equipos==null){
+           try {    
+               equipos=laboratorioServices.buscarEquipos();
+           } catch (ServicesException ex) {
+               Logger.getLogger(EquipoBean.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+           
+        return equipos;       
+        
+    }
+    
+    public void refresh(){
+        try {
+            equipos=laboratorioServices.buscarEquipos();
+        } catch (ServicesException ex) {
+            Logger.getLogger(AgregarEquipoBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 
 }

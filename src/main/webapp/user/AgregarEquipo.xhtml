@@ -210,7 +210,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
          <p:messages id="messages" />
         <p:commandButton class="boton" value="Registrar Equipo" actionListener="#{agregarEquipo.registrarEquipo}" 
                          update="@form :torreformulario,@form :pantallaformulario,@form :tecladoformulario,@form :mouseformulario,@this"
-                          partialSubmit="true"  process="@this :torreformulario, :pantallaformulario, :tecladoformulario, :mouseformulario"></p:commandButton>
+                         partialSubmit="true"  process="@this, :torreformulario, :pantallaformulario, :tecladoformulario, :mouseformulario" ></p:commandButton>
     </h:form>
    
     
