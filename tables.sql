@@ -8,9 +8,9 @@ CREATE TABLE users (
 );
 
 CREATE TABLE equipo (
-	id int4 serial NOT NULL,
-	lab varchar(10) NOT NULL,
-	name varchar(10) ,
+	id serial NOT NULL,
+	lab int4  NULL,
+	name varchar,
 	activo bool NULL DEFAULT true,
 	CONSTRAINT equipo_pkey PRIMARY KEY (id)
 );
@@ -51,4 +51,13 @@ CREATE TABLE novedadelemento (
 	CONSTRAINT novedadelemento_pkey PRIMARY KEY (id),
 	CONSTRAINT fk_novedadelementoequipo FOREIGN KEY (idequipo) REFERENCES equipo(id),
 	CONSTRAINT fk_novedadelementoelemento FOREIGN KEY (idelemento) REFERENCES elemento(id)
+);
+
+CREATE TABLE laboratorio (
+	id serial NOT NULL,
+	activo bool NULL DEFAULT true,
+	name varchar NULL,
+	fechacreacion date NOT NULL,
+	fechacierre date NULL,
+	CONSTRAINT laboratorio_pkey PRIMARY KEY (id)
 );

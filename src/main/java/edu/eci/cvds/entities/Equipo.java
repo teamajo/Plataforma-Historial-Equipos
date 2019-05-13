@@ -12,7 +12,7 @@ import edu.eci.cvds.persistence.PersistenceException;
 
  public class Equipo {
     private Integer id;
-    private String lab;
+    private Integer lab;
     private boolean activo;
     private Elemento torre;
     private Elemento pantalla;
@@ -20,7 +20,7 @@ import edu.eci.cvds.persistence.PersistenceException;
     private Elemento teclado;
     private String name;
 
-    public Equipo(Integer id, String lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado,String name)throws PersistenceException {
+    public Equipo(Integer id, Integer lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado,String name)throws PersistenceException {
         this.id = id;
         this.lab = lab;
         setTorre(torre);
@@ -33,7 +33,7 @@ import edu.eci.cvds.persistence.PersistenceException;
 
     
 
-    public Equipo(Integer id, String lab) {
+    public Equipo(Integer id, Integer lab) {
         this.id = id;
         this.lab = lab;
         activo=true;
@@ -67,7 +67,7 @@ import edu.eci.cvds.persistence.PersistenceException;
     /**
      * @return the lab
      */
-    public String getlab() {
+    public Integer getlab() {
         return lab;
     }
 
@@ -75,7 +75,7 @@ import edu.eci.cvds.persistence.PersistenceException;
      * 
      * @param lab
      */
-    public final void setLab(String lab) {
+    public final void setLab(Integer lab) {
         this.lab = lab;
     }
 

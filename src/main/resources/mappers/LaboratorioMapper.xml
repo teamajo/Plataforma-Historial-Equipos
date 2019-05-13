@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.LaboratorioMapper">
+
+	<resultMap type='Laboratorio' id='LaboratorioResult'>
+		<id property='id' column='id' />
+		<result property='name' column='name' />
+		<result property='activo' column='acel' />
+		<result property='fechaCreacion' column='fCre' />
+		<result property='fechaCierre' column='fCie' />
+		<collection property='equipos' ofType='Equipo' columnPrefix='eq_' resultMap = '"edu.eci.cvds.persistence.mybatisimpl.mappers.EquipoMapper.EquipoResult' ></collection>	
+	</resultMap>
+
+
+	
+		<select id="buscarLaboratorios" resultMap="LaboratorioResult">
+			select 
+					l.id as idlab,
+					l.name as nalab,
+					l.activo as aclab,
+					l.fechaCreacion as fCre,
+					l.fechaCierre as fCie,
+					e.id as eq_ideq,
+					e.activo as eq_aceq,
+					e.lab as eq_laeq,
+					e.name as eq_naeq,
+					p.id as pa_id,
+					p.name as pa_name,
+					p.descripcion as pa_desc,
+					p.idequipo as pa_ideq,
+					p.tipo as pa_tipo,
+					m.id as mo_id,
+					m.name as mo_name,
+					m.descripcion as mo_desc,
+					m.idequipo as mo_ideq,
+					m.tipo as mo_tipo,
+					t.id as torre_id,
+					t.name as torre_name,
+					t.idequipo as torre_ideq,
+					t.descripcion as torre_desc,
+					t.tipo as torre_tipo,
+					k.id as ke_id,
+					k.name as ke_name,
+					k.idequipo as ke_ideq,
+					k.descripcion as ke_desc,
+					k.tipo as ke_tipo
+				from laboratorio l
+				left outer join Equipo as e on e.lab = l.id
+				left outer join elemento as p on p.idequipo = e.id and p.tipo='pantalla'
+				left outer join elemento as m on m.idequipo = e.id and m.tipo='mouse'
+				left outer join elemento as t on t.idequipo = e.id and t.tipo='torre'
+				left outer join elemento as k on k.idequipo = e.id and k.tipo='teclado'
+		</select>
+
+		<select id="buscarLaboratorioPorID" resultMap="LaboratorioResult">
+			select 
+					l.id as idlab,
+					l.name as nalab,
+					l.activo as aclab,
+					l.fechaCreacion as fCre,
+					l.fechaCierre as fCie,
+					e.id as eq_ideq,
+					e.activo as eq_aceq,
+					e.lab as eq_laeq,
+					e.name as eq_naeq,
+					p.id as pa_id,
+					p.name as pa_name,
+					p.descripcion as pa_desc,
+					p.idequipo as pa_ideq,
+					p.tipo as pa_tipo,
+					m.id as mo_id,
+					m.name as mo_name,
+					m.descripcion as mo_desc,
+					m.idequipo as mo_ideq,
+					m.tipo as mo_tipo,
+					t.id as torre_id,
+					t.name as torre_name,
+					t.idequipo as torre_ideq,
+					t.descripcion as torre_desc,
+					t.tipo as torre_tipo,
+					k.id as ke_id,
+					k.name as ke_name,
+					k.idequipo as ke_ideq,
+					k.descripcion as ke_desc,
+					k.tipo as ke_tipo
+				from laboratorio l
+				left outer join Equipo as e on e.lab = l.id
+				left outer join elemento as p on p.idequipo = e.id and p.tipo='pantalla'
+				left outer join elemento as m on m.idequipo = e.id and m.tipo='mouse'
+				left outer join elemento as t on t.idequipo = e.id and t.tipo='torre'
+				left outer join elemento as k on k.idequipo = e.id and k.tipo='teclado'
+				WHERE l.id = #{id}
+		</select>
+
+		<insert id="registrarLaboratorio" parameterType="edu.eci.cvds.entities.Laboratorio" >
+        insert into LABORATORIO (name,fechaCreacion) values (#{name},#{fechaCreacion})
+    </insert>
+
+		<select id="maxIdLaboratorio" resultType="int">
+       SELECT MAX(id) FROM LABORATORIO
+   </select>
+
+	 <update id="darBajaLaboratorio" parameterType="map" >
+		UPDATE LABORATORIO SET
+			activo = false
+		WHERE id = #{id}
+		</update>
+
+		<update id="activarLaboratorio" parameterType="map" >
+		UPDATE LABORATORIO SET
+			activo = true
+		WHERE id = #{id}
+		</update>
+
+
+
+
+
+</mapper>

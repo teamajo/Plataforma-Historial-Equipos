@@ -2,11 +2,10 @@ package edu.eci.cvds.services;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
-import edu.eci.cvds.entities.Tipo;
+import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.entities.NovedadElemento;
 import edu.eci.cvds.entities.NovedadEquipo;
 
@@ -24,7 +23,7 @@ public interface LaboratorioServices {
 
     public List<Elemento> elementosDisponibles() throws ServicesException;
 
-    public void asociarEquipo(int idEquipo,int id,Tipo tipo) throws ServicesException;
+    public void asociarEquipo(int idEquipo,Elemento elemento) throws ServicesException;
 
     public void desAsociarElemento(int id) throws ServicesException;
     
@@ -57,5 +56,19 @@ public interface LaboratorioServices {
     public void darBajaEquipo(int id) throws ServicesException;
     
     public void darBajaElemento(int id) throws ServicesException;
+
+    public List<Laboratorio> buscarLaboratorios() throws ServicesException ;
+
+    public List<Laboratorio> buscarLaboratorioPorID(Integer id) throws ServicesException;
+
+    public int maxIdLaboratorio() throws ServicesException;
+
+    public void registrarLaboratorio(Laboratorio laboratorio) throws ServicesException;
+
+    public void darBajaLaboratorio(Integer id) throws ServicesException;
     
+    public void asociarEquipoAlab(Integer idEquipo, Integer id) throws ServicesException;
+
+    public void desAsociarEquipoAlab(Integer idEquipo) throws ServicesException ;
+
 }

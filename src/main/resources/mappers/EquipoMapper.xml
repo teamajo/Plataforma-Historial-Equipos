@@ -111,7 +111,7 @@
 		</select>
 
     <insert id="registrarEquipo" parameterType="edu.eci.cvds.entities.Equipo" >
-        insert into EQUIPO(lab) values (#{lab})
+        insert into EQUIPO(lab,name) values (#{lab},#{name})
     </insert>
 
 		<select id="maxIdEquipo" resultType="int">
@@ -128,6 +128,18 @@
 		UPDATE EQUIPO SET
 			activo = true
 		WHERE id = #{id}
+		</update>
+
+		<update id="asociarEquipoAlab" parameterType="map" >
+		UPDATE EQUIPO SET
+			lab = #{id}
+		WHERE id = #{idEquipo}
+		</update>
+
+		<update id="desAsociarEquipoAlab" parameterType="map" >
+		UPDATE EQUIPO SET
+			idEquipo = null
+		WHERE id = #{idEquipo}
 		</update>
 
 

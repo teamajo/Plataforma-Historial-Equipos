@@ -108,22 +108,8 @@ public class AgregarElementoBean extends BasePageBean {
     }  
 
     public void darBajaElementos()  throws Exception{
-        String mensaje;
-        for (Elemento e:seleccionados){
-            FacesMessage.Severity fs=FacesMessage.SEVERITY_ERROR;
-            FacesMessage fm=new FacesMessage(fs,"",""); 
-            if (laboratorioServices.buscarElemento(e.getId()).getIdEquipo()==null){
-                //System.out.println(e.getId());
-                laboratorioServices.darBajaElemento(e.getId());
-                mensaje = "success !!";
-                fs=FacesMessage.SEVERITY_INFO;
-            }
-            mensaje = "No se puede dar de baja al elemento con id"+e.getId()+" !!";
-            fm.setSeverity(fs);
-            fm.setSummary(mensaje);      
-            FacesContext.getCurrentInstance().addMessage(null,fm);
-
-
+        for (Elemento e:seleccionados){ 
+            laboratorioServices.darBajaElemento(e.getId());
         }
     }
   

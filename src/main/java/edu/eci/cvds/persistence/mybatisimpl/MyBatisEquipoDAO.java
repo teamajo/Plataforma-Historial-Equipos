@@ -69,5 +69,23 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 		}
 	}
 
+	@Override
+	public void asociarEquipoAlab(int idEquipo, int id) throws PersistenceException {
+		try {
+			equipoMapper.asociarEquipoAlab(idEquipo,id);
+	   } catch (Exception ex) {
+		   throw new PersistenceException(ex.getMessage(), ex);
+	   }
+	}
+
+	@Override
+	public void desAsociarEquipoAlab(int idEquipo) throws PersistenceException {
+		try {
+			equipoMapper.desAsociarEquipoAlab(idEquipo);
+	   } catch (Exception ex) {
+		   throw new PersistenceException(ex.getMessage(), ex);
+	   }
+	}
+
 
 }

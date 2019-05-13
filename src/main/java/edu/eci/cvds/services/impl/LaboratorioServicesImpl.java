@@ -1,6 +1,5 @@
  package edu.eci.cvds.services.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.inject.Inject;
@@ -9,18 +8,17 @@ import org.mybatis.guice.transactional.Transactional;
 
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
-import edu.eci.cvds.entities.Tipo;
+import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.entities.NovedadElemento;
 import edu.eci.cvds.entities.NovedadEquipo;
 import edu.eci.cvds.persistence.ElementoDAO;
 import edu.eci.cvds.persistence.EquipoDAO;
+import edu.eci.cvds.persistence.LaboratorioDAO;
 import edu.eci.cvds.persistence.NovedadElementoDAO;
 import edu.eci.cvds.persistence.NovedadEquipoDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,6 +32,9 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     
     @Inject
     private NovedadEquipoDAO novedadEquipoDAO;
+
+    @Inject
+    private LaboratorioDAO laboratorioDAO;
     
     @Inject
     private NovedadElementoDAO novedadElementoDAO;
@@ -128,70 +129,60 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	  }
 	
 	@Override
-        @Transactional
+  @Transactional
 	public void registrarEquipo(Equipo equipo) throws ServicesException{
-            try {
-                equipoDAO.registrarEquipo(equipo);
-                int idEquipo = maxIdEquipo();
-                List<Elemento> elementos = new ArrayList<Elemento>();
-                int idElemento= 0;
-                elementos.add(equipo.getTorre());
-                elementos.add(equipo.getMouse());
-                elementos.add(equipo.getPantalla());
-                elementos.add(equipo.getTeclado());
-                java.util.Date fechaActual = new java.util.Date();
-                // List<Elemento> elementos=equipo.getComponets(); ??? <-----------
-                for (Elemento e:elementos){
-                    if(e.getId()==null){
-                        registrarElemento(e);
-                        
-                        idElemento= maxIdElemento();
-                    }else{
-                        idElemento=e.getId();
-                    }
-                    /**
-                        if(e.getId()==null){
-                           registrarElemento(e);
-                          e.setId(maxIdElemento());;
-                       }
-                     * 
-                     *  asociarEquipo( idEquipo,e);
-                     */
-                    asociarEquipo( idEquipo,idElemento,e.getTipo());  // No deberia enviar el Tipo
-                }
-                NovedadEquipo novedadeq = new NovedadEquipo(null,"novedad equipo registar",idEquipo,fechaActual,"se registro el equipo","admin");
-                novedadEquipoDAO.registrarNovedadEquipo(novedadeq);
-            } catch (PersistenceException ex) {
-                 throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
-            }
+    try {
+      equipoDAO.registrarEquipo(equipo);
+      int idEquipo = maxIdEquipo();
+      int idElemento= 0;
+      java.util.Date fechaActual = new java.util.Date();
+      List<Elemento> elementos=equipo.getComponets(); 
+      for (Elemento e:elementos){
+        if(e.getId()==null){
+          registrarElemento(e);
+          idElemento= maxIdElemento();
+        }else{
+          idElemento=e.getId();
+
+            
+        }
+        asociarEquipo( idEquipo,buscarElemento(idElemento));  // No deberia enviar el Tipo
+      }
+        NovedadEquipo novedadeq = new NovedadEquipo(null,"novedad equipo registar",idEquipo,fechaActual,"se registro el equipo","admin");
+        novedadEquipoDAO.registrarNovedadEquipo(novedadeq);
+      } catch (PersistenceException ex) {
+          throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
+      }
 	  }
 	  
         
     /// El tipo se deberia sacar del ID , que pasa si el ID es correcto y el tipo no ? al llamar al metodo ???
         // Siguiendo los comentarios de Registrar deberia llegar el elemento asociarEquipo(idEquipo,e) { 
   @Override
-  public void asociarEquipo(int idEquipo,int id,Tipo tipo) throws ServicesException {
+  public void asociarEquipo(int idEquipo,Elemento el) throws ServicesException {
     try {
-            Boolean flag = false;
-            // tipo = servicios
-            java.util.Date fechaActual = new java.util.Date();            
-            List<Elemento> elementos = buscarEquipoPorId(idEquipo).getComponets();
-            
-            NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
-            NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,id,fechaActual,"sPe asocio el elemento","admin");
-            novedadElementoDAO.registrarNovedadElemento(novedadel); 
-            for (Elemento e:elementos){ 
-                
-                if(e!=null && e.getId()!=null ){
-                    if (e.getTipo() == tipo){
-                        desAsociarElemento(e.getId());                                                   
-                    }
-                }
+      Boolean flag = false;
+      // tipo = servicios
+      java.util.Date fechaActual = new java.util.Date();      
+      Equipo equi = buscarEquipoPorId(idEquipo);
+      List<Elemento> elementos = equi.getComponets();
+      NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
+      NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,el.getId(),fechaActual,"sPe asocio el elemento","admin");
+      novedadElementoDAO.registrarNovedadElemento(novedadel); 
+      if(equi.isActivo()){
+        for (Elemento e:elementos){ 
+          if(e!=null && e.getId()!=null ){
+            if (e.getTipo() == el.getTipo()){
+              desAsociarElemento(e.getId());                                                   
             }
-           elementoDAO.asociarEquipo(idEquipo, id);          
-           
-           // De esto habra un test.
-           novedadEquipoDAO.registrarNovedadEquipo(novedad);
+          }
+        }
+        elementoDAO.asociarEquipo(idEquipo, el.getId());          
+        
+        // De esto habra un test.
+        novedadEquipoDAO.registrarNovedadEquipo(novedad);
+      }
+        
     } catch (PersistenceException ex) {
         Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -294,10 +285,10 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	@Override
 	public void darBajaEquipo(int id) throws ServicesException {
 		try {
-                    //java.util.Date fechaActual = new java.util.Date();
-                    //NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo darBajaEquipo", id,fechaActual,"se dio de baja el equipo","admin");
-                    //novedadEquipoDAO.registrarNovedadEquipo(novedad);
-                    equipoDAO.darBajaEquipo(id);
+      //java.util.Date fechaActual = new java.util.Date();
+      //NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo darBajaEquipo", id,fechaActual,"se dio de baja el equipo","admin");
+      //novedadEquipoDAO.registrarNovedadEquipo(novedad);
+      equipoDAO.darBajaEquipo(id);
 		} catch (PersistenceException ex) {
 			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
 		}
@@ -306,17 +297,85 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	@Override
 	public void darBajaElemento(int id) throws ServicesException {
 		try {
-                    //java.util.Date fechaActual = new java.util.Date();
-                    //NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento darBajaElemento",buscarElemento(id).getIdEquipo(),id,fechaActual,"se asocio el elemento","admin");
-                    //novedadElementoDAO.registrarNovedadElemento(novedadel); 
-                    elementoDAO.darBajaElemento(id);
-				
+        //java.util.Date fechaActual = new java.util.Date();
+        //NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento darBajaElemento",buscarElemento(id).getIdEquipo(),id,fechaActual,"se asocio el elemento","admin");
+        //novedadElementoDAO.registrarNovedadElemento(novedadel); 
+        if (buscarElemento(id).getIdEquipo()==null){
+          elementoDAO.darBajaElemento(id);
+        }
+
 		} catch (PersistenceException ex) {
 			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
 		}
-	}
-	
+  }
+  @Override
+	public List<Laboratorio> buscarLaboratorios() throws ServicesException {
+		try {
+        return laboratorioDAO.buscarLaboratorios();
 
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+		}
+  }
+  
+  @Override
+	public List<Laboratorio> buscarLaboratorioPorID(Integer id) throws ServicesException {
+		try {
+        return laboratorioDAO.buscarLaboratorioPorID(id);
+
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+		}
+  }
+  
+  @Override
+	public int maxIdLaboratorio() throws ServicesException {
+		try {
+			return laboratorioDAO.maxIdLaboratorio();
+	 } catch (PersistenceException ex) {
+		 throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+	 }
+  }
+  
+  @Override
+    public void registrarLaboratorio(Laboratorio laboratorio) throws ServicesException{
+    try {
+      java.util.Date fechaActual = new java.util.Date();
+      laboratorio.setFechaCreacion(fechaActual);
+      laboratorioDAO.registrarLaboratorio(laboratorio);
+        
+      }catch (PersistenceException ex) {
+      throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+      }
+  }
+  @Override
+	public void darBajaLaboratorio(Integer id) throws ServicesException {
+		try { 
+      laboratorioDAO.darBajaLaboratorio(id);
+
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+		}
+  }
+  @Override
+	public void asociarEquipoAlab(Integer idEquipo, Integer id) throws ServicesException {
+		try { 
+      equipoDAO.asociarEquipoAlab(idEquipo,id);
+
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+		}
+  }
+
+  @Override
+	public void desAsociarEquipoAlab(Integer idEquipo) throws ServicesException {
+		try { 
+      equipoDAO.desAsociarEquipoAlab(idEquipo);
+
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+		}
+  }
 
 
 }

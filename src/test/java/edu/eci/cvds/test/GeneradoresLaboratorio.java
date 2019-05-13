@@ -33,6 +33,7 @@ public class GeneradoresLaboratorio {
     public static Gen<String> cadenas(int min,int max){
         return  strings().betweenCodePoints(97, 122).ofLengthBetween(min,max);
     }
+
     
      public static Gen<Elemento> pantallas(){
       
@@ -55,7 +56,7 @@ public class GeneradoresLaboratorio {
      }
      
      public static Gen<Equipo> equipos(){
-        return cadenas(6,10).map((lab)-> new Equipo(null, lab));                 
+        return cadenas(6,10).map((lab) -> new Equipo(null, null));                 
      }
      
      public static Gen<Equipo> completoEquipos() {

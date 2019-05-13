@@ -16,10 +16,12 @@ import org.mybatis.guice.datasource.helper.JdbcHelper;
 
 import edu.eci.cvds.persistence.ElementoDAO;
 import edu.eci.cvds.persistence.EquipoDAO;
+import edu.eci.cvds.persistence.LaboratorioDAO;
 import edu.eci.cvds.persistence.NovedadElementoDAO;
 import edu.eci.cvds.persistence.NovedadEquipoDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisElementoDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisEquipoDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisLaboratorioDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisNovedadElementoDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisNovedadEquipoDAO;
 import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
@@ -58,6 +60,9 @@ public class LaboratorioServiciosFactory {
 				
 				//NovedadElemento 
                 bind(NovedadElementoDAO.class).to(MyBatisNovedadElementoDAO.class);
+
+                //Laboratorio
+				bind(LaboratorioDAO.class).to(MyBatisLaboratorioDAO.class);
 
            }
        });
