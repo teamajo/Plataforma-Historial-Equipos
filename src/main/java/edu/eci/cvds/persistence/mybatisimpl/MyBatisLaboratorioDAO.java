@@ -15,7 +15,7 @@ public class MyBatisLaboratorioDAO implements LaboratorioDAO {
     private LaboratorioMapper laboratorioMapper;
 
 	@Override
-	public  List<Laboratorio> buscarLaboratorioPorID(Integer id) throws PersistenceException {
+	public  Laboratorio buscarLaboratorioPorID(Integer id) throws PersistenceException {
 		try {
 			return laboratorioMapper.buscarLaboratorioPorID(id);
 		} catch (Exception e) {

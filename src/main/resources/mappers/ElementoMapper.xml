@@ -89,19 +89,19 @@
 		WHERE id = #{id}
 		</update>
 
-		<update id="desAsociarEquipo" parameterType="map" >
+		<update id="desAsociarElemento" parameterType="int" >
 		UPDATE ELEMENTO SET
 			idEquipo = null
 		WHERE id = #{id}
 		</update>
 
-		<update id="darBajaElemento" parameterType="map" >
+		<update id="darBajaElemento" parameterType="int" >
 		UPDATE ELEMENTO SET
 			activo = false
 		WHERE id = #{id}
 		</update>
 
-		<update id="activarElemento" parameterType="map" >
+		<update id="activarElemento" parameterType="int" >
 		UPDATE ELEMENTO SET
 			activo = true
 		WHERE id = #{id}

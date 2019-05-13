@@ -128,20 +128,24 @@ public class EquipoBean extends BasePageBean {
     // ??? Exception ???
     public void darBajaEquiposConElementos()  throws Exception{
         for (Equipo e:seleccionados){
-            laboratorioServices.darBajaEquipo(e.getId());
-            for (Elemento el: e.getComponets()){
+            List<Elemento> elementos = e.getComponets(); 
+            for (Elemento el: elementos){
                 laboratorioServices.desAsociarElemento(el.getId());
                 laboratorioServices.darBajaElemento(el.getId());
             }
+            laboratorioServices.darBajaEquipo(e.getId());
         }
     } 
 
     public void darBajaEquiposSinElementos()  throws Exception{
+
         for (Equipo e:seleccionados){
-            laboratorioServices.darBajaEquipo(e.getId());
-            for (Elemento el: e.getComponets()){
+            List<Elemento> elementos = e.getComponets();
+            for (Elemento el: elementos){
+                
                 laboratorioServices.desAsociarElemento(el.getId());
             }
+            laboratorioServices.darBajaEquipo(e.getId());
         }
     } 
 

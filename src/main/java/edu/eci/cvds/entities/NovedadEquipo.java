@@ -6,12 +6,14 @@ import java.util.Date;
 public class NovedadEquipo {
     private Integer id;
     private String titulo;
-    private Integer idEquipo;
-    private Date fecha;
-    private String descripcion;
-    private String responsable;
-    
-	public NovedadEquipo(Integer id, String titulo, Integer idEquipo, Date fecha, String descripcion, String responsable) {
+	private Integer idEquipo;
+	private Integer idElemento;
+	private Date fecha;
+	private String descripcion;
+	private String responsable;
+
+	public NovedadEquipo(Integer id, String titulo, Integer idEquipo, Date fecha, String descripcion,
+			String responsable) {
 		this.id = id;
 		this.titulo = titulo;
 		this.idEquipo = idEquipo;
@@ -19,6 +21,9 @@ public class NovedadEquipo {
 		this.descripcion = descripcion;
 		this.responsable = responsable;
 	}
+
+	
+
 	public NovedadEquipo() {
 		super();
 	}
@@ -58,6 +63,20 @@ public class NovedadEquipo {
 	}
 	public void setResponsable(String responsable) {
 		this.responsable = responsable;
+	}
+
+	/**
+	 * @return the idElemento
+	 */
+	public Integer getIdElemento() {
+		return idElemento;
+	}
+
+	/**
+	 * @param idElemento the idElemento to set
+	 */
+	public void setIdElemento(Integer idElemento) {
+		this.idElemento = idElemento;
 	}
 	
     @Override

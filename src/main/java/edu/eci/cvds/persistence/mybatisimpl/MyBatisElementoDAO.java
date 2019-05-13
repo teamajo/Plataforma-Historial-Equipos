@@ -62,7 +62,7 @@ public class MyBatisElementoDAO implements ElementoDAO {
 		}
 	}
 	@Override
-	public void asociarEquipo(int idEquipo,int id)throws PersistenceException {
+	public void asociarEquipo(Integer idEquipo,Integer id)throws PersistenceException {
 		try {
 		 elementoMapper.asociarEquipo(idEquipo,id);
 		} catch (Exception e) {
@@ -71,7 +71,7 @@ public class MyBatisElementoDAO implements ElementoDAO {
 	}
 
 	@Override
-	public int maxIdElemento() throws PersistenceException {
+	public Integer maxIdElemento() throws PersistenceException {
 		try {
 			return elementoMapper.maxIdElemento();
 		   } catch (Exception e) {
@@ -96,7 +96,7 @@ public class MyBatisElementoDAO implements ElementoDAO {
 	}
 
 	@Override
-	public void desAsociarElemento(int id) throws PersistenceException {
+	public void desAsociarElemento(Integer id) throws PersistenceException {
 		try {
 			 elementoMapper.desAsociarElemento(id);
 			} catch (Exception e) {
@@ -105,7 +105,7 @@ public class MyBatisElementoDAO implements ElementoDAO {
 	}
 
 	@Override
-	public void darBajaElemento(int id) throws PersistenceException {
+	public void darBajaElemento(Integer id) throws PersistenceException {
 		try {
 			elementoMapper.darBajaElemento(id);
 

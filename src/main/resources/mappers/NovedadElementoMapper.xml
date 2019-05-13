@@ -42,7 +42,7 @@
 					n.responsable
 				FROM
 					NOVEDADELEMENTO as n
-					WHERE n.idElemento = #{idEquipo}
+					WHERE n.idEquipo = #{idEquipo}
 		</select>
 		<select id="buscarNovedadesDeElementosPorElementos" resultMap="NovedadElementoResult"
 			parameterType="int">

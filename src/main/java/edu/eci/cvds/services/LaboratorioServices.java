@@ -11,7 +11,7 @@ import edu.eci.cvds.entities.NovedadEquipo;
 
 public interface LaboratorioServices {
 
-    public List<Elemento> buscarElementoPorEquipo(int idEquipo) throws ServicesException;
+    public List<Elemento> buscarElementoPorEquipo(Integer idEquipo) throws ServicesException;
 
     public List<Elemento> buscarElementos() throws ServicesException;
 
@@ -23,9 +23,9 @@ public interface LaboratorioServices {
 
     public List<Elemento> elementosDisponibles() throws ServicesException;
 
-    public void asociarEquipo(int idEquipo,Elemento elemento) throws ServicesException;
+    public void asociarEquipo(Integer idEquipo,Elemento elemento) throws ServicesException;
 
-    public void desAsociarElemento(int id) throws ServicesException;
+    public void desAsociarElemento(Integer id) throws ServicesException;
     
     public List<Equipo> buscarEquipoPorLab(String lab) throws ServicesException;
 
@@ -35,33 +35,33 @@ public interface LaboratorioServices {
 
     public void registrarEquipo(Equipo equipo) throws ServicesException;
 
-    public int maxIdEquipo() throws ServicesException;
+    public Integer maxIdEquipo() throws ServicesException;
 
-    public int maxIdElemento() throws ServicesException;
+    public Integer maxIdElemento() throws ServicesException;
     
-    public List<NovedadEquipo> buscarNovedadesPorEquipo(int idEquipo) throws ServicesException;
+    public List<NovedadEquipo> buscarNovedadesPorEquipo(Integer idEquipo) throws ServicesException;
     
     public List<NovedadEquipo> buscarNovedadesDeEquipos() throws ServicesException;
     
     public void registrarNovedadEquipo(NovedadEquipo novedad) throws ServicesException;
     
-    public List<NovedadElemento> buscarNovedadesDeElementosPorEquipos(int idEquipo) throws ServicesException;
+    public List<NovedadElemento> buscarNovedadesDeElementosPorEquipos(Integer idEquipo) throws ServicesException;
 
-    public List<NovedadElemento> buscarNovedadesDeElementosPorElementos(int idElemento) throws ServicesException;
+    public List<NovedadElemento> buscarNovedadesDeElementosPorElementos(Integer idElemento) throws ServicesException;
 
     public List<NovedadElemento> buscarNovedadesDeElementos() throws ServicesException;
     
     public void registrarNovedadElemento(NovedadElemento novedad) throws ServicesException;
 
-    public void darBajaEquipo(int id) throws ServicesException;
+    public void darBajaEquipo(Integer id) throws ServicesException;
     
-    public void darBajaElemento(int id) throws ServicesException;
+    public void darBajaElemento(Integer id) throws ServicesException;
 
     public List<Laboratorio> buscarLaboratorios() throws ServicesException ;
 
-    public List<Laboratorio> buscarLaboratorioPorID(Integer id) throws ServicesException;
+    public Laboratorio buscarLaboratorioPorID(Integer id) throws ServicesException;
 
-    public int maxIdLaboratorio() throws ServicesException;
+    public Integer maxIdLaboratorio() throws ServicesException;
 
     public void registrarLaboratorio(Laboratorio laboratorio) throws ServicesException;
 

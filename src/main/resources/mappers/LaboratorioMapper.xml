@@ -6,12 +6,12 @@
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.LaboratorioMapper">
 
 	<resultMap type='Laboratorio' id='LaboratorioResult'>
-		<id property='id' column='id' />
-		<result property='name' column='name' />
+		<id property='id' column='idlab' />
+		<result property='name' column='nalab' />
 		<result property='activo' column='acel' />
 		<result property='fechaCreacion' column='fCre' />
 		<result property='fechaCierre' column='fCie' />
-		<collection property='equipos' ofType='Equipo' columnPrefix='eq_' resultMap = '"edu.eci.cvds.persistence.mybatisimpl.mappers.EquipoMapper.EquipoResult' ></collection>	
+		<collection property='equipos' ofType='Equipo' columnPrefix='eq_' resultMap = 'edu.eci.cvds.persistence.mybatisimpl.mappers.EquipoMapper.EquipoResult' ></collection>	
 	</resultMap>
 
 

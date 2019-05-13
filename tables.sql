@@ -32,7 +32,7 @@ CREATE TABLE elemento (
 CREATE TABLE novedadequipo (
 	id serial NOT NULL,
 	titulo varchar NOT NULL,
-	idequipo int4 NULL,
+	idequipo int4 NOT NULL,
 	fecha Date NOT NULL,
 	descripcion varchar NOT NULL,
 	responsable varchar NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE novedadelemento (
 	id serial NOT NULL,
 	titulo varchar NOT NULL,
 	idequipo int4 NULL,
-	idelemento int4 NULL,
+	idelemento int4 NOT NULL,
 	fecha Date NOT NULL,
 	descripcion varchar NOT NULL,
 	responsable varchar NOT NULL,

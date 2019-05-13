@@ -138,7 +138,7 @@
 
 		<update id="desAsociarEquipoAlab" parameterType="map" >
 		UPDATE EQUIPO SET
-			idEquipo = null
+			lab = null
 		WHERE id = #{idEquipo}
 		</update>
 

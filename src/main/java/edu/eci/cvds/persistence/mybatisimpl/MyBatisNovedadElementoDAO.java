@@ -17,7 +17,7 @@ public class MyBatisNovedadElementoDAO implements NovedadElementoDAO{
     private NovedadElementoMapper novedadElementoMapper;
 	
 	@Override
-	public List<NovedadElemento> buscarNovedadesDeElementosPorEquipos(int idEquipo) throws PersistenceException {
+	public List<NovedadElemento> buscarNovedadesDeElementosPorEquipos(Integer idEquipo) throws PersistenceException {
         try {
 			return novedadElementoMapper.buscarNovedadesDeElementosPorEquipos(idEquipo);
 		} catch (Exception e) {
@@ -26,7 +26,7 @@ public class MyBatisNovedadElementoDAO implements NovedadElementoDAO{
 	}
 	
 	@Override
-	public List<NovedadElemento> buscarNovedadesDeElementosPorElementos(int idElemento) throws PersistenceException {
+	public List<NovedadElemento> buscarNovedadesDeElementosPorElementos(Integer idElemento) throws PersistenceException {
         try {
 			return novedadElementoMapper.buscarNovedadesDeElementosPorElementos(idElemento);
 		} catch (Exception e) {

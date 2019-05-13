@@ -9,8 +9,8 @@ import edu.eci.cvds.persistence.PersistenceException;
 
 public interface NovedadElementoMapper {
 
-    public List<NovedadElemento> buscarNovedadesDeElementosPorEquipos(@Param("idEquipo") int idEquipo) throws PersistenceException;
-    public List<NovedadElemento> buscarNovedadesDeElementosPorElementos(@Param("idElemento") int idElemento) throws PersistenceException;
+    public List<NovedadElemento> buscarNovedadesDeElementosPorEquipos(@Param("idEquipo") Integer idEquipo) throws PersistenceException;
+    public List<NovedadElemento> buscarNovedadesDeElementosPorElementos(@Param("idElemento") Integer idElemento) throws PersistenceException;
     public List<NovedadElemento> buscarNovedadesDeElementos() throws PersistenceException;  
     public void registrarNovedadElemento(NovedadElemento novedad) throws PersistenceException;
 	

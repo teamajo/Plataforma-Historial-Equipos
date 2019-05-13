@@ -7,17 +7,18 @@ public class Laboratorio{
 
     private Integer id;
     private String name;
-    private Boolean activo;
+    private boolean activo;
     private Date fechaCreacion;
     private Date fechaCierre;
     private List<Equipo> equipos;
 
     public Laboratorio() {
-
+        this.activo = true;
     }
 
-    public Laboratorio(Integer id, String name, Boolean activo, Date fechaCreacion, Date fechaCierre) {
-        setActivo(activo);
+
+    public Laboratorio(Integer id, String name, Date fechaCreacion, Date fechaCierre) {
+        this.activo = true;
         setFechaCierre(fechaCierre);
         setId(id);
         setName(name);
@@ -59,19 +60,6 @@ public class Laboratorio{
         this.fechaCreacion = fechaCreacion;
     }
 
-    /**
-     * @return the activo
-     */
-    public Boolean getActivo() {
-        return activo;
-    }
-
-    /**
-     * @param activo the activo to set
-     */
-    public void setActivo(Boolean activo) {
-        this.activo = activo;
-    }
 
     /**
      * @return the name
@@ -107,7 +95,20 @@ public class Laboratorio{
     public void setEquipos(List<Equipo> equipos) {
         this.equipos = equipos;
     }
+    
+    /**
+     * @return the activo
+     */
+    public boolean isActivo() {
+        return activo;
+    }
 
+    /**
+     * @param activo the activo to set
+     */
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 
 
 }

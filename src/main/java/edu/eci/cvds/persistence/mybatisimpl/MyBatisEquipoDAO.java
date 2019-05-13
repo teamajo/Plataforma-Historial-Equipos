@@ -43,7 +43,7 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 	}
 
 	@Override
-	public int maxIdEquipo() throws PersistenceException {
+	public Integer maxIdEquipo() throws PersistenceException {
 		try {
 			return equipoMapper.maxIdEquipo();
 		} catch (Exception e) {
@@ -52,7 +52,7 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 	}
 
 	@Override
-	public Equipo buscarEquipoPorId(int id) throws PersistenceException {
+	public Equipo buscarEquipoPorId(Integer id) throws PersistenceException {
 		try {
 			return equipoMapper.buscarEquipoPorId(id);
 		} catch (Exception e) {
@@ -61,7 +61,7 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 	}
 
 	@Override
-	public void darBajaEquipo(int id) throws PersistenceException {
+	public void darBajaEquipo(Integer id) throws PersistenceException {
 		try {
 			 equipoMapper.darBajaEquipo(id);
 		} catch (Exception ex) {
@@ -70,7 +70,7 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 	}
 
 	@Override
-	public void asociarEquipoAlab(int idEquipo, int id) throws PersistenceException {
+	public void asociarEquipoAlab(Integer idEquipo, Integer id) throws PersistenceException {
 		try {
 			equipoMapper.asociarEquipoAlab(idEquipo,id);
 	   } catch (Exception ex) {
@@ -79,7 +79,7 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 	}
 
 	@Override
-	public void desAsociarEquipoAlab(int idEquipo) throws PersistenceException {
+	public void desAsociarEquipoAlab(Integer idEquipo) throws PersistenceException {
 		try {
 			equipoMapper.desAsociarEquipoAlab(idEquipo);
 	   } catch (Exception ex) {

@@ -8,6 +8,7 @@ package edu.eci.cvds.test;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.entities.Laboratorio;
 import edu.eci.cvds.entities.NovedadEquipo;
 import edu.eci.cvds.entities.Tipo;
 import edu.eci.cvds.persistence.ElementoDAO;
@@ -21,7 +22,7 @@ import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Calendar;
-
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -156,7 +157,7 @@ public class LaboratorioServiciosTest {
     
     @Test
     public void novedadEquipoTest(){
-        /**
+        
         qt().forAll(GeneradoresLaboratorio.completoEquipos()).check(
             (eq)->{                
                 try {
@@ -170,9 +171,9 @@ public class LaboratorioServiciosTest {
                
             }
            
-        );     */
+        );
         //fail("");
-        assertTrue(true);
+        
     } 
     
     @Test
@@ -221,8 +222,37 @@ public class LaboratorioServiciosTest {
             }
            
         );
+    }*/
+    @Test
+    public void pruebaLab(){
+        java.util.Date fechaActual = new java.util.Date();   
+        Elemento torre=new Elemento(null, Tipo.torre, "abs", null, "asda");
+        Elemento pantalla=new Elemento(null, Tipo.pantalla, "abs", null, "asda");
+        Elemento mouse=new Elemento(null, Tipo.mouse, "abs", null, "asda");
+        Elemento teclado=new Elemento(null, Tipo.teclado, "abs", null, "asda");
+        try {
+            Equipo eq=new Equipo(null, null, torre, pantalla, mouse, teclado, "Preuba");
+            serviciosLab.registrarEquipo(eq);
+            idEquimax++; 
+            
+            Laboratorio lab = new Laboratorio(null, "Prueba",fechaActual , null);
+            serviciosLab.registrarLaboratorio(lab);
+
+            Laboratorio lab2 = serviciosLab.buscarLaboratorioPorID(1);
+            Equipo e = serviciosLab.buscarEquipoPorId(idEquimax);
+            serviciosLab.asociarEquipoAlab(idEquimax, lab2.getId());
+
+            System.out.println(serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab2.getId());
+            
+            serviciosLab.darBajaLaboratorio(lab2.getId());
+            System.out.println(serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab2.getId());
+
+        } catch (PersistenceException ex) {
+            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ServicesException ex) {
+            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
     @Test
     public void noPoderAsociarTest(){
         Elemento torre=new Elemento(null, Tipo.torre, "abs", null, "asda");
@@ -252,7 +282,7 @@ public class LaboratorioServiciosTest {
     
     
     
-/**
+/*
     @Test
     public void agregarNovedadEquipoTest() throws PersistenceException{  
         Elemento torre = new Elemento(null,Tipo.torre,"Torre 1",123,"torre de 123");
@@ -260,7 +290,7 @@ public class LaboratorioServiciosTest {
         Elemento pantalla = new Elemento(null,Tipo.pantalla,"pantalla 1",123,"pantalla de 123");
         Elemento mouse = new Elemento(null,Tipo.mouse,"mouse 1",123,"mouse de 123");
 
-        Equipo equipo = new Equipo(null,"b0",torre,pantalla,mouse,teclado);
+        Equipo equipo = new Equipo(null,1,torre,pantalla,mouse,teclado,"name");
        
         try {
             serviciosLab.registrarEquipo(equipo);
