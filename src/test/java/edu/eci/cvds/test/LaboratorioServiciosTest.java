@@ -230,25 +230,38 @@ public class LaboratorioServiciosTest {
         Elemento pantalla=new Elemento(null, Tipo.pantalla, "abs", null, "asda");
         Elemento mouse=new Elemento(null, Tipo.mouse, "abs", null, "asda");
         Elemento teclado=new Elemento(null, Tipo.teclado, "abs", null, "asda");
+        Elemento torre2=new Elemento(null, Tipo.torre, "abs2", null, "asda");
+        Elemento pantalla2=new Elemento(null, Tipo.pantalla, "abs2", null, "asda");
+        Elemento mouse2=new Elemento(null, Tipo.mouse, "abs2", null, "asda");
+        Elemento teclado2=new Elemento(null, Tipo.teclado, "abs2", null, "asda");
         try {
             Equipo eq=new Equipo(null, 2, torre, pantalla, mouse, teclado, "Preuba");
             serviciosLab.registrarEquipo(eq);
             idEquimax++; 
             
+            Equipo eq2=new Equipo(null, 2, torre2, pantalla2, mouse2, teclado2, "Preuba2");
+            serviciosLab.registrarEquipo(eq2);
+            idEquimax++; 
             Laboratorio lab = new Laboratorio(null, "Prueba",fechaActual , null);
             serviciosLab.registrarLaboratorio(lab);
 
             Laboratorio lab2 = serviciosLab.buscarLaboratorioPorID(1);
-            Equipo e = serviciosLab.buscarEquipoPorId(idEquimax);
 
             System.out.println(serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab2.getId());
             
-            serviciosLab.asociarEquipoAlab(idEquimax, lab2.getId());
+            serviciosLab.asociarEquipoAlab(1, lab2.getId());
+            serviciosLab.asociarEquipoAlab(2, lab2.getId());
 
-            System.out.println(serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab2.getId());
+            Laboratorio lab3 = serviciosLab.buscarLaboratorioPorID(1);
+            System.out.println(lab3.getEquipos().size());
+            Equipo e2 =  lab3.getEquipos().get(0);
+            Equipo e3 =  lab3.getEquipos().get(1);
+            System.out.println(e2.toString()+" "+serviciosLab.buscarEquipoPorId(1).toString());
+            System.out.println(e3.toString()+" "+serviciosLab.buscarEquipoPorId(2).toString());
+            System.out.println(e2.getlab()+" "+serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab3.getId());
             
             serviciosLab.darBajaLaboratorio(lab2.getId());
-            System.out.println(serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab2.getId());
+            System.out.println(e2.getlab()+" "+serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab3.getId());
 
         } catch (PersistenceException ex) {
             Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);

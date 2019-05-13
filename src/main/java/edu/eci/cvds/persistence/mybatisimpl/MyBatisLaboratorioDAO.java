@@ -35,7 +35,7 @@ public class MyBatisLaboratorioDAO implements LaboratorioDAO {
 	@Override
 	public void registrarLaboratorio(Laboratorio laboratorio) throws PersistenceException {
 		try {
-			laboratorioMapper.registrarLaboratorio(laboratorio);;
+			laboratorioMapper.registrarLaboratorio(laboratorio);
 		} catch (Exception e) {
 			throw new PersistenceException(e.getMessage(), e);
 		}

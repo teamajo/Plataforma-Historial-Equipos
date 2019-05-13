@@ -388,5 +388,14 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 		}
   }
 
+  @Override
+	public void buscarEquiposDisponibles() throws ServicesException {
+		try { 
+      equipoDAO.buscarEquiposDisponibles();
+
+		} catch (PersistenceException ex) {
+			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+		}
+  }
 
 }

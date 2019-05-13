@@ -21,7 +21,8 @@ public class NovedadElemento {
 		this.fecha = fecha;
 		this.descripcion = descripcion;
 		this.responsable = responsable;
-	}public NovedadElemento() {
+	}
+	public NovedadElemento() {
 		super();
 	}
 

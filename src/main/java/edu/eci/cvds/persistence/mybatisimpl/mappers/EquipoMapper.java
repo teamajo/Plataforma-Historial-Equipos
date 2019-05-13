@@ -17,6 +17,7 @@ public interface EquipoMapper {
 	public void darBajaEquipo(@Param("id") Integer id) throws PersistenceException;
     public void asociarEquipoAlab(@Param("idEquipo")Integer idEquipo,@Param("id")Integer id)throws PersistenceException ;
     public void desAsociarEquipoAlab(@Param("idEquipo")Integer idEquipo) throws PersistenceException;
+    public List<Equipo> buscarEquiposDisponibles() throws PersistenceException;
 
 
 }

@@ -14,8 +14,6 @@ import edu.eci.cvds.services.ServicesException;
 import javax.faces.bean.ViewScoped;
 
 
-import org.primefaces.context.RequestContext;
-
 /**
  * Bean para la interfaz de usuario de las decanaturas
  */

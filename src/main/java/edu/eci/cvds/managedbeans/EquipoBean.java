@@ -2,8 +2,6 @@ package edu.eci.cvds.managedbeans;
 
 import edu.eci.cvds.entities.Elemento;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 
 import javax.faces.bean.SessionScoped;
@@ -11,12 +9,7 @@ import javax.faces.bean.SessionScoped;
 import edu.eci.cvds.entities.Equipo;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
-import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 
 /**

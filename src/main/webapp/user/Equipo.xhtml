@@ -39,13 +39,13 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                             </div>
                             <div>               
                                 <h4>Novedades de la Torre</h4>
-                                <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('torre')}" scrollable="true" scrollHeight="100">
-                                    <p:column headerText="Id">
-                                        <h:outputText value="#{elem.id}" />
+                                <p:dataTable var="elem" value="#{agregarNovedadElemento.buscarNovedadesElementosPorElementos(equipoBean.equipo.torre.id)}" scrollable="true" scrollHeight="100">
+                                    <p:column headerText="titulo">
+                                        <h:outputText value="#{elem.titulo}" />
                                     </p:column>           
 
-                                    <p:column headerText="Nombre">
-                                        <h:outputText value="#{elem.name}" />
+                                    <p:column headerText="Descripcion">
+                                        <h:outputText value="#{elem.descripcion}" />
                                     </p:column>                   
                                 </p:dataTable>                   
                             </div>                        
@@ -69,13 +69,13 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                             </div>
                             <div>               
                                 <h4>Novedades de la Pantalla</h4>
-                                <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('torre')}" scrollable="true" scrollHeight="100">
-                                    <p:column headerText="Id">
-                                        <h:outputText value="#{elem.id}" />
+                                <p:dataTable var="elem" value="#{agregarNovedadElemento.buscarNovedadesElementosPorElementos(equipoBean.equipo.pantalla.id)}" scrollable="true" scrollHeight="100">
+                                    <p:column headerText="titulo">
+                                        <h:outputText value="#{elem.titulo}" />
                                     </p:column>           
 
-                                    <p:column headerText="Nombre">
-                                        <h:outputText value="#{elem.name}" />
+                                    <p:column headerText="Descripcion">
+                                        <h:outputText value="#{elem.descripcion}" />
                                     </p:column>                   
                                 </p:dataTable>                   
                             </div>
@@ -103,13 +103,13 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                             </div>
                              <div>               
                                 <h4>Novedades de la Teclado</h4>
-                                <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('torre')}" scrollable="true" scrollHeight="100">
-                                    <p:column headerText="Id">
-                                        <h:outputText value="#{elem.id}" />
+                                <p:dataTable var="elem" value="#{agregarNovedadElemento.buscarNovedadesElementosPorElementos(equipoBean.equipo.teclado.id)}" scrollable="true" scrollHeight="100">
+                                    <p:column headerText="titulo">
+                                        <h:outputText value="#{elem.titulo}" />
                                     </p:column>           
 
-                                    <p:column headerText="Nombre">
-                                        <h:outputText value="#{elem.name}" />
+                                    <p:column headerText="Descripcion">
+                                        <h:outputText value="#{elem.descripcion}" />
                                     </p:column>                   
                                 </p:dataTable>                   
                             </div>
@@ -136,13 +136,13 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                             </div>
                               <div>               
                                 <h4>Novedades del Mouse</h4>
-                                <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo('torre')}" scrollable="true" scrollHeight="100">
-                                    <p:column headerText="Id">
-                                        <h:outputText value="#{elem.id}" />
+                                <p:dataTable var="elem" value="#{agregarNovedadElemento.buscarNovedadesElementosPorElementos(equipoBean.equipo.mouse.id)}" scrollable="true" scrollHeight="100">
+                                    <p:column headerText="titulo">
+                                        <h:outputText value="#{elem.titulo}" />
                                     </p:column>           
 
-                                    <p:column headerText="Nombre">
-                                        <h:outputText value="#{elem.name}" />
+                                    <p:column headerText="Descripcion">
+                                        <h:outputText value="#{elem.descripcion}" />
                                     </p:column>                   
                                 </p:dataTable>                   
                             </div>
