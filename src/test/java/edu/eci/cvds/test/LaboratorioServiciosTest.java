@@ -231,7 +231,7 @@ public class LaboratorioServiciosTest {
         Elemento mouse=new Elemento(null, Tipo.mouse, "abs", null, "asda");
         Elemento teclado=new Elemento(null, Tipo.teclado, "abs", null, "asda");
         try {
-            Equipo eq=new Equipo(null, null, torre, pantalla, mouse, teclado, "Preuba");
+            Equipo eq=new Equipo(null, 2, torre, pantalla, mouse, teclado, "Preuba");
             serviciosLab.registrarEquipo(eq);
             idEquimax++; 
             
@@ -240,6 +240,9 @@ public class LaboratorioServiciosTest {
 
             Laboratorio lab2 = serviciosLab.buscarLaboratorioPorID(1);
             Equipo e = serviciosLab.buscarEquipoPorId(idEquimax);
+
+            System.out.println(serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab2.getId());
+            
             serviciosLab.asociarEquipoAlab(idEquimax, lab2.getId());
 
             System.out.println(serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab2.getId());

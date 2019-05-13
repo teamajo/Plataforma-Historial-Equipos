@@ -364,7 +364,11 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
   @Override
 	public void asociarEquipoAlab(Integer idEquipo, Integer id) throws ServicesException {
 		try { 
-      if (buscarLaboratorioPorID(id).isActivo()){
+      Equipo eq = buscarEquipoPorId(idEquipo);
+      if (eq.isActivo()){
+        if (eq.getlab() != null){
+          desAsociarEquipoAlab(idEquipo);
+        }
         equipoDAO.asociarEquipoAlab(idEquipo,id);
       }
       
