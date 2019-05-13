@@ -1,9 +1,10 @@
 package edu.eci.cvds.entities;
 
+import edu.eci.cvds.services.ServicesException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.eci.cvds.persistence.PersistenceException;
+
 
 
 /**
@@ -20,7 +21,7 @@ import edu.eci.cvds.persistence.PersistenceException;
     private Elemento teclado;
     private String name;
 
-    public Equipo(Integer id, Integer lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado,String name)throws PersistenceException {
+    public Equipo(Integer id, Integer lab, Elemento torre, Elemento pantalla, Elemento mouse, Elemento teclado,String name)throws ServicesException {
         this.id = id;
         this.lab = lab;
         setTorre(torre);
@@ -39,7 +40,7 @@ import edu.eci.cvds.persistence.PersistenceException;
         activo=true;
     }
 
-    public Equipo() throws PersistenceException {       
+    public Equipo() throws ServicesException {       
         setTorre(new Elemento(Tipo.torre));      
         setPantalla(new Elemento(Tipo.pantalla));
         setMouse(new Elemento(Tipo.mouse));
@@ -90,12 +91,12 @@ import edu.eci.cvds.persistence.PersistenceException;
     /**
      * @param teclado the teclado to set
      */
-    public final void setTeclado(Elemento teclado) throws PersistenceException{
+    public final void setTeclado(Elemento teclado) throws ServicesException{
        
         if (teclado.getTipo().equals(Tipo.teclado)){
             this.teclado = teclado;
         }else{
-            throw new PersistenceException("no se puede asignar el elemento");
+            throw new ServicesException("no se puede asignar el elemento");
         }
     }
 
@@ -118,12 +119,12 @@ import edu.eci.cvds.persistence.PersistenceException;
     /**
      * @param mouse the mouse to set
      */
-    public final void setMouse(Elemento mouse) throws PersistenceException {
+    public final void setMouse(Elemento mouse) throws ServicesException {
         
         if (mouse.getTipo().equals(Tipo.mouse)){
             this.mouse = mouse;
         }else{
-            throw new PersistenceException("no se puede asignar el elemento");
+            throw new ServicesException("no se puede asignar el elemento");
         }
         
     }
@@ -138,12 +139,12 @@ import edu.eci.cvds.persistence.PersistenceException;
     /**
      * @param pantalla the pantalla to set
      */
-    public final void setPantalla(Elemento pantalla) throws PersistenceException {
+    public final void setPantalla(Elemento pantalla) throws ServicesException {
         
         if (pantalla.getTipo().equals(Tipo.pantalla)){
             this.pantalla = pantalla;
         }else{
-            throw new PersistenceException("no se puede asignar el elemento");
+            throw new ServicesException("no se puede asignar el elemento");
         }
     }
 
@@ -157,12 +158,12 @@ import edu.eci.cvds.persistence.PersistenceException;
     /**
      * @param torre the torre to set
      */
-    public final void setTorre(Elemento torre) throws PersistenceException{
+    public final void setTorre(Elemento torre) throws ServicesException{
         
         if (torre.getTipo().equals(Tipo.torre)){
             this.torre = torre;
         }else{
-            throw new PersistenceException("no se puede asignar el elemento");
+            throw new ServicesException("no se puede asignar el elemento");
         }
         
     }

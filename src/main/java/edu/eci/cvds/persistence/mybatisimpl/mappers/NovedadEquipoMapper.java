@@ -5,12 +5,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import edu.eci.cvds.entities.NovedadEquipo;
-import edu.eci.cvds.persistence.PersistenceException;
+import edu.eci.cvds.services.ServicesException;
 
 public interface NovedadEquipoMapper {
 
-    public List<NovedadEquipo> buscarNovedadesDeEquiposPorEquipos(@Param("idEquipo") Integer idEquipo) throws PersistenceException;
-    public List<NovedadEquipo> buscarNovedadesDeEquipos() throws PersistenceException;  
-    public void registrarNovedadEquipo(NovedadEquipo novedad) throws PersistenceException;
+    public List<NovedadEquipo> buscarNovedadesDeEquiposPorEquipos(@Param("idEquipo") Integer idEquipo) throws ServicesException;
+    public List<NovedadEquipo> buscarNovedadesDeEquipos() throws ServicesException;  
+    public void registrarNovedadEquipo(NovedadEquipo novedad) throws ServicesException;
 	
 }

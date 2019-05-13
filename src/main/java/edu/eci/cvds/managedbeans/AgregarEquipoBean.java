@@ -8,7 +8,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import edu.eci.cvds.entities.Equipo;
-import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
 import java.util.List;
@@ -40,7 +39,7 @@ public class AgregarEquipoBean extends BasePageBean {
    
     
 
-    public AgregarEquipoBean() throws PersistenceException {
+    public AgregarEquipoBean() throws ServicesException {
         nuevoEquipo = new Equipo();
 
     }
@@ -155,9 +154,7 @@ public class AgregarEquipoBean extends BasePageBean {
                      
         } catch (ServicesException ex) {
             mensaje = "Algun item no encontrado";           
-        } catch (PersistenceException ex){
-            mensaje = "Algun item no correspoonde con su tipo"; 
-        }       
+        }      
         fm.setSeverity(fs);
         fm.setSummary(mensaje);      
         FacesContext.getCurrentInstance().addMessage(null,fm);

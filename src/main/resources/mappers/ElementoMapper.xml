@@ -67,7 +67,7 @@
 				e.descripcion as desc
 			FROM
 				ELEMENTO as e
-				Where idEquipo is null and tipo = #{tipo}
+				Where idEquipo is null and tipo = #{tipo} and activo is true
 		</select>
 
 		<select id ="elementosDisponibles" resultMap="ElementoResult" >

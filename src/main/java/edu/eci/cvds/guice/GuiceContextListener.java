@@ -12,13 +12,11 @@ import edu.eci.cvds.persistence.EquipoDAO;
 import edu.eci.cvds.persistence.LaboratorioDAO;
 import edu.eci.cvds.persistence.NovedadElementoDAO;
 import edu.eci.cvds.persistence.NovedadEquipoDAO;
-import edu.eci.cvds.persistence.UsuarioDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisElementoDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisEquipoDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisLaboratorioDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisNovedadElementoDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisNovedadEquipoDAO;
-import edu.eci.cvds.persistence.mybatisimpl.MyBatisUsuarioDAO;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
 

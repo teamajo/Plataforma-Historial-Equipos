@@ -11,7 +11,6 @@ import edu.eci.cvds.entities.NovedadEquipo;
 
 public interface LaboratorioServices {
 
-    public List<Elemento> buscarElementoPorEquipo(Integer idEquipo) throws ServicesException;
 
     public List<Elemento> buscarElementos() throws ServicesException;
 
@@ -27,7 +26,7 @@ public interface LaboratorioServices {
 
     public void desAsociarElemento(Integer id) throws ServicesException;
     
-    public List<Equipo> buscarEquipoPorLab(String lab) throws ServicesException;
+    public List<Equipo> buscarEquipoPorLab(Integer lab) throws ServicesException;
 
     public List<Equipo> buscarEquipos() throws ServicesException;
 
@@ -72,5 +71,9 @@ public interface LaboratorioServices {
     public void desAsociarEquipoAlab(Integer idEquipo) throws ServicesException ;
 
     public void buscarEquiposDisponibles() throws ServicesException;
+    
+    public void darBajaEquiposConElementos(List<Equipo> seleccionados) throws ServicesException ;
+    
+    public void darBajaEquiposSinElementos(List<Equipo> seleccionados) throws ServicesException ;
 
 }

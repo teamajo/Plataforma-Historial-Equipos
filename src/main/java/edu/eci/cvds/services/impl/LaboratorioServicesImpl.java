@@ -16,7 +16,6 @@ import edu.eci.cvds.persistence.EquipoDAO;
 import edu.eci.cvds.persistence.LaboratorioDAO;
 import edu.eci.cvds.persistence.NovedadElementoDAO;
 import edu.eci.cvds.persistence.NovedadEquipoDAO;
-import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
 import java.util.logging.Level;
@@ -39,99 +38,51 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     @Inject
     private NovedadElementoDAO novedadElementoDAO;
     
-    @Override
-    public List<Elemento> buscarElementoPorEquipo(Integer idEquipo) throws ServicesException{
-        try {
-			return equipoDAO.buscarEquipoPorId(idEquipo).getComponets();
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error listando elementos de equipo:" + ex.getLocalizedMessage(), ex);
-		}
-
-    }
+   
 
     @Override
     public List<Elemento> buscarElementos() throws ServicesException{
-        try {
-			return elementoDAO.buscarElementos();
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-		}
-
-		}
-		@Override
+        return elementoDAO.buscarElementos();	
+    }
+    @Override
     public Elemento buscarElemento(Integer id) throws ServicesException{
-        try {
-                  return elementoDAO.buscarElemento(id);
-        } catch (PersistenceException ex) {
-                throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-        }
-
+        return elementoDAO.buscarElemento(id);
     }
 
     @Override
     public void registrarElemento(Elemento elemento) throws ServicesException{
-        try {
             elementoDAO.registrarElemento(elemento);
             java.util.Date fechaActual = new java.util.Date();
             NovedadElemento novedad = new NovedadElemento(null,"novedad elmento registrar",elemento.getIdEquipo(),maxIdElemento(),fechaActual,"se registro el elemento","admin");
             novedadElementoDAO.registrarNovedadElemento(novedad);
-            
-	} catch (PersistenceException ex) {
-            throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-	}
-
     }
-  @Override
-  public List<Elemento> elementosDisponiblesPorTipo(String tipo) throws ServicesException{
-    try {
+    @Override
+    public List<Elemento> elementosDisponiblesPorTipo(String tipo) throws ServicesException{
       return elementoDAO.elementosDisponiblesPorTipo(tipo);
-    } catch (PersistenceException ex) {
-      throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+    } 
+	
+    @Override
+    public List<Elemento> elementosDisponibles() throws ServicesException{
+        return elementoDAO.elementosDisponibles();   
     }
-	}
-	
-	@Override
-  public List<Elemento> elementosDisponibles() throws ServicesException{
-    try {
-      return elementoDAO.elementosDisponibles();
-    } catch (PersistenceException ex) {
-      throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+    @Override
+    public List<Equipo> buscarEquipoPorLab(Integer lab) throws ServicesException{
+        return equipoDAO.buscarEquipoPorLab(lab);
     }
-  }
-	  @Override
-	  public List<Equipo> buscarEquipoPorLab(String lab) throws ServicesException{
-	      try {
-				return equipoDAO.buscarEquipoPorLab(lab);
-			} catch (PersistenceException ex) {
-				throw new ServicesException("Error listando equipos de lab:" + ex.getLocalizedMessage(), ex);
-			}
 	
-	
-	  }
-	
-	  @Override
-	  public List<Equipo> buscarEquipos() throws ServicesException{
-	      try {
-				return equipoDAO.buscarEquipos();
-			} catch (PersistenceException ex) {
-				throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
-			}
-	
-		}
-		@Override
-	  public Equipo buscarEquipoPorId(Integer idEquipo) throws ServicesException{
-	      try {
-				return equipoDAO.buscarEquipoPorId(idEquipo);
-			} catch (PersistenceException ex) {
-				throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
-			}
-	
-	  }
+    @Override
+    public List<Equipo> buscarEquipos() throws ServicesException{
+        return equipoDAO.buscarEquipos();
+    }
+    @Override
+    public Equipo buscarEquipoPorId(Integer idEquipo) throws ServicesException{
+        return equipoDAO.buscarEquipoPorId(idEquipo);
+    }
 	
 	@Override
   @Transactional
-	public void registrarEquipo(Equipo equipo) throws ServicesException{
-    try {
+    public void registrarEquipo(Equipo equipo) throws ServicesException{
+   
       equipoDAO.registrarEquipo(equipo);
       Integer idEquipo = maxIdEquipo();
       Integer idElemento= 0;
@@ -143,17 +94,13 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
           idElemento= maxIdElemento();
         }else{
           idElemento=e.getId();
-
-            
         }
         asociarEquipo( idEquipo,buscarElemento(idElemento));  // No deberia enviar el Tipo
       }
         NovedadEquipo novedadeq = new NovedadEquipo(null,"novedad equipo registar",idEquipo,fechaActual,"se registro el equipo","admin");
         novedadEquipoDAO.registrarNovedadEquipo(novedadeq);
-      } catch (PersistenceException ex) {
-          throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
-      }
-	  }
+       
+    }
 	  
         
     /// El tipo se deberia sacar del ID , que pasa si el ID es correcto y el tipo no ? al llamar al metodo ???
@@ -183,101 +130,98 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
         novedadEquipoDAO.registrarNovedadEquipo(novedad);
       }
         
-    } catch (PersistenceException ex) {
+    } catch (ServicesException ex) {
         Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
 	@Override
-  public void desAsociarElemento(Integer id) throws ServicesException {
-    try {
+    public void desAsociarElemento(Integer id) throws ServicesException {
        java.util.Date fechaActual = new java.util.Date();
        Integer idEquipo = buscarElemento(id).getIdEquipo();
        NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo desasociacion", idEquipo,fechaActual,"se desasocio el equipo","admin");
        elementoDAO.desAsociarElemento(id);
        novedadEquipoDAO.registrarNovedadEquipo(novedad);
-    } catch (PersistenceException ex) {
-      Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);
+    
     }
-  }
 
-	@Override
-	public Integer maxIdEquipo() throws ServicesException {
-		try {
-			return equipoDAO.maxIdEquipo();
-	 } catch (PersistenceException ex) {
-		 throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-	 }
-	}
+    @Override
+    public Integer maxIdEquipo() throws ServicesException {
+            try {
+                    return equipoDAO.maxIdEquipo();
+     } catch (ServicesException ex) {
+             throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+     }
+    }
 
-	@Override
-	public Integer maxIdElemento() throws ServicesException {
-		try {
-			return elementoDAO.maxIdElemento();
-	 } catch (PersistenceException ex) {
-		 throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-	 }
-	}
+    @Override
+    public Integer maxIdElemento() throws ServicesException {
+            try {
+                    return elementoDAO.maxIdElemento();
+     } catch (ServicesException ex) {
+             throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
+     }
+    }
 
-	@Override
-	public List<NovedadEquipo> buscarNovedadesPorEquipo(Integer idEquipo) throws ServicesException {
+    @Override
+    public List<NovedadEquipo> buscarNovedadesPorEquipo(Integer idEquipo) throws ServicesException {
+    try {
+                    return novedadEquipoDAO.buscarNovedadesDeEquiposPorEquipos(idEquipo);
+            } catch (ServicesException ex) {
+                    throw new ServicesException("No se encontro el equipo" );
+            }
+    }
+
+    @Override
+    public List<NovedadEquipo> buscarNovedadesDeEquipos() throws ServicesException {
+    try {
+                    return novedadEquipoDAO.buscarNovedadesDeEquipos();
+            } catch (ServicesException ex) {
+                    throw new ServicesException("Error listando novedades:" + ex.getLocalizedMessage(), ex);
+            }
+    }
+
+    @Override
+    public void registrarNovedadEquipo(NovedadEquipo novedad) throws ServicesException {
+    try {
+            novedadEquipoDAO.registrarNovedadEquipo(novedad);
+            } catch (ServicesException ex) {
+                    throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+            }
+
+    }
+
+    @Override
+    public List<NovedadElemento> buscarNovedadesDeElementosPorEquipos(Integer idEquipo) throws ServicesException {
         try {
-			return novedadEquipoDAO.buscarNovedadesDeEquiposPorEquipos(idEquipo);
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error listando novedades de equipo:" + ex.getLocalizedMessage(), ex);
-		}
-	}
+                    return novedadElementoDAO.buscarNovedadesDeElementosPorEquipos(idEquipo);
+            } catch (ServicesException ex) {
+                    Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);throw new ServicesException("Error listando novedades de equipos:" + ex.getLocalizedMessage(), ex);
+            }
+    }
 
-	@Override
-	public List<NovedadEquipo> buscarNovedadesDeEquipos() throws ServicesException {
+    @Override
+    public List<NovedadElemento> buscarNovedadesDeElementosPorElementos(Integer idElemento) throws ServicesException {
         try {
-			return novedadEquipoDAO.buscarNovedadesDeEquipos();
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error listando novedades:" + ex.getLocalizedMessage(), ex);
-		}
-	}
+                    return novedadElementoDAO.buscarNovedadesDeElementosPorElementos(idElemento);
+            } catch (ServicesException ex) {
+                    throw new ServicesException("Error listando novedades de equipos:" + ex.getLocalizedMessage(), ex);
+            }
+    }
 
-	@Override
-	public void registrarNovedadEquipo(NovedadEquipo novedad) throws ServicesException {
+    @Override
+    public List<NovedadElemento> buscarNovedadesDeElementos() throws ServicesException {
         try {
-        	novedadEquipoDAO.registrarNovedadEquipo(novedad);
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-		}
-		
-	}
+                    return novedadElementoDAO.buscarNovedadesDeElementos();
+            } catch (ServicesException ex) {
+                    throw new ServicesException("Error listando novedades:" + ex.getLocalizedMessage(), ex);
+            }
+    }
 
-	@Override
-	public List<NovedadElemento> buscarNovedadesDeElementosPorEquipos(Integer idEquipo) throws ServicesException {
-	    try {
-			return novedadElementoDAO.buscarNovedadesDeElementosPorEquipos(idEquipo);
-		} catch (PersistenceException ex) {
-			Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);throw new ServicesException("Error listando novedades de equipos:" + ex.getLocalizedMessage(), ex);
-		}
-	}
-
-	@Override
-	public List<NovedadElemento> buscarNovedadesDeElementosPorElementos(Integer idElemento) throws ServicesException {
-	    try {
-			return novedadElementoDAO.buscarNovedadesDeElementosPorElementos(idElemento);
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error listando novedades de equipos:" + ex.getLocalizedMessage(), ex);
-		}
-	}
-	
-	@Override
-	public List<NovedadElemento> buscarNovedadesDeElementos() throws ServicesException {
-	    try {
-			return novedadElementoDAO.buscarNovedadesDeElementos();
-		} catch (PersistenceException ex) {
-			throw new ServicesException("Error listando novedades:" + ex.getLocalizedMessage(), ex);
-		}
-	}
-	
 	@Override
 	public void registrarNovedadElemento(NovedadElemento novedad) throws ServicesException {
 	    try {
 	    	novedadElementoDAO.registrarNovedadElemento(novedad);
-		} catch (PersistenceException ex) {
+		} catch (ServicesException ex) {
 			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
 		}
 		
@@ -290,7 +234,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
       //NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo darBajaEquipo", id,fechaActual,"se dio de baja el equipo","admin");
       //novedadEquipoDAO.registrarNovedadEquipo(novedad);
             equipoDAO.darBajaEquipo(id);
-        } catch (PersistenceException ex) {
+        } catch (ServicesException ex) {
                 throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
         }
 	}
@@ -305,7 +249,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
           elementoDAO.darBajaElemento(id);
         }
 
-		} catch (PersistenceException ex) {
+		} catch (ServicesException ex) {
 			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
 		}
   }
@@ -314,7 +258,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 		try {
         return laboratorioDAO.buscarLaboratorios();
 
-		} catch (PersistenceException ex) {
+		} catch (ServicesException ex) {
 			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
 		}
   }
@@ -324,7 +268,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 		try {
         return laboratorioDAO.buscarLaboratorioPorID(id);
 
-		} catch (PersistenceException ex) {
+		} catch (ServicesException ex) {
 			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
 		}
   }
@@ -333,7 +277,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	public Integer maxIdLaboratorio() throws ServicesException {
 		try {
 			return laboratorioDAO.maxIdLaboratorio();
-	 } catch (PersistenceException ex) {
+	 } catch (ServicesException ex) {
 		 throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
 	 }
   }
@@ -345,7 +289,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
       laboratorio.setFechaCreacion(fechaActual);
       laboratorioDAO.registrarLaboratorio(laboratorio);
         
-      }catch (PersistenceException ex) {
+      }catch (ServicesException ex) {
       throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
       }
   }
@@ -358,7 +302,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
       }
       laboratorioDAO.darBajaLaboratorio(id);
 
-        } catch (PersistenceException ex) {
+        } catch (ServicesException ex) {
                 throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
         }
   }
@@ -374,7 +318,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
         }
       
 
-        } catch (PersistenceException ex) {
+        } catch (ServicesException ex) {
                 throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
         }
   }
@@ -384,7 +328,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     try { 
       equipoDAO.desAsociarEquipoAlab(idEquipo);
 
-    } catch (PersistenceException ex) {
+    } catch (ServicesException ex) {
             throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
     }
   }
@@ -394,9 +338,30 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
     try { 
         equipoDAO.buscarEquiposDisponibles();
 
-    } catch (PersistenceException ex) {
+        } catch (ServicesException ex) {
             throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+        }
     }
-  }
+    @Override
+    public void darBajaEquiposConElementos(List<Equipo> seleccionados) throws ServicesException {
+        for (Equipo e:seleccionados){
+            List<Elemento> elementos = e.getComponets(); 
+            for (Elemento el: elementos){
+                desAsociarElemento(el.getId());
+                darBajaElemento(el.getId());
+            }
+            darBajaEquipo(e.getId());
+        }
+    }
+    @Override
+    public void darBajaEquiposSinElementos(List<Equipo> seleccionados) throws ServicesException {
+        for (Equipo e:seleccionados){
+            List<Elemento> elementos = e.getComponets();
+            for (Elemento el: elementos){
+                desAsociarElemento(el.getId());
+            }
+            darBajaEquipo(e.getId());
+        }
+    }
 
 }

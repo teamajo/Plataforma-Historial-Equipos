@@ -5,24 +5,24 @@ import org.apache.ibatis.annotations.Param;
 
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.entities.Tipo;
-import edu.eci.cvds.persistence.PersistenceException;
+import edu.eci.cvds.services.ServicesException;
+
 
 public interface ElementoMapper {
 
-    public List<Elemento> buscarElementoPorEquipo(@Param("idEquipo") Integer idEquipo) throws PersistenceException;
-    public List<Elemento> buscarElementos() throws PersistenceException;
+    public List<Elemento> buscarElementos() throws ServicesException;
     
-    public void registrarElemento(Elemento elemento) throws PersistenceException;
+    public void registrarElemento(Elemento elemento) throws ServicesException;
 
-    public List<Elemento> elementosDisponiblesPorTipo(@Param("tipo")String tipo) throws PersistenceException;
+    public List<Elemento> elementosDisponiblesPorTipo(@Param("tipo")String tipo) throws ServicesException;
 
-    public List<Elemento> elementosDisponibles() throws PersistenceException;
+    public List<Elemento> elementosDisponibles() throws ServicesException;
     
-	public void asociarEquipo(@Param("idEquipo") Integer idEquipo,@Param("id") Integer id) throws PersistenceException;
-	public int maxIdElemento() throws PersistenceException;
-	public Elemento buscarElemento(@Param("id")Integer id) throws PersistenceException;
-	public void desAsociarElemento(@Param("id")Integer id) throws PersistenceException;
-	public void darBajaElemento(@Param("id")Integer id) throws PersistenceException;
+    public void asociarEquipo(@Param("idEquipo") Integer idEquipo,@Param("id") Integer id) throws ServicesException;
+    public int maxIdElemento() throws ServicesException;
+    public Elemento buscarElemento(@Param("id")Integer id) throws ServicesException;
+    public void desAsociarElemento(@Param("id")Integer id) throws ServicesException;
+    public void darBajaElemento(@Param("id")Integer id) throws ServicesException;
 	
 
 }
