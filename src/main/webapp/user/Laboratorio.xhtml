@@ -1,0 +1,67 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+ <title>Plataformas Historial de Equipos</title>
+ <link rel="stylesheet" type="text/css" href="../css/general.css"/>
+ <link rel="stylesheet" type="text/css" href="../css/agregarElemento.css"/>  
+ <link rel="stylesheet" type="text/css" href="../css/editarEquipo.css"/>  
+</h:head>
+<h:body>
+    <header>
+         <ui:insert name="header" >
+            <ui:include src="../header.xhtml" />
+         </ui:insert>
+    </header>    
+    <h1>Laboratorio #{laboratorioBean.laboratorio.id} #{laboratorioBean.laboratorio.name} </h1>
+   
+    <div class="compartido">
+       
+        <div>
+            <h:form id="crear" class="formulario">
+                <p:panel header="Datos del Equipo"  >
+
+                    <h:panelGrid columns="2" cellpadding="5" class="gridcenter">                       
+
+                        <p:outputLabel for="text1" value="Fecha Creacion:" />
+                        <p:outputLabel id="text1" value=" #{laboratorioBean.laboratorio.fechaCreacion}" />
+
+
+                        <p:outputLabel for="text2" value="Fecha Cierre:" />
+                        <p:outputLabel id="text2" value=" #{laboratorioBean.laboratorio.fechaCierre}" />
+
+                    </h:panelGrid>
+                 </p:panel>
+
+            </h:form>    
+            <h:form id="asociar" class="formulario">  
+                 <p:panel header="Asociar Equipos">       
+                      
+                     <p:dataTable var="equi" value="#{laboratorioBean.disponibles()}" scrollable="true" scrollHeight="100" 
+                                  selectionMode="multiple" selection = "#{laboratorioBean.seleccionados}" rowKey="#{equi.id}">
+                            <p:column headerText="Id" class="delgado" sortBy="#{equi.id}">
+                                <h:outputText value="#{equi.id}" />
+                            </p:column>           
+
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{equi.name}" />
+                            </p:column>      
+                         
+                     
+                        </p:dataTable>                   
+                     <p:commandButton class="boton" value="Asociar Equipos" actionListener="#{laboratorioBean.asociar()}" update = "@form :asociar"  
+                                         partialSubmit="true"  process="@this, :asociar"/>
+                 </p:panel>              
+             </h:form>               
+        </div>
+        <div>
+            
+            
+        </div>
+   
+    </div>
+</h:body>
+</html>

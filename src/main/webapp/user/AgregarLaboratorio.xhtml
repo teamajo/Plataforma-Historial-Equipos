@@ -1,0 +1,62 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+ <title>Plataformas Historial de Equipos</title>
+ <link rel="stylesheet" type="text/css" href="../css/general.css"/>
+
+
+</h:head>
+<h:body>
+    <header>
+         <ui:insert name="header" >
+            <ui:include src="../header.xhtml" />
+         </ui:insert>
+    </header>
+  
+    <h1>Agregar Laboratorio</h1>
+  
+    <h:form id="formulario" class="formulario">
+ 
+        <p:panel id="panel" header="Datos del Laboratorio" class="campos" style="max-width: 600px;">
+            <p:messages id="messages" />
+            <h:panelGrid columns="3" cellpadding="5">
+                
+            
+                <p:outputLabel for="text3" value="Nombre:" />
+                <p:inputText id="text3" value="#{agregarElemento.nuevoElemento.descripcion}" required="true"/>
+                <p:message for="text3" />            
+
+
+               
+            </h:panelGrid>
+        </p:panel>
+        
+        <p:dataTable var="equi" value="#{laboratorioBean.disponibles()}" scrollable="true" scrollHeight="100" 
+                               selectionMode="multiple" selection = "#{laboratorioBean.seleccionados}" rowKey="#{equi.id}">
+                         <p:column headerText="Id" class="delgado" sortBy="#{equi.id}">
+                             <h:outputText value="#{equi.id}" />
+                         </p:column>           
+
+                         <p:column headerText="Nombre">
+                             <h:outputText value="#{equi.name}" />
+                         </p:column>      
+
+
+         </p:dataTable> 
+
+    </h:form>   
+    <h:form>
+        <p:commandButton class="boton" value="Asociar Equipos" actionListener="#{laboratorioBean.asociar()}" update = "@form :asociar"  
+                                         partialSubmit="true"  process="@this, :asociar"/>
+        
+        <p:commandButton class="boton" value="Registrar Elemento"
+                         actionListener="#{agregarElemento.registrarElemento}" update="@form :formulario,@this"
+                          partialSubmit="true"  process="@this, :formulario"></p:commandButton>
+    </h:form>
+    
+</h:body>
+</html>

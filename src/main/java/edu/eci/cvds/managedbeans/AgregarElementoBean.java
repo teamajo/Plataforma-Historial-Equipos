@@ -13,6 +13,8 @@ import javax.inject.Inject;
 import edu.eci.cvds.entities.Elemento;
 import edu.eci.cvds.services.ServicesException;
 import edu.eci.cvds.services.impl.LaboratorioServicesImpl;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
@@ -110,9 +112,16 @@ public class AgregarElementoBean extends BasePageBean {
         for (Elemento e:seleccionados){ 
             laboratorioServices.darBajaElemento(e.getId());
         }
+        refresh();
     }
   
-    
+    public void refresh(){
+        try {
+            todos=laboratorioServices.buscarElementos();
+        } catch (ServicesException ex) {
+            Logger.getLogger(AgregarElementoBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
   
 
     

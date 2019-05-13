@@ -109,11 +109,11 @@ public class MyBatisEquipoDAO implements EquipoDAO {
 	}
 
 	@Override
-	public void buscarEquiposDisponibles() throws ServicesException {
-		try {
-		equipoMapper.buscarEquiposDisponibles();
+	public List<Equipo> buscarEquiposDisponibles() throws ServicesException {
+            try{
+                return equipoMapper.buscarEquiposDisponibles();
 	   } catch (Exception ex) {
-		   throw new ServicesException(ServicesException.NO_HAY_EQUIPOS_DISPONIBLES);
+		throw new ServicesException(ServicesException.NO_HAY_EQUIPOS_DISPONIBLES);
 	   }
 	}
 

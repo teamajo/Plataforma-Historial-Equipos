@@ -24,7 +24,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h1>Reporte de Elementos</h1>
 
-        <h:form>
+        <h:form id="tablaelementos">
                 <p:messages id="messages" />
             <p:dataTable id="elementos" var="elem" value="#{agregarElemento.consultarElementos()}" paginator="true"
                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
@@ -69,8 +69,9 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                 <p:outputLabel value="Seleccione Elementos con Ctrl/Shift + click: " style="margin-right: 10px;"/>
                  <p:commandButton value="Dar de Baja" type="button" onclick="PF('dlg2').show();" />
             </p:panel>
-            <p:dialog class="dialog centre" header="Dar de Baja a Elementos : Esta seguro?" widgetVar="dlg2" modal="true" height="100">
-                <p:commandButton class="boton" value="Si" actionListener = "#{agregarElemento.darBajaElementos()}" onclick="PF('dlg2').hide();" />
+            <p:dialog class="dialog" header="Dar de Baja a Elementos : Esta seguro?" widgetVar="dlg2" modal="true" height="100">
+                <p:commandButton class="boton" value="Si" actionListener = "#{agregarElemento.darBajaElementos()}" onclick="PF('dlg2').hide();"
+                                  update = "@form :tablaelementos"  partialSubmit="true"  process="@this, :tablaelementos"/>
                 
                 <p:commandButton value="Cancelar" class="cancelar" type="button" onclick="PF('dlg2').hide();" />
             </p:dialog>

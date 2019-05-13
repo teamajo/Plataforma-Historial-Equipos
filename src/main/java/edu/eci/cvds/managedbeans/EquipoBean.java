@@ -121,7 +121,6 @@ public class EquipoBean extends BasePageBean {
 
 
 
-    
 
     /**
      * @return the seleccionados
@@ -169,6 +168,19 @@ public class EquipoBean extends BasePageBean {
             Logger.getLogger(AgregarEquipoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void remplaceElemento(){
+        if(asociar){
+            ///
+        }else{
+            ////
+        }
+    }
+    
+    public void asocieEquipoaElemento(){
+        /// equipo.getIdeq , equipo.getid
+    }
+    
 
 
 }

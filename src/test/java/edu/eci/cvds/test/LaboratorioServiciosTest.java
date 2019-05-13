@@ -13,7 +13,6 @@ import edu.eci.cvds.entities.NovedadEquipo;
 import edu.eci.cvds.entities.Tipo;
 import edu.eci.cvds.persistence.ElementoDAO;
 
-import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisElementoDAO;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.LaboratorioServiciosFactory;
@@ -47,7 +46,7 @@ public class LaboratorioServiciosTest {
     
     private static int idEquimax=0;  
     private LaboratorioServices serviciosLab;
-   
+    private static boolean st=true;
     
     
     
@@ -110,14 +109,14 @@ public class LaboratorioServiciosTest {
    
     
     @Test
-    public void agregarEquipoTest() throws PersistenceException{   
+    public void agregarEquipoTest() {   
         
         qt().forAll(GeneradoresLaboratorio.completoEquipos()).check(
             (eq)->{                
                 try {
                     serviciosLab.registrarEquipo(eq);
                     idEquimax++;
-                   
+             
                     return true;
                 } catch (ServicesException ex) {
                     Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,7 +128,7 @@ public class LaboratorioServiciosTest {
         );     
         try {
             for(int i=1; i<=idEquimax;i++){
-                assert(serviciosLab.buscarElementoPorEquipo(i).size()==4);  
+                assert(serviciosLab.buscarEquipoPorId(i).getComponets().size()==4);  
             }
            assert(serviciosLab.buscarEquipos().size()==idEquimax);
            
@@ -163,7 +162,7 @@ public class LaboratorioServiciosTest {
                 try {
                     serviciosLab.registrarEquipo(eq);
                     idEquimax++;                         
-                    return serviciosLab.buscarNovedadesPorEquipo(idEquimax).size()>0 && serviciosLab.buscarNovedadesDeElementosPorEquipos(idEquimax).size()>3;
+                    return serviciosLab.buscarNovedadesDeElementosPorEquipos(idEquimax).size()>3;
                 } catch (ServicesException ex) {
                     Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
                     return false;
@@ -196,6 +195,9 @@ public class LaboratorioServiciosTest {
            
         ); 
     }
+    
+    
+    
     /*
     @Test
     public void noPoderAsociarTest(){
@@ -225,16 +227,17 @@ public class LaboratorioServiciosTest {
     }*/
     @Test
     public void pruebaLab(){
-        java.util.Date fechaActual = new java.util.Date();   
-        Elemento torre=new Elemento(null, Tipo.torre, "abs", null, "asda");
-        Elemento pantalla=new Elemento(null, Tipo.pantalla, "abs", null, "asda");
-        Elemento mouse=new Elemento(null, Tipo.mouse, "abs", null, "asda");
-        Elemento teclado=new Elemento(null, Tipo.teclado, "abs", null, "asda");
-        Elemento torre2=new Elemento(null, Tipo.torre, "abs2", null, "asda");
-        Elemento pantalla2=new Elemento(null, Tipo.pantalla, "abs2", null, "asda");
-        Elemento mouse2=new Elemento(null, Tipo.mouse, "abs2", null, "asda");
-        Elemento teclado2=new Elemento(null, Tipo.teclado, "abs2", null, "asda");
         try {
+            java.util.Date fechaActual = new java.util.Date();
+            Elemento torre=new Elemento(null, Tipo.torre, "abs", null, "asda");
+            Elemento pantalla=new Elemento(null, Tipo.pantalla, "abs", null, "asda");
+            Elemento mouse=new Elemento(null, Tipo.mouse, "abs", null, "asda");
+            Elemento teclado=new Elemento(null, Tipo.teclado, "abs", null, "asda");
+            Elemento torre2=new Elemento(null, Tipo.torre, "abs2", null, "asda");
+            Elemento pantalla2=new Elemento(null, Tipo.pantalla, "abs2", null, "asda");
+            Elemento mouse2=new Elemento(null, Tipo.mouse, "abs2", null, "asda");
+            Elemento teclado2=new Elemento(null, Tipo.teclado, "abs2", null, "asda");
+            
             Equipo eq=new Equipo(null, 2, torre, pantalla, mouse, teclado, "Preuba");
             serviciosLab.registrarEquipo(eq);
             idEquimax++; 
@@ -262,39 +265,12 @@ public class LaboratorioServiciosTest {
             
             serviciosLab.darBajaLaboratorio(lab2.getId());
             System.out.println(e2.getlab()+" "+serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab3.getId());
+        } catch (ServicesException ex) {
+            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        } catch (PersistenceException ex) {
-            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ServicesException ex) {
-            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
-    @Test
-    public void noPoderAsociarTest(){
-        Elemento torre=new Elemento(null, Tipo.torre, "abs", null, "asda");
-        Elemento pantalla=new Elemento(null, Tipo.pantalla, "abs", null, "asda");
-        Elemento mouse=new Elemento(null, Tipo.mouse, "abs", null, "asda");
-        Elemento teclado=new Elemento(null, Tipo.teclado, "abs", null, "asda");
-        try {
-            Equipo eq=new Equipo(null, 1, torre, pantalla, mouse, teclado, "Preuba");
-            serviciosLab.registrarEquipo(eq);
-            idEquimax++; 
-            
-            Equipo eqb=serviciosLab.buscarEquipoPorId(idEquimax);
-            torre=serviciosLab.buscarElemento(eqb.getTorre().getId());
-             System.out.println("XXXXXX-------XXXXXXXXX");
-            System.out.println(eqb.getId()+" && "+idEquimax+" Este es el id ; y el id de la torre: "+ torre.getId());
-              System.out.println("XXXXXXXXXX-----XXXXX");
-            serviciosLab.darBajaEquipo(eqb.getId());            
-            serviciosLab.asociarEquipo(eqb.getId(), torre);         
-            
-        } catch (PersistenceException ex) {
-            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ServicesException ex) {
-            Logger.getLogger(LaboratorioServiciosTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
+  
     
     
     

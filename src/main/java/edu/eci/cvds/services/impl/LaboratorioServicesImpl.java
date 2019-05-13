@@ -82,7 +82,6 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	@Override
   @Transactional
     public void registrarEquipo(Equipo equipo) throws ServicesException{
-   
       equipoDAO.registrarEquipo(equipo);
       Integer idEquipo = maxIdEquipo();
       Integer idElemento= 0;
@@ -95,7 +94,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
         }else{
           idElemento=e.getId();
         }
-        asociarEquipo( idEquipo,buscarElemento(idElemento));  // No deberia enviar el Tipo
+          asociarEquipo( idEquipo,buscarElemento(idElemento));  // No deberia enviar el Tipo
       }
         NovedadEquipo novedadeq = new NovedadEquipo(null,"novedad equipo registar",idEquipo,fechaActual,"se registro el equipo","admin");
         novedadEquipoDAO.registrarNovedadEquipo(novedadeq);
@@ -113,16 +112,28 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
       java.util.Date fechaActual = new java.util.Date();      
       Equipo equi = buscarEquipoPorId(idEquipo);
       List<Elemento> elementos = equi.getComponets();
+      // ?? Esto que ??
       NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
       NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,el.getId(),fechaActual,"sPe asocio el elemento","admin");
-      
-      if(equi.isActivo() && el.isActivo()){
-        for (Elemento e:elementos){ 
-          if(e!=null && e.getId()!=null ){
-            if (e.getTipo() == el.getTipo()){
-              desAsociarElemento(e.getId());                                                   
-            }
-          }
+      Elemento e=null;
+      if(equi.isActivo() && el.isActivo()){        
+        switch(el.getTipo()){
+            case mouse:
+                 e=equi.getMouse();
+                 break;                 
+            case teclado:
+                 e=equi.getTeclado();
+                 break;
+            case pantalla:
+                 e=equi.getPantalla();
+                 break;
+            case torre:
+                 e=equi.getTorre();
+                 break;                   
+         }
+        
+        if(e!=null && e.getId()!=null){            
+            desAsociarElemento(e.getId());
         }
         elementoDAO.asociarEquipo(idEquipo, el.getId());          
         novedadElementoDAO.registrarNovedadElemento(novedadel); 
@@ -334,9 +345,9 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
   }
 
   @Override
-    public void buscarEquiposDisponibles() throws ServicesException {
+    public  List<Equipo> buscarEquiposDisponibles() throws ServicesException {
     try { 
-        equipoDAO.buscarEquiposDisponibles();
+        return equipoDAO.buscarEquiposDisponibles();
 
         } catch (ServicesException ex) {
             throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);

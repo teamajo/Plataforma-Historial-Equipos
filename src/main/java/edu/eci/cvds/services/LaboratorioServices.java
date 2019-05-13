@@ -70,7 +70,7 @@ public interface LaboratorioServices {
 
     public void desAsociarEquipoAlab(Integer idEquipo) throws ServicesException ;
 
-    public void buscarEquiposDisponibles() throws ServicesException;
+    public List<Equipo> buscarEquiposDisponibles() throws ServicesException;
     
     public void darBajaEquiposConElementos(List<Equipo> seleccionados) throws ServicesException ;
     

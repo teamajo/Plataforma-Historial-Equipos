@@ -86,7 +86,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                    
                     </h:panelGroup>         
                      <p:messages id="messages" />
-                     <p:commandButton class="boton" value="Crear/Asociar" actionListener="#{equipoBean.remplaceElemento}" 
+                     <p:commandButton class="boton" value="Crear/Asociar" actionListener="#{equipoBean.remplaceElemento()}" 
                          update="@form :crear,@form :datos,@form :titulo,@this"
                           partialSubmit="true"  process="@this :crear, :datos, :titulo"></p:commandButton> 
                 
