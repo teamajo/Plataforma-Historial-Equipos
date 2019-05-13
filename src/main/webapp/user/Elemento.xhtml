@@ -60,7 +60,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                                 <h:outputText value="#{elem.name}" />
                             </p:column>                   
                         </p:dataTable>                   
-                        <p:commandButton class="boton" value="Asociar Equipo"   update="asociar"/>
+                        <p:commandButton class="boton" value="Asociar Equipo"  actionListener="#{equipoBean.asocieEquipoaElemento()}" update="asociar"/>
                  </p:panel>              
              </h:form>               
         </div>

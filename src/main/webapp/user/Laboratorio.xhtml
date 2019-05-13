@@ -22,7 +22,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
        
         <div>
             <h:form id="crear" class="formulario">
-                <p:panel header="Datos del Elemento"  >
+                <p:panel header="Datos del Equipo"  >
 
                     <h:panelGrid columns="2" cellpadding="5" class="gridcenter">                       
 
@@ -40,8 +40,9 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
             <h:form id="asociar" class="formulario">  
                  <p:panel header="Asociar Equipos">       
                       
-                     <p:dataTable var="equi" value="#{laboratorioBean.disponibles()}" scrollable="true" scrollHeight="100">
-                            <p:column headerText="Id" class="delgado">
+                     <p:dataTable var="equi" value="#{laboratorioBean.disponibles()}" scrollable="true" scrollHeight="100" 
+                                  selectionMode="multiple" selection = "#{laboratorioBean.seleccionados}" rowKey="#{equi.id}">
+                            <p:column headerText="Id" class="delgado" sortBy="#{equi.id}">
                                 <h:outputText value="#{equi.id}" />
                             </p:column>           
 
@@ -51,9 +52,14 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                          
                      
                         </p:dataTable>                   
-                        <p:commandButton class="boton" value="Asociar Equipos"   update="asociar"/>
+                     <p:commandButton class="boton" value="Asociar Equipos" actionListener="#{laboratorioBean.asociar()}" update = "@form :asociar"  
+                                         partialSubmit="true"  process="@this, :asociar"/>
                  </p:panel>              
              </h:form>               
+        </div>
+        <div>
+            
+            
         </div>
    
     </div>

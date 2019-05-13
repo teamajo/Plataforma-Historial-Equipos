@@ -151,7 +151,7 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
       } catch (PersistenceException ex) {
           throw new ServicesException("Error listando equipos:" + ex.getLocalizedMessage(), ex);
       }
-	  }
+    }
 	  
         
     /// El tipo se deberia sacar del ID , que pasa si el ID es correcto y el tipo no ? al llamar al metodo ???
@@ -167,14 +167,25 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
       // ?? Esto que ??
       NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
       NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,el.getId(),fechaActual,"sPe asocio el elemento","admin");
-      
-      if(equi.isActivo() && el.isActivo()){
-        for (Elemento e:elementos){ 
-          if(e!=null && e.getId()!=null ){
-            if (e.getTipo() == el.getTipo()){
-              desAsociarElemento(e.getId());                                                   
-            }
-          }
+      Elemento e=null;
+      if(equi.isActivo() && el.isActivo()){        
+        switch(el.getTipo()){
+            case mouse:
+                 e=equi.getMouse();
+                 break;                 
+            case teclado:
+                 e=equi.getTeclado();
+                 break;
+            case pantalla:
+                 e=equi.getPantalla();
+                 break;
+            case torre:
+                 e=equi.getTorre();
+                 break;                   
+         }
+        
+        if(e!=null && e.getId()!=null){            
+            desAsociarElemento(e.getId());
         }
         elementoDAO.asociarEquipo(idEquipo, el.getId());          
         novedadElementoDAO.registrarNovedadElemento(novedadel); 

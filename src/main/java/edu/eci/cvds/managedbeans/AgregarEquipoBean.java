@@ -147,7 +147,7 @@ public class AgregarEquipoBean extends BasePageBean {
              if(buscarT){
                 nuevoEquipo.setTorre(laboratorioServices.buscarElemento(idT));
             }         
-
+            System.out.println(nuevoEquipo.getName());
             laboratorioServices.registrarEquipo(nuevoEquipo);
             mensaje = "success !!";
             fs=FacesMessage.SEVERITY_INFO;

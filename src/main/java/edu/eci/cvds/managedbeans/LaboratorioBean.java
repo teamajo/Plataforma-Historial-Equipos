@@ -83,7 +83,7 @@ public class LaboratorioBean extends BasePageBean {
         }
         return "Laboratorio.xhtml?faces-redirect=true";
     }
-    
+     
     public List<Equipo> disponibles(){
         if(disponibles==null){
             try {
@@ -94,5 +94,10 @@ public class LaboratorioBean extends BasePageBean {
         }
         return disponibles;
     }
+    
+    public void asociar(){
+        //// implementar
+    }
+    
 
 }
