@@ -7,6 +7,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
  <title>Plataformas Historial de Equipos</title>
  <link rel="stylesheet" type="text/css" href="../css/general.css"/>
+ <link rel="stylesheet" type="text/css" href="../css/laboratorio.css"/>
 
 
 </h:head>
@@ -19,7 +20,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
   
     <h1>Agregar Laboratorio</h1>
   
-    <h:form id="formulario" class="formulario">
+    <h:form id="formulario" class="formulario" >
  
         <p:panel id="panel" header="Datos del Laboratorio" class="campos" style="max-width: 600px;">
             <p:messages id="messages" />
@@ -27,35 +28,36 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                 
             
                 <p:outputLabel for="text3" value="Nombre:" />
-                <p:inputText id="text3" value="#{agregarElemento.nuevoElemento.descripcion}" required="true"/>
+                <p:inputText id="text3" value="#{laboratorioBean.laboratorio.name}" required="true"/>
                 <p:message for="text3" />            
 
 
                
             </h:panelGrid>
         </p:panel>
-        
-        <p:dataTable var="equi" value="#{laboratorioBean.disponibles()}" scrollable="true" scrollHeight="100" 
-                               selectionMode="multiple" selection = "#{laboratorioBean.seleccionados}" rowKey="#{equi.id}">
-                         <p:column headerText="Id" class="delgado" sortBy="#{equi.id}">
-                             <h:outputText value="#{equi.id}" />
-                         </p:column>           
+        <p:panel header="Equipos Disponibles">
+            <p:dataTable var="equi" value="#{laboratorioBean.disponibles()}" scrollable="true" scrollHeight="300" 
+                                   selectionMode="multiple" selection = "#{laboratorioBean.seleccionados}" rowKey="#{equi.id}">
+                             <p:column headerText="Id" class="delgado" sortBy="#{equi.id}">
+                                 <h:outputText value="#{equi.id}" />
+                             </p:column>           
 
-                         <p:column headerText="Nombre">
-                             <h:outputText value="#{equi.name}" />
-                         </p:column>      
+                             <p:column headerText="Nombre">
+                                 <h:outputText value="#{equi.name}" />
+                             </p:column>      
 
 
-         </p:dataTable> 
-
+             </p:dataTable> 
+        </p:panel>
     </h:form>   
     <h:form>
-        <p:commandButton class="boton" value="Asociar Equipos" actionListener="#{laboratorioBean.asociar()}" update = "@form :asociar"  
-                                         partialSubmit="true"  process="@this, :asociar"/>
+        <p:commandButton class="boton" value="Crear Laboratorio y Asociar Equipos" 
+                         actionListener="#{laboratorioBean.registrarLabEquipos()}" update = "@form :formulario,@this"  
+                         partialSubmit="true"  process="@this, :formulario" style="margin-right: 10px;"/>
         
-        <p:commandButton class="boton" value="Registrar Elemento"
-                         actionListener="#{agregarElemento.registrarElemento}" update="@form :formulario,@this"
-                          partialSubmit="true"  process="@this, :formulario"></p:commandButton>
+        <p:commandButton class="boton" value="Solo Crear Laboratorio"
+                         actionListener="#{laboratorioBean.registrarLab()}" update="@form :formulario,@this"
+                          partialSubmit="true"  process="@this, :formulario"/>
     </h:form>
     
 </h:body>

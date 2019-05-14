@@ -153,5 +153,29 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                 </h:form>
              </div>  
         </div>   
+    <h:form>
+        <p:panel header="Novedades" style="max-width: 900px;" class="centrado">
+        <p:dataTable var="nov" value="#{equipoBean.novedadEquipo()}" scrollable="true" scrollHeight="200">
+            <p:column headerText="Id" class="delgado" sortBy="#{nov.id}">
+                <h:outputText value="#{nov.id}" />
+            </p:column>  
+
+            <p:column headerText="Id Eq" class="delgado" sortBy="#{nov.idEquipo}">
+                <h:outputText value="#{nov.idEquipo}" />
+            </p:column>           
+
+            <p:column headerText="Titulo" sortBy="#{nov.titulo}">
+                <h:outputText value="#{nov.titulo}" />
+            </p:column>      
+
+            <p:column headerText="Fecha" sortBy="#{nov.fecha}">
+                <h:outputText value="#{nov.fecha}" />
+            </p:column> 
+                
+        </p:dataTable>   
+            
+        </p:panel>
+        
+    </h:form>
 </h:body>
 </html>

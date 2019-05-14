@@ -5,9 +5,12 @@ import java.util.List;
 import com.google.inject.Inject;
 
 import edu.eci.cvds.entities.Laboratorio;
+import edu.eci.cvds.managedbeans.LaboratorioBean;
 import edu.eci.cvds.persistence.LaboratorioDAO;
 import edu.eci.cvds.persistence.mybatisimpl.mappers.LaboratorioMapper;
 import edu.eci.cvds.services.ServicesException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class MyBatisLaboratorioDAO implements LaboratorioDAO {
@@ -42,7 +45,7 @@ public class MyBatisLaboratorioDAO implements LaboratorioDAO {
 	public void registrarLaboratorio(Laboratorio laboratorio) throws ServicesException {
 		try {
 			laboratorioMapper.registrarLaboratorio(laboratorio);
-		} catch (Exception e) {
+		} catch (Exception e) {                       
 			throw new ServicesException(ServicesException.VALORES_INVALIDOS);
 		}
 	}

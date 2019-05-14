@@ -262,7 +262,7 @@ public class LaboratorioServiciosTest {
             System.out.println(e2.toString()+" "+serviciosLab.buscarEquipoPorId(1).toString());
             System.out.println(e3.toString()+" "+serviciosLab.buscarEquipoPorId(2).toString());
             System.out.println(e2.getlab()+" "+serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab3.getId());
-            
+             System.out.println("Equipos :" +lab3.getEquipos());
             serviciosLab.darBajaLaboratorio(lab2.getId());
             System.out.println(e2.getlab()+" "+serviciosLab.buscarEquipoPorId(idEquimax).getlab()+" " + lab3.getId());
         } catch (ServicesException ex) {

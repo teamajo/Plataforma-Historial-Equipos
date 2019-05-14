@@ -15,6 +15,7 @@ h1{
 }
 .formulario{
     padding: 10px;
+   
 }
 .centrado{
     text-align:center;  
@@ -80,6 +81,9 @@ header input{
     text-align: center;    
 }
 
+.campos{
+    margin-bottom: 20px;
+}
 
 .gridcenter{
     text-align: center;
