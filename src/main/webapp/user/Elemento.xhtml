@@ -45,19 +45,19 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                         
                         <h:panelGrid  columns="3" cellpadding="5" class="gridcenter">
                              <p:outputLabel for="text5" value="ID Equipo:" />      
-                             <p:inputText id="text5" value="#{equipoBean.elemento.idEquipo}" required="true"/>                         
+                             <p:inputText id="text5" value="#{equipoBean.idEquipo}" required="true"/>                         
                              <p:message for="text5" />
                         </h:panelGrid>
 
 
                         <h4> Equipo Disponibles : (#{equipoBean.elemento.tipo.toString()})</h4>
-                        <p:dataTable var="elem" value="#{agregarElemento.elementosDisponiblesPorTipo(equipoBean.elemento.tipo)}" scrollable="true" scrollHeight="100">
+                        <p:dataTable var="equipo" value="#{equipoBean.buscarEquipos()}" scrollable="true" scrollHeight="100">
                             <p:column headerText="Id" class="delgado">
-                                <h:outputText value="#{elem.id}" />
+                                <h:outputText value="#{equipo.id}" />
                             </p:column>           
 
                             <p:column headerText="Nombre">
-                                <h:outputText value="#{elem.name}" />
+                                <h:outputText value="#{equipo.name}" />
                             </p:column>                   
                         </p:dataTable>                   
                         <p:commandButton class="boton" value="Asociar Equipo"  actionListener="#{equipoBean.asocieEquipoaElemento()}" update="asociar"/>
