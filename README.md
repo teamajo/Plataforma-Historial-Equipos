@@ -32,8 +32,10 @@ representar de mejor forma el manejo del laboratorio.
 
 
 # Arquitectura y Diseño detallado
-###
-###
+### Modelo E-R
+![](img/DiagramaE-R.jpg)
+### Diagrama de clases
+![](img/Diagrama-Clases.jpg)
 ### Descripción de la arquitectura
 PrimeFaces: correspondiente a la capa de presentación, lo utilizamos para el front de nuestra aplicación web
 Guice: Es un framework de inyección de dependencias, lo utilizamos en nuestras dependencias, como por ejemplo los DAO.
