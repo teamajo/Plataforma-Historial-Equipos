@@ -62,7 +62,7 @@ La herramienta utilizada para el desarrollo del scrum es Taiga.
 + [Enlace a Taiga](https://tree.taiga.io/project/qsarjp-historial-de-equipos-labinfo/backlog)
 
 #### Release-burndown chart
-![](img/burndown)
+![](img/BackLog.png)
 Puntos faltantes:
 + Dar de baja laboratorio.
 + novedades laboratorio.
