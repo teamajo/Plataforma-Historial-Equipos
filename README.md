@@ -22,6 +22,9 @@ Credenciales temporales:
 Usuario: admin
 clave: 12345
 
+# Manual de usuario
+[Manual](Manual.md)
+
 //Manual de usuario
 
 # Arquitectura y Diseño detallado
