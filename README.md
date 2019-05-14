@@ -73,7 +73,7 @@ Puntos faltantes:
 [Detalle de los Springs](img/Springs.md)
 
 #### Reporte de pruebas
-![](img/ReportePruebas.jpg)
+![](img/ReprotePruebas.jpg)
 
 #### Reporte de análisis estático de código
 [URL Codacy](https://app.codacy.com/app/AriasAEnima/Plataforma-Historial-Equipos?utm_source=github.com&utm_medium=referral&utm_content=teamajo/Plataforma-Historial-Equipos&utm_campaign=Badge_Grade_Dashboard) 
