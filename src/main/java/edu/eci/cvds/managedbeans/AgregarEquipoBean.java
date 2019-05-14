@@ -28,6 +28,7 @@ public class AgregarEquipoBean extends BasePageBean {
     private LaboratorioServices laboratorioServices;
 
     private Equipo nuevoEquipo;
+
     
 
     private int idK, idP, idM, idT;
@@ -160,6 +161,8 @@ public class AgregarEquipoBean extends BasePageBean {
         FacesContext.getCurrentInstance().addMessage(null,fm);
               
     }
+
+   
       
  
   

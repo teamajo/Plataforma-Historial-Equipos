@@ -27,23 +27,35 @@ public class EquipoBean extends BasePageBean {
     @Inject
     private LaboratorioServices laboratorioServices;
 
+
     
     private Equipo equipo;   
  
     private Elemento elemento;
-    
-    
+
+    private Elemento nuevoElemento;
+
     private List<Equipo> equipos;
 
-    private List<Equipo> seleccionados;    
-    
+    private List<Equipo> seleccionados;
+
     private Integer idElemento;
-    
+
+    private Integer idEquipo;
+
     private boolean asociar;
+
+    public EquipoBean() {
+        nuevoElemento = new Elemento();
+    }
+
+    
 
     public Integer getIdElemento() {
         return idElemento;
     }
+
+    
 
     public boolean isAsociar() {
         return asociar;
@@ -171,14 +183,58 @@ public class EquipoBean extends BasePageBean {
     
     public void remplaceElemento(){
         if(asociar){
-            ///
+            System.out.println(idElemento);
+            try {
+                laboratorioServices.asociarEquipo(elemento.getIdEquipo(),laboratorioServices.buscarElemento(idElemento));
+            } catch (ServicesException e) {       
+                e.printStackTrace();
+            }
         }else{
-            ////
+            nuevoElemento.setTipo(elemento.getTipo());
+            try {
+                laboratorioServices.registrarElemento(nuevoElemento);
+                laboratorioServices.asociarEquipo(elemento.getIdEquipo(), laboratorioServices.buscarElemento(laboratorioServices.maxIdElemento()));
+            } catch (ServicesException e) {
+                e.printStackTrace();
+            }
         }
     }
     
     public void asocieEquipoaElemento(){
-        /// equipo.getIdeq , equipo.getid
+        try {
+            laboratorioServices.asociarEquipo(idEquipo, elemento);
+        } catch (ServicesException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @return the nuevoElemento
+     */
+    public Elemento getNuevoElemento() {
+        return nuevoElemento;
+    }
+
+    /**
+     * @param nuevoElemento the nuevoElemento to set
+     */
+    public void setNuevoElemento(Elemento nuevoElemento) {
+        this.nuevoElemento = nuevoElemento;
+    }
+
+    /**
+     * @return the idEquipo
+     */
+    public Integer getIdEquipo() {
+        return idEquipo;
+    }
+
+    /**
+     * @param idEquipo the idEquipo to set
+     */
+    public void setIdEquipo(Integer idEquipo) {
+        this.idEquipo = idEquipo;
     }
     
 

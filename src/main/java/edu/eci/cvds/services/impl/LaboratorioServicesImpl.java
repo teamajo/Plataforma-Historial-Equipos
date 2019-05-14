@@ -106,43 +106,39 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
         // Siguiendo los comentarios de Registrar deberia llegar el elemento asociarEquipo(idEquipo,e) { 
   @Override
   public void asociarEquipo(Integer idEquipo,Elemento el) throws ServicesException {
-    try {
-      Boolean flag = false;
-      // tipo = servicios
-      java.util.Date fechaActual = new java.util.Date();      
-      Equipo equi = buscarEquipoPorId(idEquipo);
-      List<Elemento> elementos = equi.getComponets();
-      // ?? Esto que ??
-      NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
-      NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,el.getId(),fechaActual,"sPe asocio el elemento","admin");
-      Elemento e=null;
-      if(equi.isActivo() && el.isActivo()){        
-        switch(el.getTipo()){
-            case mouse:
-                 e=equi.getMouse();
-                 break;                 
-            case teclado:
-                 e=equi.getTeclado();
-                 break;
-            case pantalla:
-                 e=equi.getPantalla();
-                 break;
-            case torre:
-                 e=equi.getTorre();
-                 break;                   
-         }
-        
-        if(e!=null && e.getId()!=null){            
-            desAsociarElemento(e.getId());
-        }
-        elementoDAO.asociarEquipo(idEquipo, el.getId());          
-        novedadElementoDAO.registrarNovedadElemento(novedadel); 
-        // De esto habra un test.
-        novedadEquipoDAO.registrarNovedadEquipo(novedad);
+
+    Boolean flag = false;
+    // tipo = servicios
+    java.util.Date fechaActual = new java.util.Date();      
+    Equipo equi = buscarEquipoPorId(idEquipo);
+    List<Elemento> elementos = equi.getComponets();
+    // ?? Esto que ??
+    NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo asociacion", idEquipo,fechaActual,"se Asocio el equipo","admin");
+    NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento asociar",idEquipo,el.getId(),fechaActual,"sPe asocio el elemento","admin");
+    Elemento e=null;
+    if(equi.isActivo() && el.isActivo()){        
+      switch(el.getTipo()){
+        case mouse:
+          e=equi.getMouse();
+          break;                 
+        case teclado:
+          e=equi.getTeclado();
+          break;
+        case pantalla:
+          e=equi.getPantalla();
+          break;
+        case torre:
+          e=equi.getTorre();
+          break;                   
       }
-        
-    } catch (ServicesException ex) {
-        Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);
+      
+      if(e!=null && e.getId()!=null){            
+          desAsociarElemento(e.getId());
+      }
+      elementoDAO.asociarEquipo(idEquipo, el.getId());          
+      novedadElementoDAO.registrarNovedadElemento(novedadel); 
+      // De esto habra un test.
+      novedadEquipoDAO.registrarNovedadEquipo(novedad);
     }
   }
 	@Override
@@ -157,85 +153,47 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 
     @Override
     public Integer maxIdEquipo() throws ServicesException {
-            try {
-                    return equipoDAO.maxIdEquipo();
-     } catch (ServicesException ex) {
-             throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-     }
+      return equipoDAO.maxIdEquipo();
     }
 
     @Override
     public Integer maxIdElemento() throws ServicesException {
-            try {
-                    return elementoDAO.maxIdElemento();
-     } catch (ServicesException ex) {
-             throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-     }
+      return elementoDAO.maxIdElemento();
     }
 
     @Override
     public List<NovedadEquipo> buscarNovedadesPorEquipo(Integer idEquipo) throws ServicesException {
-    try {
-                    return novedadEquipoDAO.buscarNovedadesDeEquiposPorEquipos(idEquipo);
-            } catch (ServicesException ex) {
-                    throw new ServicesException("No se encontro el equipo" );
-            }
+      return novedadEquipoDAO.buscarNovedadesDeEquiposPorEquipos(idEquipo);
     }
 
     @Override
     public List<NovedadEquipo> buscarNovedadesDeEquipos() throws ServicesException {
-    try {
-                    return novedadEquipoDAO.buscarNovedadesDeEquipos();
-            } catch (ServicesException ex) {
-                    throw new ServicesException("Error listando novedades:" + ex.getLocalizedMessage(), ex);
-            }
+      return novedadEquipoDAO.buscarNovedadesDeEquipos();
     }
 
     @Override
     public void registrarNovedadEquipo(NovedadEquipo novedad) throws ServicesException {
-    try {
-            novedadEquipoDAO.registrarNovedadEquipo(novedad);
-            } catch (ServicesException ex) {
-                    throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-            }
-
+      novedadEquipoDAO.registrarNovedadEquipo(novedad);
     }
 
     @Override
     public List<NovedadElemento> buscarNovedadesDeElementosPorEquipos(Integer idEquipo) throws ServicesException {
-        try {
-                    return novedadElementoDAO.buscarNovedadesDeElementosPorEquipos(idEquipo);
-            } catch (ServicesException ex) {
-                    Logger.getLogger(LaboratorioServicesImpl.class.getName()).log(Level.SEVERE, null, ex);throw new ServicesException("Error listando novedades de equipos:" + ex.getLocalizedMessage(), ex);
-            }
+      return novedadElementoDAO.buscarNovedadesDeElementosPorEquipos(idEquipo);
     }
 
     @Override
     public List<NovedadElemento> buscarNovedadesDeElementosPorElementos(Integer idElemento) throws ServicesException {
-        try {
-                    return novedadElementoDAO.buscarNovedadesDeElementosPorElementos(idElemento);
-            } catch (ServicesException ex) {
-                    throw new ServicesException("Error listando novedades de equipos:" + ex.getLocalizedMessage(), ex);
-            }
+      return novedadElementoDAO.buscarNovedadesDeElementosPorElementos(idElemento);
     }
 
     @Override
     public List<NovedadElemento> buscarNovedadesDeElementos() throws ServicesException {
-        try {
-                    return novedadElementoDAO.buscarNovedadesDeElementos();
-            } catch (ServicesException ex) {
-                    throw new ServicesException("Error listando novedades:" + ex.getLocalizedMessage(), ex);
-            }
+      return novedadElementoDAO.buscarNovedadesDeElementos();
     }
 
 	@Override
 	public void registrarNovedadElemento(NovedadElemento novedad) throws ServicesException {
-	    try {
 	    	novedadElementoDAO.registrarNovedadElemento(novedad);
-		} catch (ServicesException ex) {
-			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-		}
-		
 	}
 
 	@Override
@@ -266,92 +224,52 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
   }
   @Override
 	public List<Laboratorio> buscarLaboratorios() throws ServicesException {
-		try {
         return laboratorioDAO.buscarLaboratorios();
-
-		} catch (ServicesException ex) {
-			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-		}
   }
   
   @Override
 	public Laboratorio buscarLaboratorioPorID(Integer id) throws ServicesException {
-		try {
-        return laboratorioDAO.buscarLaboratorioPorID(id);
-
-		} catch (ServicesException ex) {
-			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-		}
+      return laboratorioDAO.buscarLaboratorioPorID(id);
   }
   
   @Override
 	public Integer maxIdLaboratorio() throws ServicesException {
-		try {
 			return laboratorioDAO.maxIdLaboratorio();
-	 } catch (ServicesException ex) {
-		 throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-	 }
   }
   
   @Override
     public void registrarLaboratorio(Laboratorio laboratorio) throws ServicesException{
-    try {
       java.util.Date fechaActual = new java.util.Date();
       laboratorio.setFechaCreacion(fechaActual);
       laboratorioDAO.registrarLaboratorio(laboratorio);
-        
-      }catch (ServicesException ex) {
-      throw new ServicesException("Error listando elementos:" + ex.getLocalizedMessage(), ex);
-      }
   }
   @Override
     public void darBajaLaboratorio(Integer id) throws ServicesException {
-    try { 
       List<Equipo> equiposLab = buscarLaboratorioPorID(id).getEquipos();
       for (Equipo e : equiposLab){
         desAsociarEquipoAlab(e.getId());
       }
       laboratorioDAO.darBajaLaboratorio(id);
-
-        } catch (ServicesException ex) {
-                throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-        }
   }
   @Override
     public void asociarEquipoAlab(Integer idEquipo, Integer id) throws ServicesException {
-    try { 
-        Equipo eq = buscarEquipoPorId(idEquipo);
-        if (eq.isActivo()){
-            if (eq.getlab() != null){
-                desAsociarEquipoAlab(idEquipo);
-            }
-            equipoDAO.asociarEquipoAlab(idEquipo,id);
-        }
-      
-
-        } catch (ServicesException ex) {
-                throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-        }
+      Equipo eq = buscarEquipoPorId(idEquipo);
+      if (eq.isActivo()){
+          if (eq.getlab() != null){
+              desAsociarEquipoAlab(idEquipo);
+          }
+          equipoDAO.asociarEquipoAlab(idEquipo,id);
+      }
   }
 
   @Override
     public void desAsociarEquipoAlab(Integer idEquipo) throws ServicesException {
-    try { 
       equipoDAO.desAsociarEquipoAlab(idEquipo);
-
-    } catch (ServicesException ex) {
-            throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-    }
   }
 
   @Override
     public  List<Equipo> buscarEquiposDisponibles() throws ServicesException {
-    try { 
         return equipoDAO.buscarEquiposDisponibles();
-
-        } catch (ServicesException ex) {
-            throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-        }
     }
     @Override
     public void darBajaEquiposConElementos(List<Equipo> seleccionados) throws ServicesException {

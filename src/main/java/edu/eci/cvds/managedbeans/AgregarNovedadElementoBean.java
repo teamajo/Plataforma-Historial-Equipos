@@ -91,7 +91,6 @@ public class AgregarNovedadElementoBean extends BasePageBean  {
             mensaje = "Fail";
 			throw ex;
         }
-        System.out.println(disponibles.toString());
 
         FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,mensaje,mensaje));
         return disponibles;
