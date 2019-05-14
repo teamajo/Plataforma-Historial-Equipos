@@ -42,7 +42,7 @@ public class LaboratorioBean extends BasePageBean {
     private LaboratorioServices laboratorioServices;
 
     private List<Laboratorio> laboratorios ;
-    private List<Laboratorio> seleccionados;  
+    private List<Equipo> seleccionados;  
     
     private List<Equipo> disponibles;
     
@@ -84,14 +84,14 @@ public class LaboratorioBean extends BasePageBean {
     /**
      * @return the seleccionados
      */
-    public List<Laboratorio> getSeleccionados() {
+    public List<Equipo> getSeleccionados() {
         return seleccionados;
     }
 
     /**
      * @param seleccionados the seleccionados to set
      */
-    public void setSeleccionados(List<Laboratorio> seleccionados) {
+    public void setSeleccionados(List<Equipo> seleccionados) {
         this.seleccionados = seleccionados;
     }
     
@@ -123,13 +123,22 @@ public class LaboratorioBean extends BasePageBean {
     }
     
     public void asociar(){
-        //// implementar
+        try {
+            for (Equipo e: seleccionados){
+                laboratorioServices.asociarEquipoAlab(e.getId(), laboratorio.getId());
+            }
+        } catch (ServicesException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        refresh();
     }
     
     public void registrarLab(){
         try {
             laboratorioServices.registrarLaboratorio(laboratorio);
             laboratorio=new Laboratorio();
+            refresh();
         } catch (ServicesException ex) {
             /// Faces mensajes 
             Logger.getLogger(LaboratorioBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -137,7 +146,17 @@ public class LaboratorioBean extends BasePageBean {
     }
     
     public void registrarLabEquipos(){
-        ////
+        try {
+            laboratorioServices.registrarLaboratorio(laboratorio);
+            Integer maxIdLab = laboratorioServices.maxIdLaboratorio();
+            for (Equipo e: seleccionados){
+                laboratorioServices.asociarEquipoAlab(e.getId(),maxIdLab);
+            }
+            refresh();
+        } catch (ServicesException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
     }
     
  
@@ -232,6 +251,15 @@ public class LaboratorioBean extends BasePageBean {
             Logger.getLogger(LaboratorioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return dataset;
+    }
+
+    public void refresh(){
+        try {
+            laboratorios=laboratorioServices.buscarLaboratorios();
+            disponibles = laboratorioServices.buscarEquiposDisponibles();
+        } catch (ServicesException ex) {
+            Logger.getLogger(AgregarEquipoBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 

@@ -106,7 +106,7 @@
 				left outer join elemento as m on m.idequipo = e.id and m.tipo='mouse'
 				left outer join elemento as t on t.idequipo = e.id and t.tipo='torre'
 				left outer join elemento as k on k.idequipo = e.id and k.tipo='teclado'
-				WHERE e.lab is null
+				WHERE e.lab is null and e.activo is true
 		</select>
 
 		<select id="buscarEquipoPorId" resultMap="EquipoResult"
