@@ -27,8 +27,8 @@ representar de mejor forma el manejo del laboratorio.
 [Manual](Manual.md)
 
 ### Credenciales
-Usuario: admin
-clave: 12345
++ Usuario: admin
++ clave: 12345
 
 
 # Arquitectura y Diseño detallado
