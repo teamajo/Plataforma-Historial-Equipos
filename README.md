@@ -37,10 +37,10 @@ representar de mejor forma el manejo del laboratorio.
 ### Diagrama de clases
 ![](img/Diagrama-Clases.jpg)
 ### Descripción de la arquitectura
-PrimeFaces: correspondiente a la capa de presentación, lo utilizamos para el front de nuestra aplicación web
-Guice: Es un framework de inyección de dependencias, lo utilizamos en nuestras dependencias, como por ejemplo los DAO.
-QuickTheories: Es utilizado para genera datos, lo tulizamos bastante en los test
-PostgreSQL: Es un sistema de gestión de base de datos orientado a objetos, lo utilizamos para nuestra base de datos.
++ PrimeFaces: correspondiente a la capa de presentación, lo utilizamos para el front de nuestra aplicación web
++ Guice: Es un framework de inyección de dependencias, lo utilizamos en nuestras dependencias, como por ejemplo los DAO.
++ QuickTheories: Es utilizado para genera datos, lo tulizamos bastante en los test
++ PostgreSQL: Es un sistema de gestión de base de datos orientado a objetos, lo utilizamos para nuestra base de datos.
 ### [URL HEROKU](https://historial-equipos-app.herokuapp.com/)  
 ### [Integración Continua (CircleCI)](https://circleci.com/gh/teamajo/Plataforma-Historial-Equipos)
 
