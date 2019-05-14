@@ -10,7 +10,22 @@
     <name>Plataforma-Historial-Equipos Maven Webapp</name>
     <url>http://maven.apache.org</url>
     
-
+    <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <!-- select non-aggregate reports -->
+                  <report>report</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+        </plugins>
+      </reporting>
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -132,6 +147,13 @@
             <artifactId>jfreechart</artifactId>
             <version>1.0.19</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.3</version>
+        </dependency>
+
 
 
     
@@ -139,6 +161,7 @@
     
     <build>
         <plugins>
+            
              <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
@@ -268,9 +291,14 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5-SNAPSHOT</version>
+            </plugin>
         </plugins>
-    </build>
         
+    </build>
     
     
     <properties>
