@@ -10,7 +10,7 @@
 |Luis Jaramillo |Team Developer   |
 |Juan P. Ospina |Team Developer   |
 
-#Descripción del producto.
+# Descripción del producto.
 #### Descripción 
 Este proyecto tiene como finalidad aplicar los conocimientos adquiridos en la materia CVDS en 
 una problemática presentada en el laboratorio de informática, generando una aplicación web capaz 
@@ -22,7 +22,7 @@ Credenciales temporales:
 Usuario: admin
 clave: 12345
 
-# Manual de usuario
+## Manual de usuario
 [Manual](Manual.md)
 
 //Manual de usuario
