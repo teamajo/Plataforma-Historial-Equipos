@@ -23,49 +23,58 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     </header>
 
     <h1>Reporte de Laboratorios</h1>
+    <div class="compartido centrado">
+        <div style="width: 40%;">
+            <h:form>
+                    <p:messages id="messages" />
+                <p:dataTable id="laboratorios" var="lab" value="#{laboratorioBean.buscarLaboratorios()}" paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                     rows="15" class="lista"  >
 
-        <h:form>
-                <p:messages id="messages" />
-            <p:dataTable id="laboratorios" var="lab" value="#{laboratorioBean.buscarLaboratorios()}" paginator="true"
-                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
-                 rows="15" class="lista"  >
+                    <f:facet name="{Exporters}">
+                        <div style="float:right;padding-top: 5px;">
+                            <h:commandLink id="excel">
+                                <p:graphicImage library="images"  value="../imagenes/excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="laboratorios" fileName="laboratorios" />
+                            </h:commandLink>
+                        </div>
+                    </f:facet>
 
-                <f:facet name="{Exporters}">
-                    <div style="float:right;padding-top: 5px;">
-                        <h:commandLink id="excel">
-                            <p:graphicImage library="images"  value="../imagenes/excel.png" width="24"/>
-                            <p:dataExporter type="xls" target="laboratorios" fileName="laboratorios" />
-                        </h:commandLink>
-                    </div>
-                </f:facet>
+                    <p:column headerText="Id" filterBy="#{lab.id}"  sortBy="#{lab.id}" class="delgado">
+                        <h:outputText value="#{lab.id}" />
+                    </p:column>
 
-                <p:column headerText="Id" filterBy="#{lab.id}"  sortBy="#{lab.id}" class="delgado">
-                    <h:outputText value="#{lab.id}" />
-                </p:column>
+                    <p:column headerText="Nombre" filterBy="#{lab.name}" sortBy="#{lab.name}" class="ancho">
+                        <h:outputText value="#{lab.name}" />
+                    </p:column>
 
-                <p:column headerText="Nombre" filterBy="#{lab.name}" sortBy="#{lab.name}" class="ancho">
-                    <h:outputText value="#{lab.name}" />
-                </p:column>
-                
-                <p:column headerText="Activo" filterBy="#{lab.activo}" sortBy="#{lab.activo}" class="ancho">
-                    <h:outputText value="#{lab.activo}" />
-                </p:column>
-                
-                <p:column headerText="Fecha Creacion" filterBy="#{lab.activo}" sortBy="#{lab.activo}" class="ancho">
-                    <h:outputText value="#{lab.fechaCreacion}" />
-                </p:column>
-                
+                    <p:column headerText="Activo" filterBy="#{lab.activo}" sortBy="#{lab.activo}" class="ancho">
+                        <h:outputText value="#{lab.activo}" />
+                    </p:column>
 
-                <p:column headerText="Inspeccionar" class="mediado">
-                    <p:commandButton value="Ver Laboratiorio"  type="submit" action="#{laboratorioBean.seleccionarlab()}" process="@this" >
-                         <f:param name="laboratorioID" value="#{lab.id}" />
-                    </p:commandButton>
-                </p:column>
-             
+                    <p:column headerText="Fecha Creacion" filterBy="#{lab.activo}" sortBy="#{lab.activo}" class="ancho">
+                        <h:outputText value="#{lab.fechaCreacion}" />
+                    </p:column>
 
-            </p:dataTable>
-            
 
-        </h:form>
+                    <p:column headerText="Inspeccionar" class="mediado">
+                        <p:commandButton value="Ver Laboratiorio"  type="submit" action="#{laboratorioBean.seleccionarlab()}" process="@this" >
+                             <f:param name="laboratorioID" value="#{lab.id}" />
+                        </p:commandButton>
+                    </p:column>            
+
+                </p:dataTable>   
+
+            </h:form>
+        </div>
+        <div style="width: 30%;">
+            <p:panel header="Estadisticas del Laboratorio"  >
+                    <p:graphicImage value="#{laboratorioBean.chartAct}" stream="false"  style="max-width: 400px;"/>                   
+            </p:panel>
+            <p:panel header="Estadisticas del Laboratorio"  >
+                    <p:graphicImage value="#{laboratorioBean.chartInac}" stream="false"  style="max-width: 400px;"/>                   
+            </p:panel>
+        </div>
+    </div>
 </h:body>
 </html>

@@ -7,8 +7,11 @@ import javax.inject.Inject;
 import javax.faces.bean.SessionScoped;
 
 import edu.eci.cvds.entities.Equipo;
+import edu.eci.cvds.entities.NovedadElemento;
+import edu.eci.cvds.entities.NovedadEquipo;
 import edu.eci.cvds.services.LaboratorioServices;
 import edu.eci.cvds.services.ServicesException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -237,6 +240,16 @@ public class EquipoBean extends BasePageBean {
         this.idEquipo = idEquipo;
     }
     
+    public List<NovedadEquipo> novedadEquipo(){
+        List<NovedadEquipo> ans=new ArrayList<>();                
+                
+        try {
+            ans= laboratorioServices.buscarNovedadesPorEquipo(equipo.getId());
+        } catch (ServicesException ex) {
+            Logger.getLogger(EquipoBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ans;
+    }
 
 
 }

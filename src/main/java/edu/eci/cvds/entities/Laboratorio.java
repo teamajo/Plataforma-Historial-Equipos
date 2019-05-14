@@ -109,6 +109,20 @@ public class Laboratorio{
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-
+    
+    public int activos(){
+        int ans=0;
+        for(Equipo eq:equipos){
+            if (eq.isActivo()){
+                ans++;
+            }
+        }
+        return ans;
+    }
+    
+     @Override
+    public String toString() {
+        return "Lab{id=" + id + ", Laboratiorio="+name+", Cantidad Lab="+getEquipos().size()+'}';
+    }
 
 }

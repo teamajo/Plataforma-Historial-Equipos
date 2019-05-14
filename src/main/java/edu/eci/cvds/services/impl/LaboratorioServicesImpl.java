@@ -199,10 +199,10 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 	@Override
 	public void darBajaEquipo(Integer id) throws ServicesException {
 	try {
-      //java.util.Date fechaActual = new java.util.Date();
-      //NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo darBajaEquipo", id,fechaActual,"se dio de baja el equipo","admin");
-      //novedadEquipoDAO.registrarNovedadEquipo(novedad);
+        java.util.Date fechaActual = new java.util.Date();
+        NovedadEquipo novedad = new NovedadEquipo(null,"novedad equipo darBajaEquipo", id,fechaActual,"se dio de baja el equipo","admin");
             equipoDAO.darBajaEquipo(id);
+            novedadEquipoDAO.registrarNovedadEquipo(novedad);
         } catch (ServicesException ex) {
                 throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
         }
@@ -210,17 +210,16 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
 
 	@Override
 	public void darBajaElemento(Integer id) throws ServicesException {
-		try {
-        //java.util.Date fechaActual = new java.util.Date();
-        //NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento darBajaElemento",buscarElemento(id).getIdEquipo(),id,fechaActual,"se asocio el elemento","admin");
-        //novedadElementoDAO.registrarNovedadElemento(novedadel); 
-        if (buscarElemento(id).getIdEquipo()==null){
-          elementoDAO.darBajaElemento(id);
-        }
-
-		} catch (ServicesException ex) {
-			throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
-		}
+	try {
+            java.util.Date fechaActual = new java.util.Date();
+            NovedadElemento novedadel = new NovedadElemento(null,"novedad elmento darBajaElemento",buscarElemento(id).getIdEquipo(),id,fechaActual,"se dio de baja el elemento","admin");
+            if (buscarElemento(id).getIdEquipo()==null){
+              elementoDAO.darBajaElemento(id);
+              novedadElementoDAO.registrarNovedadElemento(novedadel);
+            }
+	} catch (ServicesException ex) {
+            throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+	}
   }
   @Override
 	public List<Laboratorio> buscarLaboratorios() throws ServicesException {
@@ -253,18 +252,34 @@ public class LaboratorioServicesImpl implements LaboratorioServices {
   }
   @Override
     public void asociarEquipoAlab(Integer idEquipo, Integer id) throws ServicesException {
-      Equipo eq = buscarEquipoPorId(idEquipo);
-      if (eq.isActivo()){
-          if (eq.getlab() != null){
-              desAsociarEquipoAlab(idEquipo);
-          }
-          equipoDAO.asociarEquipoAlab(idEquipo,id);
-      }
+    try { 
+        java.util.Date fechaActual = new java.util.Date();
+        Equipo eq = buscarEquipoPorId(idEquipo);
+        NovedadEquipo novedadeq = new NovedadEquipo(null,"novedad equipo asociar a Lab",idEquipo,fechaActual,"se asocio el equipo al lab ".concat(Integer.toString(id)),"admin");
+        if (eq.isActivo()){
+            if (eq.getlab() != null){
+                desAsociarEquipoAlab(idEquipo);
+            }
+            equipoDAO.asociarEquipoAlab(idEquipo,id);
+            novedadEquipoDAO.registrarNovedadEquipo(novedadeq);
+        }
+      
+
+        } catch (ServicesException ex) {
+                throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+        }
   }
 
   @Override
     public void desAsociarEquipoAlab(Integer idEquipo) throws ServicesException {
-      equipoDAO.desAsociarEquipoAlab(idEquipo);
+    try { 
+        java.util.Date fechaActual = new java.util.Date();
+        NovedadEquipo novedadeq = new NovedadEquipo(null,"novedad equipo des asociar Lab",idEquipo,fechaActual,"se des asocio el equipo del lab al que pertenecia","admin");
+        equipoDAO.desAsociarEquipoAlab(idEquipo);
+        novedadEquipoDAO.registrarNovedadEquipo(novedadeq);
+    } catch (ServicesException ex) {
+            throw new ServicesException("Error registrando novedades:" + ex.getLocalizedMessage(), ex);
+    }
   }
 
   @Override
