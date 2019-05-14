@@ -3,13 +3,13 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<head>
+<h:head>
     <title>Bienvenido</title>
     <link rel="stylesheet" type="text/css" href="../css/general.css"/>
     <link rel="stylesheet" type="text/css" href="../css/bienvenido.css"/>
     
-</head>
-<body>
+</h:head>
+<h:body>
     <header>
          <ui:insert name="header" >
             <ui:include src="../header.xhtml" />
@@ -18,15 +18,84 @@
   
     
     <h1> Bienvenido , ya ha ingresado</h1>
-     <h:form class="listado">
-        <h:button value="Reporte de Elementos" outcome="ReporteElementos.xhtml" />
-        <h:button value="Reporte de Equipo" outcome="ReporteEquipos.xhtml" />  
-        <h:button value="Reporte de Laboratorios" outcome="ReporteLaboratorios.xhtml" />  
-        <h:button value="Registrar Elemento" outcome="AgregarElemento.xhtml" />
-        <h:button value="Registrar Equipo" outcome="AgregarEquipo.xhtml" />   
-         <h:button value="Registrar Laboratorio" outcome="AgregarLaboratorio.xhtml" />   
+     <h:form >
+        <div class="row">
+            <div class="column">
+                <div>
+                    <p:panel header="Reporte Elementos">
+                        <div class="inlines">
+                            <p:graphicImage library="images" value="../imagenes/report.png" alt="reporte"/>  
+                            <p:graphicImage library="images" value="../imagenes/mouse.png" alt="reporte"/> 
+                        </div>
+                        <p:button value="Reporte Elementos" outcome="ReporteElementos.xhtml" />
+                    </p:panel>
+                </div>
+                <div>
+                    <p:panel header="Registrar Elemento">     
+                        <div class="inlines">
+                            <p:graphicImage library="images" value="../imagenes/new.png" alt="reporte"/>  
+                            <p:graphicImage library="images" value="../imagenes/mouse.png" alt="reporte"/> 
+                        </div>
+                        <p:button value="Registrar Elemento" outcome="AgregarElemento.xhtml" />
+                    </p:panel>
+                </div>
+              
+            </div>         
+       
+            <div class="column">
+                
+                <div>
+                    <p:panel header="Reporte Equipo">
+                        <div class="inlines">
+                            <p:graphicImage library="images" value="../imagenes/report.png" alt="reporte"/>  
+                            <p:graphicImage library="images" value="../imagenes/equipo.png" alt="reporte"/>  
+                        </div>
+                        <p:button value="Reporte de Equipo" outcome="ReporteEquipos.xhtml" />  
+                    </p:panel>
+                </div>
+
+
+                
+                <div>
+                    <p:panel header="Registrar Equipo">
+                        <div class="inlines">
+                           <p:graphicImage library="images" value="../imagenes/new.png" alt="reporte" style="margin-right: 10px;"/>  
+                           <p:graphicImage library="images" value="../imagenes/equipo.png" alt="reporte"/>  
+                        </div>
+
+                    <p:button value="Registrar Equipo" outcome="AgregarEquipo.xhtml" />   
+                    </p:panel>
+                </div>
+
+                
+            </div>
+            
+            <div class="column">
+                <div>
+                   <p:panel header="Reporte Laboratorios">
+                        <div class="inlines">
+                            <p:graphicImage library="images" value="../imagenes/report.png" alt="reporte"/>  
+                            <p:graphicImage library="images" value="../imagenes/lab.png" alt="reporte"/>  
+                        </div>   
+                       <p:button value="Reporte de Laboratorios" outcome="ReporteLaboratorios.xhtml" />
+                   </p:panel>
+                </div>
+                
+                <div>
+                    <p:panel header="Registrar Laboratorio">
+                        <div class="inlines">
+                            <p:graphicImage library="images" value="../imagenes/new.png" alt="reporte"/>  
+                            <p:graphicImage library="images" value="../imagenes/lab.png" alt="reporte"/>  
+                        </div>   
+                      <p:button value="Registrar Laboratorio" outcome="AgregarLaboratorio.xhtml" />               
+                    </p:panel>
+                </div>
+              
+            </div>           
+        </div>   
         <h:commandButton value="logout" action="#{loginBean.logout}" />
+        
     </h:form>
-</body>
+</h:body>
    
 </html>

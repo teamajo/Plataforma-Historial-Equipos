@@ -8,7 +8,35 @@ input{
     margin: 10px;
 }
 
-.listado *{
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 22%;    
+}
+
+.column>div{
+    margin: 10px;
+}
+
+
+.column *{
     display: block;
-    margin: 20px auto;
+    text-align: center;
+    margin: 0px auto;    
+}
+
+img{
+    max-height: 150px;    
+}
+
+button{
+    margin-top: 20px !important;
+}
+
+.inlines * {
+    display: inline-block !important;
 }
