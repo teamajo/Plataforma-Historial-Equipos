@@ -30,6 +30,8 @@ representar de mejor forma el manejo del laboratorio.
 + Usuario: admin
 + clave: 12345
 
+### [URL HEROKU](https://plataforma-historial-equipo.herokuapp.com/)  
+
 
 # Arquitectura y Diseño detallado
 ### Modelo E-R
@@ -41,7 +43,7 @@ representar de mejor forma el manejo del laboratorio.
 + Guice: Es un framework de inyección de dependencias, lo utilizamos en nuestras dependencias, como por ejemplo los DAO.
 + QuickTheories: Es utilizado para genera datos, lo tulizamos bastante en los test
 + PostgreSQL: Es un sistema de gestión de base de datos orientado a objetos, lo utilizamos para nuestra base de datos.
-### [URL HEROKU](https://historial-equipos-app.herokuapp.com/)  
+
 ### [Integración Continua (CircleCI)](https://circleci.com/gh/teamajo/Plataforma-Historial-Equipos)
 
 # Descripción del proceso
